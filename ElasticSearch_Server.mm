@@ -38,7 +38,7 @@
 </html>
 </richcontent>
 </node>
-<node CREATED="1368651475407" ID="ID_753416788" MODIFIED="1368654183872" TEXT="Mappings">
+<node CREATED="1368651475407" ID="ID_753416788" MODIFIED="1368689205642" TEXT="Mappings">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -173,21 +173,10 @@
     <p>
       }
     </p>
-    <p>
-      
-    </p>
-    <p>
-      If stored in mapping.json file, the index (<b>library</b>) can be created using these commands:
-    </p>
-    <p>
-      
-    </p>
-    <pre><b>curl -XPOST 'localhost:9200/library'
-curl -XPUT 'localhost:9200/library/book/_mapping' -d @mapping.json</b></pre>
   </body>
 </html>
 </richcontent>
-<node CREATED="1368651482311" ID="ID_1250393072" MODIFIED="1368654169523" TEXT="Data">
+<node CREATED="1368651482311" ID="ID_1250393072" MODIFIED="1368689205834" TEXT="Data">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -199,36 +188,7 @@ curl -XPUT 'localhost:9200/library/book/_mapping' -d @mapping.json</b></pre>
     <p>
       
     </p>
-    <pre>{ &quot;index&quot;: {&quot;_index&quot;: &quot;library&quot;, &quot;_type&quot;: &quot;book&quot;, &quot;_id&quot;: &quot;1&quot;}}
-{ &quot;title&quot;: &quot;All Quiet on the Western Front&quot;,&quot;otitle&quot;: &quot;Im Westen nichts
-Neues&quot;,&quot;author&quot;: &quot;Erich Maria Remarque&quot;,&quot;year&quot;: 1929,&quot;characters&quot;:
-[&quot;Paul B&#228;umer&quot;, &quot;Albert Kropp&quot;, &quot;Haie Westhus&quot;, &quot;Fredrich M&#252;ller&quot;,
-&quot;Stanislaus Katczinsky&quot;, &quot;Tjaden&quot;],&quot;tags&quot;: [&quot;novel&quot;],&quot;copies&quot;: 1,
-&quot;available&quot;: true, &quot;section&quot; : 3}
-{ &quot;index&quot;: {&quot;_index&quot;: &quot;library&quot;, &quot;_type&quot;: &quot;book&quot;, &quot;_id&quot;: &quot;2&quot;}}
-{ &quot;title&quot;: &quot;Catch-22&quot;,&quot;author&quot;: &quot;Joseph Heller&quot;,&quot;year&quot;:
-1961,&quot;characters&quot;: [&quot;John Yossarian&quot;, &quot;Captain Aardvark&quot;, &quot;Chaplain
-Tappman&quot;, &quot;Colonel Cathcart&quot;, &quot;Doctor Daneeka&quot;],&quot;tags&quot;:
-[&quot;novel&quot;],&quot;copies&quot;: 6, &quot;available&quot; : false, &quot;section&quot; : 1}
-{ &quot;index&quot;: {&quot;_index&quot;: &quot;library&quot;, &quot;_type&quot;: &quot;book&quot;, &quot;_id&quot;: &quot;3&quot;}}
-{ &quot;title&quot;: &quot;The Complete Sherlock Holmes&quot;,&quot;author&quot;: &quot;Arthur Conan
-Doyle&quot;,&quot;year&quot;: 1936,&quot;characters&quot;: [&quot;Sherlock Holmes&quot;,&quot;Dr. Watson&quot;, &quot;G.
-Lestrade&quot;],&quot;tags&quot;: [],&quot;copies&quot;: 0, &quot;available&quot; : false, &quot;section&quot; : 12}
-{ &quot;index&quot;: {&quot;_index&quot;: &quot;library&quot;, &quot;_type&quot;: &quot;book&quot;, &quot;_id&quot;: &quot;4&quot;}}
-{ &quot;title&quot;: &quot;Crime and Punishment&quot;,&quot;otitle&quot;: &quot;&#1055;&#1088;&#1077;&#1089;&#1090;&#1091;&#1087;&#1083;&#233;&#1085;&#1080;&#1077; &#1080;
-&#1085;&#1072;&#1082;&#1072;&#1079;&#225;&#1085;&#1080;&#1077;&quot;,&quot;author&quot;: &quot;Fyodor Dostoevsky&quot;,&quot;year&quot;: 1886,&quot;characters&quot;:
-[&quot;Raskolnikov&quot;, &quot;Sofia Semyonovna Marmeladova&quot;],&quot;tags&quot;: [],&quot;copies&quot;: 0,
-&quot;available&quot; : true}</pre>
-    <p>
-      
-    </p>
-    <p>
-      If stored in documents.json file we can use following command to index it:
-    </p>
-    <p>
-      
-    </p>
-    <pre><b>curl -s -XPOST 'localhost:9200/_bulk' --data-binary @documents.json</b></pre>
+    <pre></pre>
   </body>
 </html>
 </richcontent>
@@ -249,8 +209,84 @@ Lestrade&quot;],&quot;tags&quot;: [],&quot;copies&quot;: 0, &quot;available&quot
 <node CREATED="1368651677063" ID="ID_1952524766" MODIFIED="1368651690988" TEXT="Search execution preference (advanced)"/>
 </node>
 <node CREATED="1368651704695" ID="ID_1882653736" MODIFIED="1368651709636" TEXT="Basic queries">
-<node CREATED="1368651712183" ID="ID_973026064" MODIFIED="1368651746837" TEXT="term"/>
-<node CREATED="1368651748215" ID="ID_611682208" MODIFIED="1368651752773" TEXT="terms"/>
+<node CREATED="1368651712183" ID="ID_973026064" MODIFIED="1368689777686" TEXT="term">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      One of the simplest query. Matches any document, that has a term in a given field.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <b>Term query is not analyzed.</b>
+    </p>
+    <p>
+      
+    </p>
+    <pre><b>{
+  &quot;query&quot; : {
+    &quot;term&quot; : {
+      &quot;title&quot; : &quot;crime&quot;
+    }
+  }
+}</b>
+</pre>
+    <p>
+      We can include <b>boost</b>&#160;attribute to affect importance of the given term (but in such case we have to change the query a bit).
+    </p>
+    <p>
+      
+    </p>
+    <pre><b>{
+  &quot;query&quot; : {
+    &quot;term&quot; : {
+      &quot;title&quot; : {
+        &quot;value&quot; : &quot;crime&quot;,
+        &quot;boost&quot; : 10.0
+      }
+    }
+  }
+}</b>
+</pre>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1368651748215" ID="ID_611682208" MODIFIED="1368690307036" TEXT="terms">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Allows match documents that have certain terms in their contents.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      If we want documents that have the terms &quot;novel&quot; or &quot;book&quot; in the <b>tags</b>&#160;field, we should use something like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre><b>{
+  &quot;query&quot; : {
+    &quot;terms&quot; : {
+      &quot;tags&quot; : [ &quot;novel&quot;, &quot;book&quot; ],
+      &quot;minimum_match&quot; : 1
+    }
+  }
+}</b></pre>
+    Such query returns documents having one or both of the searched terms in the <b>tags</b>&#160;field. That's because of <b>minimum_match</b>&#160;attribute setting to 1. If we would want to match document with both provided terms, we would set its value to 2.
+  </body>
+</html>
+</richcontent>
+</node>
 <node CREATED="1368651754751" ID="ID_247819405" MODIFIED="1368651759045" TEXT="match">
 <node CREATED="1368651760055" ID="ID_470677832" MODIFIED="1368651765989" TEXT="Boolean match"/>
 <node CREATED="1368651767007" ID="ID_1141974764" MODIFIED="1368651770645" TEXT="phrase match"/>
@@ -757,7 +793,7 @@ to define <b>post</b> and <b>user</b> type</pre>
 </richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
-<node CREATED="1368629779491" ID="ID_1358479512" MODIFIED="1368645551246" TEXT="pattern">
+<node CREATED="1368629779491" ID="ID_1358479512" MODIFIED="1368705669515" TEXT="pattern">
 <richcontent TYPE="NOTE"><html>
   <head>
     
