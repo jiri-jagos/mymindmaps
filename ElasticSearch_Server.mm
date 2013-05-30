@@ -35,8 +35,7 @@
       Analysis process just discussed is used during searching and indexing and both index-time analysis and query time analysis can be configured differently. It's important that the terms produced during index and query time match, because if they don't, we'll have to find the documents manually. E.g. If stemming is used during indexing but not while searching, we'll have to pass stemmed words to the search query in order to find the documents.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368651475407" ID="ID_753416788" MODIFIED="1368689205642" TEXT="Mappings">
 <richcontent TYPE="NOTE"><html>
@@ -174,8 +173,7 @@
       }
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1368651482311" ID="ID_1250393072" MODIFIED="1368689205834" TEXT="Data">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -190,12 +188,89 @@
     </p>
     <pre></pre>
   </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1368651490663" ID="ID_923186511" MODIFIED="1368822298115" TEXT="Querying ElasticSearch">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      We talk to <i>ES</i>&#160;with the REST API using HTTP request containing JSON-structured data.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      When we want to send more than a simple query we do it same way - we structure it using JSON object and send it to <i>ES</i>. This is called <b>Query DSL</b>.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <i>ES</i>&#160;supports two kinds of queries:
+    </p>
+    <ul>
+      <li>
+        <b>basic</b>: are used just for querying (such as term query)
+      </li>
+      <li>
+        <b>compound</b>&#160;can combine multiple queries (such as the bool query)
+      </li>
+    </ul>
+    <p>
+      In addition to these two types, our queries can have <b>filter queries</b>&#160; which are used to narrow result by certain criteria.
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1368651517783" ID="ID_918815408" MODIFIED="1368840675785" TEXT="Simple query">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The simplest way to query <i>ES</i>&#160;is to use URI request query.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      E.g.: we want to search for the word &quot;crime&quot; in the title field:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <b>curl -XGET 'localhost:9200/library/book/_search?q=title:crime&amp;pretty=true' </b>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      From Query DSL point of view
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Simplest query is the <b>term</b>&#160;query which searches for given term in a given field (Term query is not analyzed and thus we have to provide exact term we're searching for)
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+  &quot;query&quot; : {
+    &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+  }
+}</pre>
+  </body>
 </html>
 </richcontent>
 </node>
-</node>
-<node CREATED="1368651490663" ID="ID_923186511" MODIFIED="1368651498100" TEXT="Querying ElasticSearch">
-<node CREATED="1368651517783" ID="ID_918815408" MODIFIED="1368651524028" TEXT="Simple query"/>
 <node CREATED="1368651526071" ID="ID_1854474302" MODIFIED="1368651534084" TEXT="Paging and results size"/>
 <node CREATED="1368651537567" ID="ID_1800598811" MODIFIED="1368651543220" TEXT="Returning the version"/>
 <node CREATED="1368651546575" ID="ID_1521105849" MODIFIED="1368651554717" TEXT="Limiting the score"/>
@@ -253,8 +328,7 @@
 }</b>
 </pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368651748215" ID="ID_611682208" MODIFIED="1368690307036" TEXT="terms">
 <richcontent TYPE="NOTE"><html>
@@ -284,8 +358,7 @@
 }</b></pre>
     Such query returns documents having one or both of the searched terms in the <b>tags</b>&#160;field. That's because of <b>minimum_match</b>&#160;attribute setting to 1. If we would want to match document with both provided terms, we would set its value to 2.
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368651754751" ID="ID_247819405" MODIFIED="1368651759045" TEXT="match">
 <node CREATED="1368651760055" ID="ID_470677832" MODIFIED="1368651765989" TEXT="Boolean match"/>
@@ -312,6 +385,122 @@
 </node>
 </node>
 <node CREATED="1368629026515" ID="ID_1460307793" MODIFIED="1368629035647" POSITION="left" TEXT="1. Getting Started with ElasticSearch Cluster">
+<node CREATED="1369859339864" ID="ID_1526956640" MODIFIED="1369859357938" TEXT="What is ElasticSearch?">
+<node CREATED="1369859393630" ID="ID_1218813554" MODIFIED="1369859523285" TEXT="Index">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Place where ES stores data (equivalent to table in relational database, or collection in MongoDB or CouchDB database) - prepared for fast full-text searching
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1369859525557" ID="ID_621997588" MODIFIED="1369859940627" TEXT="Document">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Main entity stored in ES. (equivalent to table row in a relational database)
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Documents consists of fields (row columns), but each field can occur several times (<b>multivalued fields</b>)
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Each field has a type (text, number, date, ....) and can be complex (contain other sub-documents or arrays)
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Field type is important for ES, because it gives the search engine information about how various operations (comparison, sorting, ...) should be performed.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Documents don't need to have a fixed structure. Every document may have different set of fields (which even don't have to be known during developoment)
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Document structure can be forced by schema.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1369859942109" ID="ID_134171513" MODIFIED="1369860048853" TEXT="Document type">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      One index can store many objects with different purposes and document type lets easily differentiate these objects.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1369860050349" ID="ID_1195291139" MODIFIED="1369860722151" TEXT="Node and cluster">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ES can work as a standalone server or as a <b>cluster</b>&#160;of many cooperating servers (<b>nodes</b>).
+    </p>
+    <p>
+      Large amout of data can be split across many nodes via index <b>sharding</b>&#160;(splitting into smaller individual parts)
+    </p>
+    <p>
+      Better availability are achieved through <b>replicas</b>&#160;(copies of index parts)
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1369860059509" ID="ID_1789985139" MODIFIED="1369861009952" TEXT="Shard">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In cases when sinlge node is not sufficient to fulfill application requirements (RAM, CPU, ....) data can be divided into smaller parts - <b>shards</b>, where each shard is separate Apache Lucene index and can be placed on different server in the cluster. When such index is queried, ES send the query to each relevant shard and merges the result in a transparent way.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1369860067037" ID="ID_712254997" MODIFIED="1369861196461" TEXT="Replica">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In order to increase query throughput or achieve high availability <b>replicas</b>&#160; can be used. The primary shard is used as the place where operations changing the index are directed and replica is just exact copy of the primary shard. Each shard can have 0..n replicas. When primary shard is lost cluster can promote a replica to be the new primary shard.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 <node CREATED="1368629062067" ID="ID_1912884721" MODIFIED="1368629085473" TEXT="Manual index creation and mappings configuration">
 <node CREATED="1368629134163" ID="ID_341289746" MODIFIED="1368632898949" TEXT="Schema mapping" VGAP="2">
 <richcontent TYPE="NOTE"><html>
@@ -372,8 +561,7 @@
     </p>
     <pre>curl -XPOST 'http://localhost:9200/posts' &#8211;d @posts.json</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1368632930539" ID="ID_620010282" MODIFIED="1368634911494" TEXT="Type definition">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -412,8 +600,7 @@
 
 to define <b>post</b> and <b>user</b> type</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1368632949547" ID="ID_1293945975" MODIFIED="1368635276740" TEXT="Fields">
@@ -444,8 +631,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       Attributes are specific to the used field types.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368632959235" ID="ID_816021709" MODIFIED="1368632965537" TEXT="Core types">
 <node CREATED="1368632970787" ID="ID_815506046" MODIFIED="1368643806520" TEXT="Common attributes">
@@ -475,10 +661,9 @@ to define <b>post</b> and <b>user</b> type</pre>
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
-<node CREATED="1368632979579" ID="ID_1780485429" MODIFIED="1368644910459" TEXT="String">
+<node CREATED="1368632979579" ID="ID_1780485429" MODIFIED="1369858831372" TEXT="String">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -576,8 +761,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368632990011" ID="ID_526910713" MODIFIED="1368650439730" TEXT="Date">
 <richcontent TYPE="NOTE"><html>
@@ -612,8 +796,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368632994771" ID="ID_1364622330" MODIFIED="1368650491472" TEXT="Boolean">
 <richcontent TYPE="NOTE"><html>
@@ -637,8 +820,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368633003747" ID="ID_42613829" MODIFIED="1368650631606" TEXT="Binary">
 <richcontent TYPE="NOTE"><html>
@@ -656,8 +838,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       <b>&quot;image&quot; : { &quot;type&quot; : &quot;binary&quot; }</b>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1368632167571" ID="ID_1936386588" MODIFIED="1368651314924" TEXT="Multi fields">
@@ -686,8 +867,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       Preceding definition will create two fields. One can be referred to as <b>name</b>&#160; and the second can be used as <b>name.facet</b>. It's not necessary to specify two separate fields during indexing, single one named <b>name</b>&#160; is enough and ElasticSearch will do the rest.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368629152539" ID="ID_1231826946" MODIFIED="1368630194502" TEXT="Using analyzers">
 <richcontent TYPE="NOTE"><html>
@@ -717,8 +897,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       To use one of the analyzers, we need to specify its name to the correct property of the field - that's all.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1368629451259" ID="ID_1666869534" MODIFIED="1368629459225" TEXT="Out of the box analyzers">
 <node CREATED="1368629464667" ID="ID_1065888672" MODIFIED="1368645546566" TEXT="standard">
 <richcontent TYPE="NOTE"><html>
@@ -733,8 +912,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       modules/analysis/standard-analyzer.html for details)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1368629517435" ID="ID_1181342573" MODIFIED="1368645547758" TEXT="simple">
@@ -747,8 +925,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       analyzer that splits the provided value on non-letter characters and converts letters to lowercase
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1368629579499" ID="ID_1817878231" MODIFIED="1368645548662" TEXT="whitespace">
@@ -761,8 +938,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       analyzer that splits provided value on the basis of whitespace characters
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1368629617115" ID="ID_292043992" MODIFIED="1368645549630" TEXT="stop">
@@ -775,8 +951,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       similar to a simple analyzer, but filters data on the provided stop words set (refer to http://www.elasticsearch.org/guide/reference/index-modules/analysis/stop-analyzer.html for details)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1368629773003" ID="ID_893948331" MODIFIED="1368645550454" TEXT="keyword">
@@ -789,8 +964,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       very simple analyzer that just passes provided value, same result can be achieved by specifying the field as <i>not_analyzed</i>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1368629779491" ID="ID_1358479512" MODIFIED="1368705669515" TEXT="pattern">
@@ -803,8 +977,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       analyzer that allows flexible text separation by the use of regular expressions (refer to http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern-analyzer.html for details)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1368629846651" ID="ID_92220524" MODIFIED="1368645552198" TEXT="language">
@@ -817,8 +990,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       analyzer designed to work with specific language, full list of supported languages can be found at http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1368629855747" ID="ID_1235615961" MODIFIED="1368645553014" TEXT="snowball">
@@ -831,8 +1003,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       similar to the standard analyzer but it provides a stemming algorithm (refer to&#160; http://www.elasticsearch.org/guide/reference/index-modules/analysis/snowball-analyzer.html )
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
@@ -847,8 +1018,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       Analyzer field (<i>_analyzer</i>) allows specifying value that will be used as analyzer name for the document to which the field belongs.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368631162667" HGAP="21" ID="ID_615996073" MODIFIED="1368645601348" TEXT="Default analyzers" VSHIFT="-4">
 <richcontent TYPE="NOTE"><html>
@@ -929,12 +1099,37 @@ to define <b>post</b> and <b>user</b> type</pre>
       }
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
+<node CREATED="1369860148469" ID="ID_834434237" MODIFIED="1369860158220" TEXT="Storing a document source"/>
+<node CREATED="1369860163654" ID="ID_697218557" MODIFIED="1369860166340" TEXT="All field"/>
 </node>
 </node>
+<node CREATED="1369860191061" ID="ID_824536201" MODIFIED="1369860206693" TEXT="Dynamic mappings and templates">
+<node CREATED="1369860209597" ID="ID_1010096494" MODIFIED="1369860221044" TEXT="Type determining mechanism"/>
+<node CREATED="1369860226061" ID="ID_1285872529" MODIFIED="1369860230916" TEXT="Dynamic mappings"/>
+<node CREATED="1369860233517" ID="ID_535536171" MODIFIED="1369860235755" TEXT="Templates">
+<node CREATED="1369860237565" ID="ID_1611769122" MODIFIED="1369860247516" TEXT="Storing templates in files"/>
+</node>
+</node>
+<node CREATED="1369860256949" ID="ID_258049317" MODIFIED="1369860263708" TEXT="When routing does matter">
+<node CREATED="1369860267061" ID="ID_1689006455" MODIFIED="1369860277068" TEXT="How does indexing work?"/>
+<node CREATED="1369860279581" ID="ID_890008532" MODIFIED="1369860287363" TEXT="How does searching work?"/>
+<node CREATED="1369860290813" ID="ID_1035236443" MODIFIED="1369860292588" TEXT="Routing"/>
+<node CREATED="1369860294677" ID="ID_1887138297" MODIFIED="1369860300316" TEXT="Routing parameters"/>
+<node CREATED="1369860303133" ID="ID_1830582158" MODIFIED="1369860306452" TEXT="Routing fields"/>
+</node>
+<node CREATED="1369860316093" ID="ID_1211219004" MODIFIED="1369860339300" TEXT="Index aliasing and simplifying your everyday work using it">
+<node CREATED="1369860351237" ID="ID_1913465226" MODIFIED="1369860355500" TEXT="An alias"/>
+<node CREATED="1369860356734" ID="ID_1123510307" MODIFIED="1369860363172" TEXT="Creating an alias"/>
+<node CREATED="1369860366709" ID="ID_153513532" MODIFIED="1369860372492" TEXT="Modifying aliases"/>
+<node CREATED="1369860375069" ID="ID_1639804333" MODIFIED="1369860389028" TEXT="Combining commands"/>
+<node CREATED="1369860393285" ID="ID_750250706" MODIFIED="1369860400924" TEXT="Retrieving all aliases"/>
+<node CREATED="1369860405277" ID="ID_1964640808" MODIFIED="1369860423828" TEXT="Filtering aliases"/>
+<node CREATED="1369860429093" ID="ID_1736499334" MODIFIED="1369860434052" TEXT="Aliases and routing"/>
+</node>
+<node CREATED="1369860436533" ID="ID_969917913" MODIFIED="1369860439332" TEXT="Summary"/>
 </node>
 </node>
 </map>
