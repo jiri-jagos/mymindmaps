@@ -224,8 +224,7 @@
       In addition to these two types, our queries can have <b>filter queries</b>&#160; which are used to narrow result by certain criteria.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1368651517783" ID="ID_918815408" MODIFIED="1368840675785" TEXT="Simple query">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -268,8 +267,7 @@
   }
 }</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368651526071" ID="ID_1854474302" MODIFIED="1368651534084" TEXT="Paging and results size"/>
 <node CREATED="1368651537567" ID="ID_1800598811" MODIFIED="1368651543220" TEXT="Returning the version"/>
@@ -396,8 +394,7 @@
       Place where ES stores data (equivalent to table in relational database, or collection in MongoDB or CouchDB database) - prepared for fast full-text searching
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1369859525557" ID="ID_621997588" MODIFIED="1369859940627" TEXT="Document">
 <richcontent TYPE="NOTE"><html>
@@ -439,8 +436,7 @@
       Document structure can be forced by schema.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1369859942109" ID="ID_134171513" MODIFIED="1369860048853" TEXT="Document type">
 <richcontent TYPE="NOTE"><html>
@@ -452,8 +448,7 @@
       One index can store many objects with different purposes and document type lets easily differentiate these objects.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1369860050349" ID="ID_1195291139" MODIFIED="1369860722151" TEXT="Node and cluster">
 <richcontent TYPE="NOTE"><html>
@@ -471,8 +466,7 @@
       Better availability are achieved through <b>replicas</b>&#160;(copies of index parts)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1369860059509" ID="ID_1789985139" MODIFIED="1369861009952" TEXT="Shard">
 <richcontent TYPE="NOTE"><html>
@@ -484,8 +478,7 @@
       In cases when sinlge node is not sufficient to fulfill application requirements (RAM, CPU, ....) data can be divided into smaller parts - <b>shards</b>, where each shard is separate Apache Lucene index and can be placed on different server in the cluster. When such index is queried, ES send the query to each relevant shard and merges the result in a transparent way.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1369860067037" ID="ID_712254997" MODIFIED="1369861196461" TEXT="Replica">
 <richcontent TYPE="NOTE"><html>
@@ -497,12 +490,115 @@
       In order to increase query throughput or achieve high availability <b>replicas</b>&#160; can be used. The primary shard is used as the place where operations changing the index are directed and replica is just exact copy of the primary shard. Each shard can have 0..n replicas. When primary shard is lost cluster can promote a replica to be the new primary shard.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1368629062067" ID="ID_1912884721" MODIFIED="1368629085473" TEXT="Manual index creation and mappings configuration">
-<node CREATED="1368629134163" ID="ID_341289746" MODIFIED="1368632898949" TEXT="Schema mapping" VGAP="2">
+<node CREATED="1369941989767" ID="ID_513466461" MODIFIED="1369942771000" TEXT="Index">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Logical structure that holds data (db table with rows and columns)
+    </p>
+    <p>
+      row is a document
+    </p>
+    <p>
+      column is single field in the index
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ES server can have many indexes
+    </p>
+    <p>
+      indexes can be scattered (sharded) accross multiple node in ES cluster
+    </p>
+    <p>
+      each shard can have replica to backup and throttle performance
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Shards are Apache Lucene indexes divided into types.
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1369942065222" ID="ID_1115509079" MODIFIED="1370536641598" TEXT="Types">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Single index can contain multiple types of documents ....
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1370536655181" ID="ID_519105201" MODIFIED="1370536976488" TEXT="Index manipulation">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      To create an <b>post</b>&#160;index we send following command:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <b>curl &#8211;XPOST 'http://localhost:9200/posts'</b>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      if everything is right, ES server responds with:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <b>{&quot;ok&quot;:true,&quot;acknowledged&quot;:true}</b>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      we can delete it using:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <b>curl &#8211;XDELETE 'http://localhost:9200/posts'</b>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      and we should get the same response ...
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1368629134163" ID="ID_341289746" MODIFIED="1370537049155" TEXT="Schema mapping" VGAP="2">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -551,17 +647,15 @@
    }
 }</pre>
     <p>
-      And we can create <b>posts</b>&#160;index by sending it to the elasticsearch server:
+      Then&#160;we can create <b>posts</b>&#160;index by sending it to the elasticsearch server:
     </p>
     <p>
       
     </p>
-    <p>
-      
-    </p>
-    <pre>curl -XPOST 'http://localhost:9200/posts' &#8211;d @posts.json</pre>
+    <pre><b>curl -XPOST 'http://localhost:9200/posts' &#8211;d @posts.json</b></pre>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 <node CREATED="1368632930539" ID="ID_620010282" MODIFIED="1368634911494" TEXT="Type definition">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -711,8 +805,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368632984843" ID="ID_1387724539" MODIFIED="1368645529221" TEXT="Number">
 <richcontent TYPE="NOTE"><html>
@@ -1102,15 +1195,55 @@ to define <b>post</b> and <b>user</b> type</pre>
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1369860148469" ID="ID_834434237" MODIFIED="1369860158220" TEXT="Storing a document source"/>
+<node CREATED="1369860148469" ID="ID_834434237" MODIFIED="1370911773402" TEXT="Storing a document source">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Sometimes it could be handy to store whole input JSON document and ES does it automatically. To disable this behavior we add following to our type definition:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <b>&quot;_source&quot; : { </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&quot;enabled&quot; : false </b>
+    </p>
+    <p>
+      <b>}</b>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      so the whole mappings'd look like this:
+    </p>
+    <p>
+      <b>{ &quot;mappings&quot;: </b>
+    </p>
+    <p>
+      &#160;&#160;&#160; <b>{ &quot;post&quot;: </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{ &quot;_source&quot;: { &quot;enabled&quot;: false }, &quot;properties&quot;: { &quot;id&quot;: {&quot;type&quot;:&quot;long&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;precision_step&quot;:&quot;0&quot; }, &quot;name&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;index&quot;:&quot;analyzed&quot; }, &quot;published&quot;: {&quot;type&quot;:&quot;date&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;precision_step&quot;:&quot;0&quot; }, &quot;contents&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;store&quot;:&quot;no&quot;, &quot;index&quot;:&quot;analyzed&quot; } } } } } </b>
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 <node CREATED="1369860163654" ID="ID_697218557" MODIFIED="1369860166340" TEXT="All field"/>
 </node>
+<node CREATED="1369942088481" ID="ID_186692823" MODIFIED="1369942088481" TEXT=""/>
 </node>
 <node CREATED="1369860191061" ID="ID_824536201" MODIFIED="1369860206693" TEXT="Dynamic mappings and templates">
 <node CREATED="1369860209597" ID="ID_1010096494" MODIFIED="1369860221044" TEXT="Type determining mechanism"/>
 <node CREATED="1369860226061" ID="ID_1285872529" MODIFIED="1369860230916" TEXT="Dynamic mappings"/>
 <node CREATED="1369860233517" ID="ID_535536171" MODIFIED="1369860235755" TEXT="Templates">
-<node CREATED="1369860237565" ID="ID_1611769122" MODIFIED="1369860247516" TEXT="Storing templates in files"/>
+<node CREATED="1369860237565" ID="ID_1611769122" MODIFIED="1370537476748" TEXT=""/>
 </node>
 </node>
 <node CREATED="1369860256949" ID="ID_258049317" MODIFIED="1369860263708" TEXT="When routing does matter">
