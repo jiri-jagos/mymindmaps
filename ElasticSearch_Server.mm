@@ -493,7 +493,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1368629062067" ID="ID_1912884721" MODIFIED="1368629085473" TEXT="Manual index creation and mappings configuration">
+<node CREATED="1368629062067" FOLDED="true" ID="ID_1912884721" MODIFIED="1371998288518" TEXT="Manual index creation and mappings configuration">
 <node CREATED="1369941989767" ID="ID_513466461" MODIFIED="1369942771000" TEXT="Index">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -1195,7 +1195,7 @@ to define <b>post</b> and <b>user</b> type</pre>
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1369860148469" ID="ID_834434237" MODIFIED="1370911773402" TEXT="Storing a document source">
+<node CREATED="1369860148469" ID="ID_834434237" MODIFIED="1371987491891" TEXT="Storing a document source">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1223,23 +1223,160 @@ to define <b>post</b> and <b>user</b> type</pre>
       so the whole mappings'd look like this:
     </p>
     <p>
-      <b>{ &quot;mappings&quot;: </b>
+      <b>{ </b>
     </p>
     <p>
-      &#160;&#160;&#160; <b>{ &quot;post&quot;: </b>
+      <b>&#160;&#160;&#160;&#160;&quot;mappings&quot;: { </b>
     </p>
     <p>
-      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{ &quot;_source&quot;: { &quot;enabled&quot;: false }, &quot;properties&quot;: { &quot;id&quot;: {&quot;type&quot;:&quot;long&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;precision_step&quot;:&quot;0&quot; }, &quot;name&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;index&quot;:&quot;analyzed&quot; }, &quot;published&quot;: {&quot;type&quot;:&quot;date&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;precision_step&quot;:&quot;0&quot; }, &quot;contents&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;store&quot;:&quot;no&quot;, &quot;index&quot;:&quot;analyzed&quot; } } } } } </b>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;post&quot;: { </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;_source&quot;: { &quot;enabled&quot;: false }, </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &quot;properties&quot;: { </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &quot;id&quot;: {&quot;type&quot;:&quot;long&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;precision_step&quot;:&quot;0&quot;}, </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &quot;name&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;index&quot;:&quot;analyzed&quot;}, </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &quot;published&quot;: { &quot;type&quot;: &quot;date&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;precision_step&quot;:&quot;0&quot;}, </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &quot;contents&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;store&quot;:&quot;no&quot;, &quot;index&quot;:&quot;analyzed&quot;} </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; } </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;} </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;} </b>
+    </p>
+    <p>
+      <b>} </b>
     </p>
   </body>
 </html>
 </richcontent>
 </node>
-<node CREATED="1369860163654" ID="ID_697218557" MODIFIED="1369860166340" TEXT="All field"/>
+<node CREATED="1369860163654" ID="ID_697218557" MODIFIED="1371998125223" TEXT="All field">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Sometimes (e.g. when we don't know which fields to search on) is handy to have some fields copied into one. Instead of searching multiple fields a general purpose will be used for searching.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ES includes the values from all text fields into the <b>_all</b>&#160;field by default.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      To disable such behaviour we can add following part to the type definition:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <b>&quot;_all&quot; : { </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&quot;enabled&quot; : false </b>
+    </p>
+    <p>
+      <b>} </b>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      So the whole mapping would look like this:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <b>{ </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&quot;mappings&quot;: { </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;post&quot;: { </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;_all&quot;: { &quot;enabled&quot;: false }, </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;properties&quot;: { </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;id&quot;: {&quot;type&quot;:&quot;long&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;precision_step&quot;:&quot;0&quot;}, </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;name&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;index&quot;:&quot;analyzed&quot;}, </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;published&quot;: { &quot;type&quot;: &quot;date&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;precision_step&quot;:&quot;0&quot;}, </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&quot;contents&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;store&quot;:&quot;no&quot;, &quot;index&quot;:&quot;analyzed&quot;} </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;} </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;} </b>
+    </p>
+    <p>
+      <b>&#160;&#160;&#160;&#160;} </b>
+    </p>
+    <p>
+      <b>} </b>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      The <b>_all</b>&#160;field increases the index size so it should be disabled if not needed.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 <node CREATED="1369942088481" ID="ID_186692823" MODIFIED="1369942088481" TEXT=""/>
 </node>
-<node CREATED="1369860191061" ID="ID_824536201" MODIFIED="1369860206693" TEXT="Dynamic mappings and templates">
+<node CREATED="1369860191061" ID="ID_824536201" MODIFIED="1371998465873" TEXT="Dynamic mappings and templates">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The previous topic (<u>Manual index creation and mappings configuration</u>) describes possibilities of deifining type mapping when automatically genereated type mapping is not sufficient.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      This section goes step back and describes working of automatic mapping.
+    </p>
+  </body>
+</html>
+</richcontent>
 <node CREATED="1369860209597" ID="ID_1010096494" MODIFIED="1369860221044" TEXT="Type determining mechanism"/>
 <node CREATED="1369860226061" ID="ID_1285872529" MODIFIED="1369860230916" TEXT="Dynamic mappings"/>
 <node CREATED="1369860233517" ID="ID_535536171" MODIFIED="1369860235755" TEXT="Templates">
