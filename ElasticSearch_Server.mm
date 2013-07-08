@@ -225,7 +225,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1368651517783" ID="ID_918815408" MODIFIED="1368840675785" TEXT="Simple query">
+<node CREATED="1368651517783" ID="ID_918815408" MODIFIED="1372882284383" TEXT="Simple query">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -265,7 +265,11 @@
   &quot;query&quot; : {
     &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
   }
-}</pre>
+}
+
+Querying for data means sending GET HTTP request to the _search REST end point of index / type we want to search (both can be omitted).
+
+So if we want </pre>
   </body>
 </html></richcontent>
 </node>
@@ -278,7 +282,56 @@
 <node CREATED="1368651582463" ID="ID_1712230196" MODIFIED="1368651593557" TEXT="Using script fields">
 <node CREATED="1368651594159" ID="ID_659767064" MODIFIED="1368651609261" TEXT="Passing parameters to script fields"/>
 </node>
-<node CREATED="1368651656247" ID="ID_1850581341" MODIFIED="1368651674756" TEXT="Choosing the right search type (advanced)"/>
+<node CREATED="1368651656247" ID="ID_1850581341" MODIFIED="1372922121649" TEXT="Choosing the right search type (advanced)">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      It's possible to choose the way our query is processed internally (when appropriate)
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      To control query execution we pass <b>search_type</b>&#160;request parameter and set it to one of following values:
+    </p>
+    <ul>
+      <li>
+        <b>query_and_fetch</b>&#160;usually fastest and simplest implementation, query is executed against all needed shards in parallel and all shards return <b>size</b>&#160;results number, maximum size of whole resultset will be value of parameter <b>size * noOfShards</b>
+      </li>
+      <li>
+        <b>query_then_fetch</b>&#160;in the 1st step query is executed to sort and rank documents and then only relevant shards are fetched for documents, max number of results is equal to the <b>size</b>&#160;parameter
+      </li>
+      <li>
+        <b>dfs_query_and_fetch</b>&#160;similar to query_and_fetch type, in addition to query_and_fetch in the initial query phase distributed term frequencies are computed to allow more precise scoring of returned documents
+      </li>
+      <li>
+        <b>dfs_query_then_fetch</b>&#160;same to query_then_fetch as dfs_query_and_fetch to query_and_fetch
+      </li>
+      <li>
+        <b>count</b>&#160;special search type that only returns the number of documents that matched the query
+      </li>
+      <li>
+        <b>scan</b>&#160;another special search type. It should be used when expecting large number of results returned by the query. It differs&#160;&#160;from usual queries because after sending the 1st request ES responds with <b>scroll</b>&#160;identifier and all the other queries need to be run against the <b>_search/scroll</b>&#160;REST endpoint and need to send the returned scroll identifier in the request body. More about this functionality in the &quot;Why is the result on the later pages slow&quot; in Chapter 8 Dealing with problems
+      </li>
+    </ul>
+    <p>
+      So if we want to use the simplest search type, we would run following command:
+    </p>
+    <p>
+      
+    </p>
+    <pre>curl -XGET 'localhost:9200/library/book/_search?pretty=true&amp;search_type=query_and_fetch' -d '{
+&quot;query&quot; : {
+	&quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }	
+	}
+}'</pre>
+  </body>
+</html>
+</richcontent>
+</node>
 <node CREATED="1368651677063" ID="ID_1952524766" MODIFIED="1368651690988" TEXT="Search execution preference (advanced)"/>
 </node>
 <node CREATED="1368651704695" ID="ID_1882653736" MODIFIED="1368651709636" TEXT="Basic queries">
@@ -358,13 +411,284 @@
   </body>
 </html></richcontent>
 </node>
-<node CREATED="1368651754751" ID="ID_247819405" MODIFIED="1368651759045" TEXT="match">
-<node CREATED="1368651760055" ID="ID_470677832" MODIFIED="1368651765989" TEXT="Boolean match"/>
-<node CREATED="1368651767007" ID="ID_1141974764" MODIFIED="1368651770645" TEXT="phrase match"/>
-<node CREATED="1368651775047" ID="ID_1112970012" MODIFIED="1368651785765" TEXT="match phrase prefix"/>
+<node CREATED="1368651754751" ID="ID_247819405" MODIFIED="1372929530004" TEXT="match">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The match query takes given search parameters, analyze them and constructs appropriate query for them (automatically selecting proper analyzer (the same one used during indexing))
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Match (and multi match) query does not support Lucene query syntax.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      It fits perfectly as a query handler for the search box. Example of the <u>simplest</u>&#160; match query can look like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+	&quot;query&quot; : {
+		&quot;match&quot; : {
+			&quot;title&quot; : &quot;crime and punishment&quot;
+		}
+	}
+}</pre>
+    <p>
+      
+    </p>
+    <p>
+      which would match all documents which have terms &quot;crime&quot; or &quot;and&quot; or &quot;punishment&quot; in the title
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1368651760055" ID="ID_470677832" MODIFIED="1373314902237" TEXT="Boolean match">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Boolean match query analyzes provided text and makes boolean query out of it.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Few parameters allow us to control Boolean match queries behavior:
+    </p>
+    <ul>
+      <li>
+        <b>operator</b>: can be <b>or</b>&#160;| <b>and</b>&#160;and tells what operator is used to connect created boolean clauses, default is <b>or</b>
+      </li>
+      <li>
+        <b>analyzer</b>: specifies name of the analyzer used to analyze query text, default is the default analyzer
+      </li>
+      <li>
+        <b>fuzziness</b>: providing the value of this parameter allows us to construct fuzzy queries. Value is in range <b>from 0.0 to 1.0</b>&#160;for a <b>string</b>&#160;object. This parameter will be used to set the similarity while constructing fuzzy queries
+      </li>
+      <li>
+        <b>prefix_length</b>:&#160;&#160;allows to control behavior of the fuzzy query, for more info see <u>The fuzzy like this query</u>&#160;section
+      </li>
+      <li>
+        <b>max_expansions</b>: allows to control behavior of the fuzzy query again, for more info see as above
+      </li>
+    </ul>
+    <p>
+      Parameters should be wrapped in the name of the field we are running the query against, so to run boolean match query against the <b>title</b>&#160; field, we'd send query like:
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+	&quot;query&quot; : {
+		&quot;match&quot; : {
+			&quot;title&quot; : {
+				&quot;query&quot; : &quot;crime and punishment&quot;,
+				&quot;operator&quot; : &quot;and&quot;
+			}
+		}
+	}
+}</pre>
+  </body>
+</html>
+</richcontent>
 </node>
-<node CREATED="1368651787599" ID="ID_1767391984" MODIFIED="1368651793909" TEXT="multi match"/>
-<node CREATED="1368651795407" ID="ID_1140825410" MODIFIED="1368651801069" TEXT="query string">
+<node CREATED="1368651767007" ID="ID_1141974764" MODIFIED="1373313532028" TEXT="phrase match">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Phrase match query is similar to the Boolean query, but instead of constructing the Boolean clauses from the analyzed text it constructs a phrase query.
+    </p>
+    <p>
+      Available parameters are:
+    </p>
+    <ul>
+      <li>
+        <b>slop</b>: integer value that defines number of unknown words which can appear between terms in the text query so that phrase matches
+      </li>
+      <li>
+        <b>analyzer</b>: name of the analyzer that will be used to analyze the query text, default is the default analyzer
+      </li>
+    </ul>
+    <p>
+      Sample phrase match query against the <b>title</b>&#160;field could look like following code:
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+	&quot;query&quot; : {
+		&quot;match_phrase&quot; : {
+			&quot;title&quot; : {
+				&quot;query&quot; : &quot;crime and punishment&quot;,
+				&quot;slop&quot; : 1
+			}
+		}
+	}
+}</pre>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1368651775047" ID="ID_1112970012" MODIFIED="1373313890498" TEXT="match phrase prefix">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Last type of the match query is match phrase prefix query, which is almost the same as the prefix match query, but in addition it allows prefix matches on the last term in the query text. In addition to the parameters of the match phrase query it exposes the <b>max_expansions</b>&#160; parameter which controls how many prefixes the last terms will be rewritten to.
+    </p>
+    <p>
+      Sample query could look like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+	&quot;query&quot; : {
+		&quot;match_phrase_prefix&quot; : {
+			&quot;title&quot; : {
+				&quot;query&quot; : &quot;crime and punishment&quot;,
+				&quot;slop&quot; : 1,
+				&quot;max_expansions&quot; : 20
+			}
+		}
+	}
+}</pre>
+  </body>
+</html>
+</richcontent>
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1368651787599" ID="ID_1767391984" MODIFIED="1373314184838" TEXT="multi match">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Multi match query is the same as the match query, but instead of running against a single field it can be run against multiple fields using the <b>fields</b>&#160; parameter.
+    </p>
+    <p>
+      All parameters used with the match query can be used with the multi match query.
+    </p>
+    <p>
+      So to match against <b>title</b>&#160;and <b>otitle</b>&#160;fields we can run following query:
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+	&quot;query&quot; : {
+		&quot;multi_match&quot; : {
+			&quot;query&quot; : &quot;crime punishment&quot;,
+			&quot;fields&quot; : [ &quot;title&quot;, &quot;otitle&quot; ]
+		}
+	}
+}</pre>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1368651795407" ID="ID_1140825410" MODIFIED="1373315504181" TEXT="query string">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The query string query supports full Apache Lucene query syntax, so it uses a query parser to construct an actual query using provided text. A sample query string query could look like this:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+	&quot;query&quot; : {
+		&quot;query_string&quot; : {
+			&quot;query&quot; : &quot;title:crime^10 +title:punishment -otitle:cat +author (+Fyodor +dostoevsky)&quot;,
+			&quot;default_field&quot; : &quot;title&quot;
+		}
+	}
+}
+
+</pre>
+    <p>
+      Parameters controlling query behavior are following:
+    </p>
+    <ul>
+      <li>
+        <b>query</b>: query text
+      </li>
+      <li>
+        <b>default_field</b>: default field the query will be executed against. Defaults to the <b>index.query.default_field</b>&#160;property (which defaults to <b>_all</b>)
+      </li>
+      <li>
+        <b>default_operator</b>: specifies default logical operator (<b>or</b>&#160;| <b>and</b>) when no operator is specified. Default value is <b>or</b>.
+      </li>
+      <li>
+        <b>analyzer</b>: specifies the analyzer used to analyze value of <b>query</b>&#160;parameter
+      </li>
+      <li>
+        <b>allow_leading_wildcard</b>: whether a wildcard is allowed as the 1st character of a term. Defaults to true.
+      </li>
+      <li>
+        <b>lowercase_expand_terms</b>: specifies whether query rewrtten terms are lowercased. Defaults to true.
+      </li>
+      <li>
+        <b>enable_position_increments</b>: specifies whether position increments are turned on in the result query. Defaults to true.
+      </li>
+      <li>
+        <b>fuzzy_prefix_length</b>: prefix length for generated fuzzy queries. Defaults to 0, for more info see <u>The fuzzy query</u>&#160;section.
+      </li>
+      <li>
+        <b>fuzzy_min_sim</b>: specifies the minimum similarity for fuzzy queries. Defaults to 0.5, for more info see The fuzzy query&#160;section.
+      </li>
+      <li>
+        <b>phrase_slop</b>: specifies phrase slop and defaults to 0. For more info see the <u>phrase match query</u>&#160;section.
+      </li>
+      <li>
+        <b>boost</b>: boost value, defaults to 1.0.
+      </li>
+      <li>
+        <b>analyze_wildcard</b>: whether wildcards characters should be analyzed. Defaults to true.
+      </li>
+      <li>
+        <b>auto_generate_phrase_queries</b>: specifies whether phrase queries should be automatically generated. Defaults to false.
+      </li>
+      <li>
+        <b>minimum_should_match</b>: controls how many of generated boolean clauses should match to consider a hit for given document. Value is provided as percentage.
+      </li>
+      <li>
+        <b>lenient</b>: boolean value telling whether format-based failures will be ignored (if set to true)
+      </li>
+    </ul>
+    <p>
+      Query string query can be rewritten by ES so it allows us to pass additional parameters that control the rewrite method. For more info see <u>Query rewrite</u>&#160;section.
+    </p>
+  </body>
+</html>
+</richcontent>
 <node CREATED="1368651801775" ID="ID_1535263896" MODIFIED="1368651812237" TEXT="Lucene query syntax"/>
 <node CREATED="1368651814519" ID="ID_1331544765" MODIFIED="1368651830084" TEXT="Explaining the query string"/>
 <node CREATED="1368651833599" ID="ID_1471970399" MODIFIED="1368651850252" TEXT="Running query string query against multiple fields"/>
@@ -381,6 +705,30 @@
 <node CREATED="1368652003911" ID="ID_1827448991" MODIFIED="1368652007885" TEXT="range"/>
 <node CREATED="1368652012487" ID="ID_1304796971" MODIFIED="1368652017869" TEXT="Query rewrite"/>
 </node>
+</node>
+<node CREATED="1373316415031" ID="ID_1964674351" MODIFIED="1373316434377" POSITION="right" TEXT="3. Extending Structure and Search">
+<node CREATED="1373316438686" ID="ID_461775154" MODIFIED="1373316448270" TEXT="Indexing data that is not flat">
+<node CREATED="1373316450806" ID="ID_287081288" MODIFIED="1373316452510" TEXT="Data"/>
+<node CREATED="1373316453630" ID="ID_726014355" MODIFIED="1373316456735" TEXT="Objects"/>
+<node CREATED="1373316457982" ID="ID_251022203" MODIFIED="1373316460543" TEXT="Arrays"/>
+<node CREATED="1373316461694" ID="ID_676284944" MODIFIED="1373316466935" TEXT="Mappings">
+<node CREATED="1373316469246" ID="ID_1782184621" MODIFIED="1373316473968" TEXT="Final mappings"/>
+</node>
+<node CREATED="1373316632357" ID="ID_328796908" MODIFIED="1373316649150" TEXT="To be or not to be dynamic"/>
+<node CREATED="1373316651454" ID="ID_316151135" MODIFIED="1373316659815" TEXT="Sending the mappings to ES"/>
+</node>
+<node CREATED="1373316665846" ID="ID_36994603" MODIFIED="1373316682127" TEXT="Extending index structure with additional internal information">
+<node CREATED="1373316687486" ID="ID_1817898744" MODIFIED="1373316694449" TEXT="The identifier field"/>
+<node CREATED="1373316697414" ID="ID_1429165487" MODIFIED="1373316707408" TEXT="The _type field"/>
+<node CREATED="1373316712622" ID="ID_1065055349" MODIFIED="1373316716766" TEXT="The _all field"/>
+<node CREATED="1373316720334" ID="ID_575691111" MODIFIED="1373316727904" TEXT="The _source field"/>
+<node CREATED="1373316730638" ID="ID_1306213275" MODIFIED="1373316738304" TEXT="The _boost field"/>
+<node CREATED="1373316739406" ID="ID_35024732" MODIFIED="1373316744799" TEXT="The _index field"/>
+<node CREATED="1373316746294" ID="ID_933380017" MODIFIED="1373316750127" TEXT="The _size field"/>
+<node CREATED="1373316754934" ID="ID_1595400489" MODIFIED="1373316760104" TEXT="The _timestamp field"/>
+<node CREATED="1373316761134" ID="ID_159548230" MODIFIED="1373316768048" TEXT="The _ttl field"/>
+</node>
+<node CREATED="1373316772166" ID="ID_1886414912" MODIFIED="1373316778385" TEXT="Highlighting"/>
 </node>
 <node CREATED="1368629026515" ID="ID_1460307793" MODIFIED="1368629035647" POSITION="left" TEXT="1. Getting Started with ElasticSearch Cluster">
 <node CREATED="1369859339864" ID="ID_1526956640" MODIFIED="1369859357938" TEXT="What is ElasticSearch?">
@@ -540,8 +888,7 @@
       Single index can contain multiple types of documents ....
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1370536655181" ID="ID_519105201" MODIFIED="1370536976488" TEXT="Index manipulation">
 <richcontent TYPE="NOTE"><html>
@@ -595,8 +942,7 @@
       
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368629134163" ID="ID_341289746" MODIFIED="1370537049155" TEXT="Schema mapping" VGAP="2">
 <richcontent TYPE="NOTE"><html>
@@ -654,8 +1000,7 @@
     </p>
     <pre><b>curl -XPOST 'http://localhost:9200/posts' &#8211;d @posts.json</b></pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1368632930539" ID="ID_620010282" MODIFIED="1368634911494" TEXT="Type definition">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -1262,8 +1607,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       <b>} </b>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1369860163654" ID="ID_697218557" MODIFIED="1371998125223" TEXT="All field">
 <richcontent TYPE="NOTE"><html>
@@ -1353,13 +1697,12 @@ to define <b>post</b> and <b>user</b> type</pre>
       The <b>_all</b>&#160;field increases the index size so it should be disabled if not needed.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1369942088481" ID="ID_186692823" MODIFIED="1369942088481" TEXT=""/>
 </node>
-<node CREATED="1369860191061" ID="ID_824536201" MODIFIED="1371998465873" TEXT="Dynamic mappings and templates">
+<node CREATED="1369860191061" FOLDED="true" ID="ID_824536201" MODIFIED="1372230749130" TEXT="Dynamic mappings and templates">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1375,8 +1718,7 @@ to define <b>post</b> and <b>user</b> type</pre>
       This section goes step back and describes working of automatic mapping.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1369860209597" ID="ID_1010096494" MODIFIED="1369860221044" TEXT="Type determining mechanism"/>
 <node CREATED="1369860226061" ID="ID_1285872529" MODIFIED="1369860230916" TEXT="Dynamic mappings"/>
 <node CREATED="1369860233517" ID="ID_535536171" MODIFIED="1369860235755" TEXT="Templates">

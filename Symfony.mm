@@ -484,8 +484,7 @@ services:
       - idea of &quot;environments&quot; is the idea that the same codebase can be run using multiple different configurations
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1359566606380" ID="ID_521117494" MODIFIED="1360187649025" TEXT="Environments and the Cache Directory&#xb6;">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -519,9 +518,19 @@ services:
       
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
+</node>
+</node>
+<node CREATED="1372948968055" ID="ID_938841960" MODIFIED="1372948974504" POSITION="right" TEXT="Bundles">
+<node CREATED="1372948979797" ID="ID_1310807807" MODIFIED="1372948994946" TEXT="DoctrineMigrationsBundle">
+<node CREATED="1372949236711" ID="ID_1142562668" MODIFIED="1372949240157" TEXT="Installation"/>
+<node CREATED="1372949229405" ID="ID_1616993790" MODIFIED="1372949231919" TEXT="Usage">
+<node CREATED="1372949253533" ID="ID_1962239670" MODIFIED="1372949264549" TEXT="Running Migrations during Deployment"/>
+</node>
+<node CREATED="1372949271301" ID="ID_1459200871" MODIFIED="1372949279205" TEXT="Generating Migrations Automatically"/>
+<node CREATED="1372949295245" ID="ID_906479057" MODIFIED="1372949302277" TEXT="Container Aware Migrations"/>
+<node CREATED="1372949305469" ID="ID_109676808" MODIFIED="1372949309524" TEXT="Manual Tables"/>
 </node>
 </node>
 </node>
