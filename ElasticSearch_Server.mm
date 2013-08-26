@@ -329,8 +329,7 @@ So if we want </pre>
 	}
 }'</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368651677063" ID="ID_1952524766" MODIFIED="1368651690988" TEXT="Search execution preference (advanced)"/>
 </node>
@@ -452,9 +451,8 @@ So if we want </pre>
       
     </p>
   </body>
-</html>
-</richcontent>
-<node CREATED="1368651760055" ID="ID_470677832" MODIFIED="1373314902237" TEXT="Boolean match">
+</html></richcontent>
+<node CREATED="1368651760055" ID="ID_470677832" MODIFIED="1376338148318" TEXT="Boolean match">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -474,13 +472,13 @@ So if we want </pre>
         <b>operator</b>: can be <b>or</b>&#160;| <b>and</b>&#160;and tells what operator is used to connect created boolean clauses, default is <b>or</b>
       </li>
       <li>
-        <b>analyzer</b>: specifies name of the analyzer used to analyze query text, default is the default analyzer
+        <b>analyzer</b>: specifies name of the analyzer used to analyze query text, default is the <b>default</b>&#160;analyzer
       </li>
       <li>
         <b>fuzziness</b>: providing the value of this parameter allows us to construct fuzzy queries. Value is in range <b>from 0.0 to 1.0</b>&#160;for a <b>string</b>&#160;object. This parameter will be used to set the similarity while constructing fuzzy queries
       </li>
       <li>
-        <b>prefix_length</b>:&#160;&#160;allows to control behavior of the fuzzy query, for more info see <u>The fuzzy like this query</u>&#160;section
+        <b>prefix_length</b>:&#160;allows to control behavior of the fuzzy query, for more info see <u>The fuzzy like this query</u>&#160;section
       </li>
       <li>
         <b>max_expansions</b>: allows to control behavior of the fuzzy query again, for more info see as above
@@ -503,8 +501,7 @@ So if we want </pre>
 	}
 }</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368651767007" ID="ID_1141974764" MODIFIED="1373313532028" TEXT="phrase match">
 <richcontent TYPE="NOTE"><html>
@@ -543,8 +540,7 @@ So if we want </pre>
 	}
 }</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1368651775047" ID="ID_1112970012" MODIFIED="1373313890498" TEXT="match phrase prefix">
 <richcontent TYPE="NOTE"><html>
@@ -573,8 +569,7 @@ So if we want </pre>
 	}
 }</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
@@ -605,10 +600,9 @@ So if we want </pre>
 	}
 }</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
-<node CREATED="1368651795407" ID="ID_1140825410" MODIFIED="1373315504181" TEXT="query string">
+<node CREATED="1368651795407" ID="ID_1140825410" MODIFIED="1376338244966" TEXT="query string">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -616,9 +610,6 @@ So if we want </pre>
   <body>
     <p>
       The query string query supports full Apache Lucene query syntax, so it uses a query parser to construct an actual query using provided text. A sample query string query could look like this:
-    </p>
-    <p>
-      
     </p>
     <p>
       
@@ -687,8 +678,7 @@ So if we want </pre>
       Query string query can be rewritten by ES so it allows us to pass additional parameters that control the rewrite method. For more info see <u>Query rewrite</u>&#160;section.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1368651801775" ID="ID_1535263896" MODIFIED="1368651812237" TEXT="Lucene query syntax"/>
 <node CREATED="1368651814519" ID="ID_1331544765" MODIFIED="1368651830084" TEXT="Explaining the query string"/>
 <node CREATED="1368651833599" ID="ID_1471970399" MODIFIED="1368651850252" TEXT="Running query string query against multiple fields"/>
@@ -746,21 +736,560 @@ So if we want </pre>
 <node CREATED="1373406395823" ID="ID_1968250886" MODIFIED="1373406398869" TEXT="Summary"/>
 </node>
 <node CREATED="1373316415031" ID="ID_1964674351" MODIFIED="1373316434377" POSITION="right" TEXT="3. Extending Structure and Search">
-<node CREATED="1373316438686" ID="ID_461775154" MODIFIED="1373316448270" TEXT="Indexing data that is not flat">
-<node CREATED="1373316450806" ID="ID_287081288" MODIFIED="1373316452510" TEXT="Data"/>
-<node CREATED="1373316453630" ID="ID_726014355" MODIFIED="1373316456735" TEXT="Objects"/>
-<node CREATED="1373316457982" ID="ID_251022203" MODIFIED="1373316460543" TEXT="Arrays"/>
-<node CREATED="1373316461694" ID="ID_676284944" MODIFIED="1373316466935" TEXT="Mappings">
-<node CREATED="1373316469246" ID="ID_1782184621" MODIFIED="1373316473968" TEXT="Final mappings"/>
+<node CREATED="1373316438686" ID="ID_461775154" MODIFIED="1377266594451" TEXT="Indexing data that is not flat">
+<node CREATED="1373316450806" ID="ID_287081288" LINK="#ID_726014355" MODIFIED="1377269449868" TEXT="Data">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p style="padding-top: 0px; clear: both; margin-bottom: 0; text-indent: 0px">
+      Let's assume we have the following data<span class="Apple-converted-space">&#160;</span><a class="indexterm" id="id322">
+</a>(we store it in the file called<span class="Apple-converted-space">&#160;</span><code class="literal" style="color: blue"><font color="blue">structured_data.json</font></code>):
+    </p>
+    <div class="informalexample" style="font-family: sans-serif">
+      <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+ &quot;book&quot; : {
+  &quot;author&quot; : {
+   &quot;name&quot; : {
+    &quot;firstName&quot; : &quot;Fyodor&quot;,
+    &quot;lastName&quot; : &quot;Dostoevsky&quot;
+   }
+  },
+  &quot;isbn&quot; : &quot;123456789&quot;,
+  &quot;englishTitle&quot; : &quot;Crime and Punishment&quot;,
+  &quot;originalTitle&quot; : &quot;&#1055;&#1088;&#1077;&#1089;&#1090;&#1091;&#1087;&#1083;&#233;&#1085;&#1080;&#1077; &#1080; &#1085;&#1072;&#1082;&#1072;&#1079;&#225;&#1085;&#1080;&#1077;&quot;,
+  &quot;year&quot; : 1886,
+  &quot;characters&quot; : [
+   {
+    &quot;name&quot; : &quot;Raskolnikov&quot;
+   }, 
+   {
+    &quot;name&quot; : &quot;Sofia&quot;
+   }
+  ],
+  &quot;copies&quot; : 0
+ }
+}</pre>
+    </div>
+    <p>
+      
+    </p>
+    <p>
+      we can create mappings handling such data (containing arrays, nested objects, ...)
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
-<node CREATED="1373316632357" ID="ID_328796908" MODIFIED="1373316649150" TEXT="To be or not to be dynamic"/>
-<node CREATED="1373316651454" ID="ID_316151135" MODIFIED="1373316659815" TEXT="Sending the mappings to ES"/>
+<node CREATED="1373316453630" ID="ID_726014355" LINK="#ID_287081288" MODIFIED="1377269888784" TEXT="Objects">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Data from previous node show structured JSON file with <b>book</b>&#160;as the root object.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Root object is a special one, allowing defining of additional properties.
+    </p>
+    <p>
+      Simple <b>book</b>&#160;fields as <b>englishTitle</b>, <b>originalTitle</b>, ... will be indexed as normal fields.
+    </p>
+    <p>
+      In addition there is array type&#160;<b>characters</b>&#160;field and <b>author</b>&#160; field which is object holding another object <b>name</b>&#160;with <b>lastName</b>&#160; and <b>firstName</b>&#160;properties.
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
-<node CREATED="1373316665846" ID="ID_36994603" MODIFIED="1373316682127" TEXT="Extending index structure with additional internal information">
-<node CREATED="1373316687486" ID="ID_1817898744" MODIFIED="1373316694449" TEXT="The identifier field"/>
-<node CREATED="1373316697414" ID="ID_1429165487" MODIFIED="1373316707408" TEXT="The _type field"/>
-<node CREATED="1373316712622" ID="ID_1065055349" MODIFIED="1373316716766" TEXT="The _all field"/>
-<node CREATED="1373316720334" ID="ID_575691111" MODIFIED="1373316727904" TEXT="The _source field"/>
+<node CREATED="1373316457982" ID="ID_251022203" MODIFIED="1377270051827" TEXT="Arrays">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      All fields in Lucene are mutlivalued by default, which means that they can store multiple values.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      To send such fields for indexing we use JSON array type: nested within opening and closing square brackets <b>[]</b>
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1373316461694" ID="ID_676284944" LINK="#ID_287081288" MODIFIED="1377270719806" TEXT="Mappings">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      To index data shown previously, e.g. arrays we just specify properties for such fields inside the array name.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      So to index the <b>characters</b>&#160;data we need to add mappings like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">&quot;characters&quot; : {
+ &quot;properties&quot; : {
+  &quot;name&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;}
+ }
+}</pre>
+    <p>
+      
+    </p>
+    <p>
+      we just nest the <b>properties</b>&#160;section inside the array's name and define fields there.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Result of this mapping is getting <b>characters.name</b>&#160;multivalued field in the index.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Then we perform similar steps to <b>author</b>&#160;object: section's name will be the same as presented in the data and in addition to the <b>properties</b>&#160; section we tell to the ES that it should expect the object type by adding the <b>type</b>&#160;property with <b>object</b>&#160;value. We have <b>author</b>&#160; object and we nest the <b>name</b>&#160;object within it exactly the same way. So the mappings should look like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">&quot;author&quot; : {
+ &quot;type&quot; : &quot;object&quot;,
+ &quot;properties&quot; : {
+  &quot;name&quot; : {
+   &quot;type&quot; : &quot;object&quot;,
+   &quot;properties&quot; : {
+    &quot;firstName&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;},
+    &quot;lastName&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;}
+   }
+  }
+ }
+}</pre>
+    <p>
+      The <b>firstName</b>&#160;and <b>lastName</b>&#160;fields would appear in the index as <b>author.name.firstName</b>&#160;or <b>author.name.lastName</b>.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      The rest of fields are simple core types ...
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1373316469246" ID="ID_1782184621" MODIFIED="1377270864395" TEXT="Final mappings">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Final mappings (stored in <font color="rgb(0, 0, 255)" face="monospace">structured_mapping.json</font>) looks like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+ &quot;book&quot; : {
+  &quot;properties&quot; : {
+   &quot;author&quot; : {
+    &quot;type&quot; : &quot;object&quot;,
+    &quot;properties&quot; : {
+     &quot;name&quot; : {
+      &quot;type&quot; : &quot;object&quot;,
+      &quot;properties&quot; : {
+       &quot;firstName&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;},
+       &quot;lastName&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;}
+      }
+     }
+    }
+   },
+   &quot;isbn&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;},
+   &quot;englishTitle&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;},
+   &quot;originalTitle&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;},
+   &quot;year&quot; : {&quot;type&quot; : &quot;integer&quot;, &quot;store&quot; : &quot;yes&quot;},
+   &quot;characters&quot; : {
+    &quot;properties&quot; : {
+     &quot;name&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;}
+    }
+   },
+   &quot;copies&quot; : {&quot;type&quot; : &quot;integer&quot;, &quot;store&quot; : &quot;yes&quot;}
+  }
+ }
+}</pre>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1373316632357" ID="ID_328796908" MODIFIED="1377271634269" TEXT="To be or not to be dynamic">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ES is schemaless what means it does not need schema (mappings) to index given data. This dynamic behavior is turned on by default but we might want to turn it off in some situations (for some index parts, ...). To do that, one should add <b>dynamic</b>&#160;property with <b>false</b>&#160;value on the same level of nesting as the <b>type</b>&#160;property for the object that should not be dynamic. E.g. to set <b>author</b>&#160;and <b>name</b>&#160; objects to not-dynamic, we should modify the relevant parts of the mappings file so that it looks like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">&quot;author&quot; : {
+ &quot;type&quot; : &quot;object&quot;,
+ &quot;dynamic&quot; : false,
+ &quot;properties&quot; : {
+  &quot;name&quot; : {
+   &quot;type&quot; : &quot;object&quot;,
+   &quot;dynamic&quot; : false,
+   &quot;properties&quot; : {
+    &quot;firstName&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;},
+    &quot;lastName&quot; : {&quot;type&quot; : &quot;string&quot;, &quot;store&quot; : &quot;yes&quot;}
+   }
+  }
+ }
+}</pre>
+    <p>
+      
+    </p>
+    <p>
+      Remember, that in order to add new fields for such objects we'd have to update the mappings.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      To turn off dynamic mapping it's possible to add <font color="rgb(0, 0, 255)" face="monospace">index.mapper.dynamic: false</font>&#160;in the <font color="rgb(0, 0, 255)" face="monospace">elasticsearch.yml</font>
+    </p>
+    <p>
+      &#160;configuration file.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1373316651454" ID="ID_316151135" MODIFIED="1377271924363" TEXT="Sending the mappings to ES">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The last thing is to test if all this actually works.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      1st create the library index with following command:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPUT 'localhost:9200/library'</pre>
+    <p>
+      
+    </p>
+    <p>
+      Now send mappings for the <b>book</b>&#160;type:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPUT 'localhost:9200/library/book/_mapping' -d @structured_mapping.json</pre>
+    <p>
+      
+    </p>
+    <p>
+      Now index example data:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST 'localhost:9200/library/book/1' -d @structured_data.json</pre>
+    <p>
+      
+    </p>
+    <p>
+      To see how data was indexed, we can run a query like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XGET 'localhost:9200/library/book/_search?q=*:*&amp;fields=*&amp;pretty=true'</pre>
+    <p>
+      
+    </p>
+    <p>
+      which should return following data:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+  &quot;took&quot; : 1,
+  &quot;timed_out&quot; : false,
+  &quot;_shards&quot; : {
+    &quot;total&quot; : 5,
+    &quot;successful&quot; : 5,
+    &quot;failed&quot; : 0
+  },
+  &quot;hits&quot; : {
+    &quot;total&quot; : 1,
+    &quot;max_score&quot; : 1.0,
+    &quot;hits&quot; : [ {
+      &quot;_index&quot; : &quot;library&quot;,
+      &quot;_type&quot; : &quot;book&quot;,
+      &quot;_id&quot; : &quot;1&quot;,
+      &quot;_score&quot; : 1.0,
+      &quot;fields&quot; : {
+        &quot;copies&quot; : 0,
+        &quot;characters.name&quot; : [ &quot;Raskolnikov&quot;, &quot;Sofia&quot; ],
+        &quot;englishTitle&quot; : &quot;Crime and Punishment&quot;,
+        &quot;author.name.lastName&quot; : &quot;Dostoevsky&quot;,
+        &quot;isbn&quot; : &quot;123456789&quot;,
+        &quot;originalTitle&quot; : &quot;&#1055;&#1088;&#1077;&#1089;&#1090;&#1091;&#1087;&#1083;&#233;&#1085;&#1080;&#1077; &#1080; &#1085;&#1072;&#1082;&#1072;&#1079;&#225;&#1085;&#1080;&#1077;&quot;,
+        &quot;year&quot; : 1886,
+        &quot;author.name.firstName&quot; : &quot;Fyodor&quot;
+      }
+    } ]
+  }
+}</pre>
+    <p>
+      
+    </p>
+    <p>
+      ...
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1373316665846" ID="ID_36994603" MODIFIED="1377362701608" TEXT="Extending index structure with additional internal information">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Some functionalities handy for every-day data handling.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Each of the described fields should be defined on appropriate type level.
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1373316687486" ID="ID_1817898744" MODIFIED="1377363553914" TEXT="The identifier field">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      There're 2 types of internal identifiers in the ES.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      First one is <b>_uid</b>&#160;field, which is unique identifier of the document in the index and is composed of the document's identifier and the document type (It means that documents of different types in the same index can have the same <b>_uid</b>&#160;(but the ES can distinguish them). This field is always indexed (it's just good to know that it exists).
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Second one is <b>_id</b>&#160;field. This stores document's actual identifier set during index time. To enable the indexing (and storing if possible) of the <b>_id</b>&#160;field we need to add the <b>_id</b>&#160;field definition (same as any other property) in mappings (an appropriate level of course).
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      So e.g. sample mappings for the books index with <b>_id</b>&#160;field from the previous chapter would be:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+ &quot;book&quot; : {
+  &quot;_id&quot; : {
+   &quot;index&quot;: &quot;not_analyzed&quot;, 
+   &quot;store&quot; : &quot;no&quot;
+  },
+  &quot;properties&quot; : {
+  .
+  .
+  .
+  }
+ }
+}</pre>
+    <p>
+      
+    </p>
+    <p>
+      This way we say to the ES that we want the <b>_id</b>&#160;field to be indexed, but not analyzed and stored.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      In addition to specifying the ID, we can specify that we want it to be fetched from one of the fields of indexed documents (slightly slower due to needed additional parsing). To do that we need to specify <b>path</b>&#160; property with the name of the field we want to use as the identifier value provider. E.g. if we have field <b>book_id</b>&#160;in our index and we would like to use it as value for the <b>_id</b>&#160;field, we should change the mappings to something like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+ &quot;book&quot; : {
+  &quot;_id&quot; : {
+<strong style="font-weight: 700"><b><span class="strong">   &quot;path&quot;: &quot;book_id&quot;</span></b></strong>
+  },
+  &quot;properties&quot; : {
+  .
+  .
+  .
+  }
+ }
+}</pre>
+    <p>
+      
+    </p>
+    <p>
+      Last thing to remember: when disabling the <b>_id</b>&#160;field, all functionalities requiring documents unique identifier will still work thanks to the <b>_uid</b>&#160;field.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1373316697414" ID="ID_1429165487" MODIFIED="1377546502893" TEXT="The _type field">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Once more: each document in the ES is at least described by an identifier and type and if we want, we might include the type name as the internal <b>_type</b>&#160;field of our indices. By default the _<b>type</b>&#160; field is indexed but not stored. To store it we'd have to change the mappings to following:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+ &quot;book&quot; : {
+  &quot;_type&quot; : {
+   &quot;store&quot; : &quot;yes&quot;
+  },
+  &quot;properties&quot; : {
+  .
+  .
+  .
+  }
+ }
+}</pre>
+    <p>
+      We can also change it to not be indexed, but then some queries like term queries and filters won't work.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1373316712622" ID="ID_1065055349" MODIFIED="1377546990272" TEXT="The _all field">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The <b>_all</b>&#160;field allows us to create a field where contents of other fields will be copied. This can be useful when we want to implement a simple search feature, search all the data (or fields copied to the <b>_all</b>&#160; field), but we don't want to think about individual field names and things like that. The&#160;<b>_all</b>&#160;field is enabled by default and it contains all data from all document fields.
+    </p>
+    <p>
+      In order to in- / ex-clude certain field in / from the <b>_all</b>&#160;field, one should use the <b>include_in_all</b>&#160;property, discussed in <u><i>Chapter 2, Searching Your Data</i></u>.
+    </p>
+    <p>
+      To completely turn off the <b>_all</b>&#160;field (index will be smaller) we should modify mappings like this:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+ &quot;book&quot; : {
+  &quot;_all&quot; : {
+   &quot;enabled&quot; : false
+  },
+  &quot;properties&quot; : {
+  .
+  .
+  .
+  }
+ }
+}</pre>
+    <p>
+      in addition to the <b>enabled</b>&#160;property, the <b>_all</b>&#160;field supports the following ones:
+    </p>
+    <ul>
+      <li>
+        <b>store</b>
+      </li>
+      <li>
+        <b>vector</b>
+      </li>
+      <li>
+        <b>analyzer</b>
+      </li>
+      <li>
+        <b>index_analyzer</b>
+      </li>
+      <li>
+        <b>search_analyzer</b>
+      </li>
+    </ul>
+    <p>
+      For information about them refer to <u><i>Chapter 2, Searching Your Data</i></u>.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1373316720334" ID="ID_575691111" MODIFIED="1377548543555" TEXT="The _source field">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The <b>_source</b>&#160;field allows us to store the original JSON document sent to the ES during indexing. It's turned on by default because some ES functionalities depend on it (e.g. partial update feature described in <u><i>Chapter 1, Getting Started with ElasticSearch Cluster</i></u>&#160;). In addition the <b>_source</b>&#160;field can be used as the source of data for the highlighting functionality if a particular field is not stored. But if we don't need such functionality, we can disable this field as it causes some storage overhead. To do that, we will need to set the enabled property of the <b>_source</b>&#160;object to <b>false</b>&#160;as shown here:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+ &quot;book&quot; : {
+  &quot;_source&quot; : {
+   &quot;enabled&quot; : false
+  },
+  &quot;properties&quot; : {
+  .
+  .
+  .
+  }
+ }
+}</pre>
+    <p>
+      Due to the storage overhead caused by the <b>_source</b>&#160;field we can choose to compress its content by setting its <b>compress</b>&#160;parameter to <b>true </b>(what will on one side shrink the index size but on the other side it'll make operations made on the <b>_source</b>&#160;field a bit more CPU intensive). ES allows to decide when to compress the <b>_source</b>&#160;field using the <b>compress_threshold</b>&#160;property. Setting its size in bytes (e.g. <b>100b</b>, <b>10kb</b>) we tell ES how big the content of the <b>_source</b>&#160; field must be to compress it.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 <node CREATED="1373316730638" ID="ID_1306213275" MODIFIED="1373316738304" TEXT="The _boost field"/>
 <node CREATED="1373316739406" ID="ID_35024732" MODIFIED="1373316744799" TEXT="The _index field"/>
 <node CREATED="1373316746294" ID="ID_933380017" MODIFIED="1373316750127" TEXT="The _size field"/>
@@ -784,7 +1313,89 @@ So if we want </pre>
 <node CREATED="1373406564031" ID="ID_1853132007" MODIFIED="1373406569902" TEXT="Handling files">
 <node CREATED="1373406574663" ID="ID_1652740362" MODIFIED="1373406587140" TEXT="Additional file informations"/>
 </node>
-<node CREATED="1373406589295" ID="ID_1081777993" MODIFIED="1373406591569" TEXT="Geo"/>
+<node CREATED="1373406589295" ID="ID_1081777993" MODIFIED="1375193674029" TEXT="Geo">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Elastic search supports searching on basis of geographical coordinates of indexed documents.
+    </p>
+  </body>
+</html></richcontent>
+<node CREATED="1375182757389" ID="ID_1150527652" MODIFIED="1375193952778" TEXT="Mapping preparation for spatial search">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Example list of cities index with one type <b><i>poi</i></b><i>. </i>
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+    &quot;mappings&quot; : {
+        &quot;poi&quot; : {
+            &quot;properties&quot; : {
+                &quot;name&quot; : { &quot;type&quot; : &quot;string&quot; },
+                &quot;location&quot; : { &quot;type&quot; : &quot;geo_point&quot; }
+            }
+        }
+    }
+}</pre>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1375182767404" ID="ID_928728719" MODIFIED="1376338027066" TEXT="Example data">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      File (&quot;documents.json&quot;) with example data:
+    </p>
+    <p>
+      
+    </p>
+    <pre>      { &quot;index&quot; : { &quot;_index&quot; : &quot;map&quot;, &quot;_type&quot; : &quot;poi&quot;, &quot;_id&quot; : 1 }}
+      { &quot;name&quot; : &quot;New York&quot;, &quot;location&quot; : &quot;40.664167, -73.938611&quot; }
+      { &quot;index&quot; : { &quot;_index&quot; : &quot;map&quot;, &quot;_type&quot; : &quot;poi&quot;, &quot;_id&quot; : 2 }}
+      { &quot;name&quot; : &quot;London&quot;, &quot;location&quot; : [-0.1275, 51.507222] }
+      { &quot;index&quot; : { &quot;_index&quot; : &quot;map&quot;, &quot;_type&quot; : &quot;poi&quot;, &quot;_id&quot; : 3 }}
+      { &quot;name&quot; : &quot;Moscow&quot;, &quot;location&quot; : { &quot;lat&quot; : 55.75, &quot;lon&quot; :37.616667 }}
+      { &quot;index&quot; : { &quot;_index&quot; : &quot;map&quot;, &quot;_type&quot; : &quot;poi&quot;, &quot;_id&quot; : 4 }}
+      { &quot;name&quot; : &quot;Sydney&quot;, &quot;location&quot; : &quot;-33.859972, 151.211111&quot; }
+      { &quot;index&quot; : { &quot;_index&quot; : &quot;map&quot;, &quot;_type&quot; : &quot;poi&quot;, &quot;_id&quot; : 5 }}
+      { &quot;name&quot; : &quot;Lisbon&quot;, &quot;location&quot; : &quot;eycs0p8ukc7v&quot; }
+
+</pre>
+    <p>
+      In order to perform a bulk request there're added informations about index name, type and the document unique identifier so we can easily import these data using:
+    </p>
+    <p>
+      
+    </p>
+    <pre>curl -XPOST http://localhost:9200/_bulk --data-binary @documents.json</pre>
+    <pre>    
+
+    
+    
+    <p>
+Look at the data and note there're different formats used for the coordinates (string, pair of numbers, object, geohash value)
+</p>
+
+
+
+  </pre>
+</body>
+</html></richcontent>
+</node>
+<node CREATED="1375182789932" ID="ID_850853686" MODIFIED="1375182793171" TEXT="Sample queries"/>
+</node>
 </node>
 <node CREATED="1368629026515" ID="ID_1460307793" MODIFIED="1368629035647" POSITION="left" TEXT="1. Getting Started with ElasticSearch Cluster">
 <node CREATED="1369859339864" ID="ID_1526956640" MODIFIED="1369859357938" TEXT="What is ElasticSearch?">
@@ -897,7 +1508,275 @@ So if we want </pre>
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1368629062067" FOLDED="true" ID="ID_1912884721" MODIFIED="1371998288518" TEXT="Manual index creation and mappings configuration">
+<node CREATED="1377246790359" ID="ID_1538153658" MODIFIED="1377538703767" TEXT="Data manipulation with REST API">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ES REST API can be used for various tasks (managing indexes, changing instance parameters, checking nodes and cluster status, indexing and searching for data, CRUD of index documents)
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1377246816363" ID="ID_1601224040" MODIFIED="1377539157307" TEXT="What is REST">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In REST, every request is directed to a concrete object indicated by the path part of the URL.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      E.g. <b>/books/</b>&#160;is a reference to a books list in the library, <b>/books/1</b>&#160; is a reference to the book id 1. These objects can be nested: <b>/books/1/chapter/6</b>&#160; is the 6th chapter in the 1st book.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Type of operation we want to execute is determined by the request type (HTTP GET, POST, PUT, DELETE, ...) which are used as verbs in the API calls. So
+    </p>
+    <ul>
+      <li>
+        <b>GET</b>&#160;is used for obtaining current state of the requested object
+      </li>
+      <li>
+        <b>POST</b>&#160;for changing its state
+      </li>
+      <li>
+        <b>PUT</b>&#160;for object creation
+      </li>
+      <li>
+        <b>DELETE</b>&#160;for destroying an object
+      </li>
+      <li>
+        <b>HEAD</b>&#160;is used to fetch base informations about an object
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1377246823251" ID="ID_430703062" MODIFIED="1377539393459" TEXT="Storing data in Elastic Search">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In ES every piece of data has defined <u>index</u>&#160;(collection of documents or a table in a database) and <u>type</u>. In contrast to database records, documents added to an index do not have to have defined structure and field types (more precisely: single field has its type defined, but ES can do magic to guess it).
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1377246837579" ID="ID_64543788" MODIFIED="1377540687589" TEXT="Creating a new document">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Let's store some articles to blog index:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Article is represented by this json object:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+  &quot;id&quot;: &quot;1&quot;,
+  &quot;title&quot;: &quot;New version of Elastic Search released!&quot;,
+  &quot;content&quot;: &quot;&#8230;&quot;,
+  &quot;priority&quot;: 10,
+  &quot;tags&quot;: [&quot;announce&quot;, &quot;elasticsearch&quot;, &quot;release&quot;]
+}</pre>
+    <p>
+      It contains set of fields of different types (<b>priority</b>&#160;is a number, <b>title</b>&#160; is text and <b>&#160;tags</b>&#160;is array of strings). ES can guess these types as JSON is <u>semi-typed</u>&#160;and automatically set the way of storing the data.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      To store this single object into the index we can run command like this:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPUT http://localhost:9200/blog/article/1 -d '{&quot;title&quot;: &quot;New version of Elastic Search released!&quot;, &quot;content&quot;: &quot;...&quot;, &quot;tags&quot;: [&quot;announce&quot;, &quot;elasticsearch&quot;, &quot;release&quot;] }'</pre>
+    <p>
+      (notice the <b>-d</b>&#160;parameter - it sets its value as a request payload (request body) and also the article unique identifier on the last place of the URL, if we'd omit it, ES'd return error similar to this:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">No handler found for uri [/blog/article/] and method [PUT] </pre>
+    <p>
+      )
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      If everything is OK, the server'll answer with something like this:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+  &quot;ok&quot;:true,
+  &quot;_index&quot;:&quot;blog&quot;,
+  &quot;_type&quot;:&quot;article&quot;,
+  &quot;_id&quot;:&quot;1&quot;,
+  &quot;_version&quot;:1
+}</pre>
+    <p>
+      which includes information about the operation status (the <b>ok</b>&#160;key) and shows where the new document was placed (those <b>_index</b>, <b>_type</b>, <b>_id</b>&#160;and <b>_version</b>&#160;keys).
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      In the above example we've specified the document identifier ourselves but ES can generate this automatically which is handy in case ES index is the only source of data, but if we use database for storing data and ES for search then synchronization of data would be lost unless the ES generated id is stored in the database as well. Generation of unique key can be achieved by using following command:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST http://localhost:9200/blog/article/ -d '{&quot;title&quot;: &quot;New version of Elastic Search released!&quot;, &quot;content&quot;: &quot;...&quot;, &quot;tags&quot;: [&quot;announce&quot;, &quot;elasticsearch&quot;, &quot;release&quot;] }'</pre>
+    <p>
+      Note usage of the HTTP <b>POST</b>&#160;request type.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ES response should like following in such case:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+  &quot;ok&quot; : true,
+  &quot;_index&quot; : &quot;blog&quot;,
+  &quot;_type&quot; : &quot;article&quot;,
+<strong style="font-weight: 700"><b><span class="strong">  &quot;_id&quot; : &quot;XQmdeSe_RVamFgRHMqcZQg&quot;,</span></b></strong>
+  &quot;_version&quot; : 1
+}</pre>
+    <p>
+      notice the bold line, where there's generated id shown.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1377246847723" ID="ID_1069216538" MODIFIED="1377544569051" TEXT="Retrieving documents">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      To retrieve document we use HTTP <b>GET</b>&#160;request type:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XGET http://localhost:9200/blog/article/1</pre>
+    <p>
+      and the server should return following response:
+    </p>
+    <div class="informalexample" style="font-family: sans-serif">
+      <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+  &quot;_index&quot; : &quot;blog&quot;,
+  &quot;_type&quot; : &quot;article&quot;,
+  &quot;_id&quot; : &quot;1&quot;,
+  &quot;_version&quot; : 1,
+  &quot;exists&quot; : true, 
+  &quot;_source&quot; : {
+  &quot;title&quot;: &quot;New version of Elastic Search released!&quot;, 
+  &quot;content&quot;: &quot;...&quot;, 
+  &quot;tags&quot;: [&quot;announce&quot;, &quot;elasticsearch&quot;, &quot;release&quot;] 
+}</pre>
+    </div>
+    which shows (besides index, type and other metadata) the fact document exists and the source of the document. If the document is not found, we get reply similar to this:
+
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+  &quot;_index&quot; : &quot;blog&quot;,
+  &quot;_type&quot; : &quot;article&quot;,
+  &quot;_id&quot; : &quot;9999&quot;,
+  &quot;exists&quot; : false
+}</pre>
+    <br class="Apple-interchange-newline" />
+    
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1377246857498" ID="ID_1686712857" MODIFIED="1377546176860" TEXT="Updating documents">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Updating documents is a more complicated task: internally ES must
+    </p>
+    <ul>
+      <li>
+        fetch the document,
+      </li>
+      <li>
+        take its data from the <b>_source</b>&#160;field,
+      </li>
+      <li>
+        remove the old document
+      </li>
+      <li>
+        apply changes
+      </li>
+      <li>
+        and index it as new document
+      </li>
+    </ul>
+    <p>
+      This is implemented through a script given as a parameter which allows to do document transformation more sophisticated than just simple field changes. Simple example: after executing following command
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST http://localhost:9200/blog/article/1/_update -d '{
+  &quot;script&quot;: &quot;ctx._source.content = \&quot;new content\&quot;&quot;
+}'</pre>
+    <p>
+      the server replies with:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{&quot;ok&quot;:true,&quot;_index&quot;:&quot;blog&quot;,&quot;_type&quot;:&quot;article&quot;,&quot;_id&quot;:&quot;1&quot;,&quot;_version&quot;:2}</pre>
+    <p>
+      To ensure the update worked, we can retrieve the updated document:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XGET http://localhost:9200/blog/article/1
+
+{
+  &quot;_index&quot; : &quot;blog&quot;,
+  &quot;_type&quot; : &quot;article&quot;,
+  &quot;_id&quot; : &quot;1&quot;,
+  &quot;_version&quot; : 2,
+  &quot;exists&quot; : true, 
+  &quot;_source&quot; : {
+  &quot;title&quot;:&quot;New version of Elastic Search released!&quot;,
+  &quot;content&quot;:&quot;new content&quot;,
+  &quot;tags&quot;:[&quot;announce&quot;,&quot;elasticsearch&quot;,&quot;release&quot;]}
+}</pre>
+    <p>
+      So server changed the article content and version number for this document. Notice we only sent changed parts (not the whole document) but to use the update functionality we had to use the <b>_source</b>&#160;field (See <u><i>Extending your index structure with additional internal information</i></u>&#160;section in the Chapter 3 Extending Your Structure And Search.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      One more thing about document updates: if the script uses values from a document which is to be updated, we can set a value that will be used if the document doesn't have that value present. E.g. to increment some counter field of the document, we can use the <b>upsert</b>&#160;section in the request to provide the default value:
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST http://localhost:9200/blog/article/1/_update -d '{
+  &quot;script&quot;: &quot;ctx._source.counter += 1&quot;,
+  &quot;upsert&quot;: {
+    &quot;counter&quot; : 0
+  }
+}'</pre>
+    <p>
+      If the document we're updating does not have any value in the <b>counter</b>&#160; field, then value <b>0 </b>is used.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1377246868074" ID="ID_1900511048" MODIFIED="1377246873601" TEXT="Deleting documents"/>
+</node>
+<node CREATED="1368629062067" ID="ID_1912884721" MODIFIED="1377511046587" TEXT="Manual index creation and mappings configuration">
 <node CREATED="1369941989767" ID="ID_513466461" MODIFIED="1369942771000" TEXT="Index">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -1758,7 +2637,7 @@ to define <b>post</b> and <b>user</b> type</pre>
 </node>
 <node CREATED="1369942088481" ID="ID_186692823" MODIFIED="1369942088481" TEXT=""/>
 </node>
-<node CREATED="1369860191061" FOLDED="true" ID="ID_824536201" MODIFIED="1372230749130" TEXT="Dynamic mappings and templates">
+<node CREATED="1369860191061" ID="ID_824536201" MODIFIED="1377246956941" TEXT="Dynamic mappings and templates">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1788,14 +2667,272 @@ to define <b>post</b> and <b>user</b> type</pre>
 <node CREATED="1369860294677" ID="ID_1887138297" MODIFIED="1369860300316" TEXT="Routing parameters"/>
 <node CREATED="1369860303133" ID="ID_1830582158" MODIFIED="1369860306452" TEXT="Routing fields"/>
 </node>
-<node CREATED="1369860316093" ID="ID_1211219004" MODIFIED="1369860339300" TEXT="Index aliasing and simplifying your everyday work using it">
-<node CREATED="1369860351237" ID="ID_1913465226" MODIFIED="1369860355500" TEXT="An alias"/>
-<node CREATED="1369860356734" ID="ID_1123510307" MODIFIED="1369860363172" TEXT="Creating an alias"/>
-<node CREATED="1369860366709" ID="ID_153513532" MODIFIED="1369860372492" TEXT="Modifying aliases"/>
-<node CREATED="1369860375069" ID="ID_1639804333" MODIFIED="1369860389028" TEXT="Combining commands"/>
-<node CREATED="1369860393285" ID="ID_750250706" MODIFIED="1369860400924" TEXT="Retrieving all aliases"/>
-<node CREATED="1369860405277" ID="ID_1964640808" MODIFIED="1369860423828" TEXT="Filtering aliases"/>
-<node CREATED="1369860429093" ID="ID_1736499334" MODIFIED="1369860434052" TEXT="Aliases and routing"/>
+<node CREATED="1369860316093" ID="ID_1211219004" MODIFIED="1377249025018" TEXT="Index aliasing and simplifying your everyday work using it">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Purpose of aliases is to simplify work with multiple indexes (e.g. situation when one uses ES to store logs by day and after some time it starts to be problematic to understand which indexes are the newest, which are from the last month, ....)
+    </p>
+  </body>
+</html></richcontent>
+<node CREATED="1369860351237" ID="ID_1913465226" MODIFIED="1377262816534" TEXT="An alias">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b>Alias is an additional name</b>&#160;for one or more indexes that allows us to query them using that name.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Single alias can have multiple indexes as well as single index can be a part of multiple aliases.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      We <b>CAN'T</b>&#160;use <b>alias with multiple indexes</b>&#160;for indexing or real-time GET operations, but
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      we <b>CAN</b>&#160;use <b>alias linked to only one&#160;&#160;single index</b>. (ES would not know which index to index or fetch data from)
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1369860356734" ID="ID_1123510307" MODIFIED="1377263249537" TEXT="Creating an alias">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      To create an alias a HTTP POST request to the _aliases REST endpoint with defined action must be issued.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      This will create alias <i>week12</i>&#160;for indexes <i>day10, day11, day12</i>:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST 'http://localhost:9200/_aliases' -d '{
+  &quot;actions&quot; : [
+    { &quot;add&quot; : { &quot;index&quot; : &quot;day10&quot;, &quot;alias&quot; : &quot;week12&quot; } },
+    { &quot;add&quot; : { &quot;index&quot; : &quot;day11&quot;, &quot;alias&quot; : &quot;week12&quot; } },
+    { &quot;add&quot; : { &quot;index&quot; : &quot;day12&quot;, &quot;alias&quot; : &quot;week12&quot; } }
+  ]
+}'</pre>
+    <p>
+      
+    </p>
+    <p>
+      If the <i>week12</i>&#160;alias is not present, ES will create it. If it is, ES will just add needed indexes.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      After creating an alias, we can run:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl &#8211;XGET 'http://localhost:9200/week12/_search?q=test'</pre>
+    <p>
+      
+    </p>
+    <p>
+      instead of
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl &#8211;XGET 'http://localhost:9200/day10,day11,day12/_search?q=test'</pre>
+    <p>
+      
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1369860366709" ID="ID_153513532" MODIFIED="1377263398438" TEXT="Modifying aliases">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      To remove index(es)&#160;&#160;from an alias is almost the same as adding it, but one uses <b>remove</b>&#160;command (instead of <b>add</b>):
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST 'http://localhost:9200/_aliases' -d '{
+ &quot;actions&quot; : [
+    { &quot;remove&quot; : { &quot;index&quot; : &quot;day9&quot;, &quot;alias&quot; : &quot;week12&quot; } }
+  ]
+}'</pre>
+    <p>
+      
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1369860375069" ID="ID_1639804333" MODIFIED="1377263462716" TEXT="Combining commands">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The <b>add</b>&#160;and <b>remove</b>&#160;commands can be sent in one request:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST 'http://localhost:9200/_aliases' -d '{
+  &quot;actions&quot; : [
+    { &quot;add&quot; : { &quot;index&quot; : &quot;day10&quot;, &quot;alias&quot; : &quot;week12&quot; } },
+    { &quot;add&quot; : { &quot;index&quot; : &quot;day11&quot;, &quot;alias&quot; : &quot;week12&quot; } },
+    { &quot;add&quot; : { &quot;index&quot; : &quot;day12&quot;, &quot;alias&quot; : &quot;week12&quot; } },
+    { &quot;remove&quot; : { &quot;index&quot; : &quot;day9&quot;, &quot;alias&quot; : &quot;week12&quot; } }
+  ]
+}'</pre>
+    <p>
+      
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1369860393285" ID="ID_750250706" MODIFIED="1377263621009" TEXT="Retrieving all aliases">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      To retrieve all cluster available aliases we use GET HTTP request to <b>_aliases</b>&#160; REST endpoint (on cluster, index, ... level):
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XGET 'localhost:9200/day10/_aliases'
+curl -XGET 'localhost:9200/_aliases'</pre>
+    <p>
+      
+    </p>
+    <p>
+      Response from the second command could look like this:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">{
+  &quot;day10&quot; : {
+    &quot;aliases&quot; : {
+      &quot;week12&quot; : { }
+    }
+  },
+  &quot;day11&quot; : {
+    &quot;aliases&quot; : {
+      &quot;week12&quot; : { }
+    }
+  },
+  &quot;day12&quot; : {
+    &quot;aliases&quot; : {
+      &quot;week12&quot; : { }
+    }
+  }
+}</pre>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1369860405277" ID="ID_1964640808" MODIFIED="1377264271429" TEXT="Filtering aliases">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Aliases can be used similar way as views are used in SQL databases. Full Query DSL can be used and have query applied to all count, search, delete , ... operations.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      If we e.g. want search , ... in data for just a certain client with identifier <i>12345</i>&#160;stored in the &quot;<i>clientId</i>&quot; field, we can create alias <i>client</i>&#160;with data index filtered by <i>&quot;clientId&quot;</i>&#160; value:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST 'http://localhost:9200/_aliases' -d '{
+  &quot;actions&quot; : [
+  {
+    &quot;add&quot; : {
+      &quot;index&quot; : &quot;data&quot;,
+      &quot;alias&quot; : &quot;client&quot;,
+     &quot;filter&quot; : { &quot;term&quot; : { &quot;clientId&quot; : &quot;12345&quot; } }
+    }
+  } ]
+}'</pre>
+    <p>
+      
+    </p>
+    <p>
+      So when using this alias all documents occuring in index operations will have <i>clientId</i>&#160;value equal to 12345.
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1369860429093" ID="ID_1736499334" MODIFIED="1377266453022" TEXT="Aliases and routing">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Similarly to filtering aliases we can add routing aliases.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      E.g. we're unsing routing on the basis of <i>&quot;userId&quot;</i>&#160;field and we want to use the same routing values with our aliases. For <i>client</i>&#160; alias we'll use routing values 12345, 12346, 12347 for indexing and 12345 for querying. So:
+    </p>
+    <p>
+      
+    </p>
+    <pre class="programlisting" style="color: blue; padding-bottom: 0; margin-bottom: 0; clear: both; white-space: pre-wrap; padding-right: 0; padding-top: 0; padding-left: 0; margin-top: 0; margin-left: 0; margin-right: 0">curl -XPOST 'http://localhost:9200/_aliases' -d '{
+  &quot;actions&quot; : [
+  {
+    &quot;add&quot; : {
+      &quot;index&quot; : &quot;data&quot;,
+      &quot;alias&quot; : &quot;client&quot;,
+      &quot;index_routing&quot; : &quot;12345,12346,12347&quot;
+      &quot;search_routing&quot; : &quot;12345&quot;
+    }
+  } ]
+}'</pre>
+    <p>
+      
+    </p>
+    <p>
+      This way those 3 indexes will be used when we index data and 12345 will be used for querying.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 <node CREATED="1369860436533" ID="ID_969917913" MODIFIED="1369860439332" TEXT="Summary"/>
 </node>
