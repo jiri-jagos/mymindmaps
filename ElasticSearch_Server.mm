@@ -1,7 +1,7 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1368622273645" ID="ID_1310544137" MODIFIED="1368622285052" TEXT="ElasticSearch Server">
-<node CREATED="1368622314755" ID="ID_1936492349" MODIFIED="1368622321663" POSITION="right" TEXT="2. Searching your data">
+<node CREATED="1368622314755" FOLDED="true" ID="ID_1936492349" MODIFIED="1381615046427" POSITION="right" TEXT="2. Searching your data">
 <node CREATED="1368651454967" ID="ID_794450864" MODIFIED="1368653371075" TEXT="Understanding the querying and indexing process">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -191,7 +191,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1368651490663" ID="ID_923186511" MODIFIED="1368822298115" TEXT="Querying ElasticSearch">
+<node COLOR="#006633" CREATED="1368651490663" ID="ID_923186511" MODIFIED="1381615017322" TEXT="Querying Elastic Search">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -225,7 +225,8 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1368651517783" ID="ID_918815408" MODIFIED="1372882284383" TEXT="Simple query">
+<font NAME="SansSerif" SIZE="10"/>
+<node CREATED="1368651517783" ID="ID_918815408" MODIFIED="1381570820849" TEXT="Simple query">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -265,17 +266,167 @@
   &quot;query&quot; : {
     &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
   }
-}
+}</pre>
+    <p>
+      Querying for data means sending GET HTTP request to the _search REST end point of index / type we want to search (both can be omitted). So if we want to search our example <i><b>library</b></i>&#160;index we'd use something like
+    </p>
+    <pre>curl -XGET 'localhost:9200/library/book/_search?pretty=true' -d '{
+  &quot;query&quot; : {
+    &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+   }
+}'</pre>
+    <p>
+      The <b>-d</b>&#160;switch tells curl to send the request body (the string enclosed in apostrophes). The <b>pretty=true</b>&#160;query parameter tells Elastic search to pretty print the output.
+    </p>
+    <p>
+      In response we get:
+    </p>
+    <pre>{
+  &quot;took&quot; : 1,
+  &quot;timed_out&quot; : false,
+  &quot;_shards&quot; : {
+    &quot;total&quot; : 5,
+    &quot;successful&quot; : 5,
+    &quot;failed&quot; : 0
+  },
+  &quot;hits&quot; : {
+    &quot;total&quot; : 1,
+    &quot;max_score&quot; : 0.19178301,
+    &quot;hits&quot; : [ {
+      &quot;_index&quot; : &quot;library&quot;,
+      &quot;_type&quot; : &quot;book&quot;,
+      &quot;_id&quot; : &quot;4&quot;,
+      &quot;_score&quot; : 0.19178301, &quot;_source&quot; : { &quot;title&quot;: &quot;Crime and Punishment&quot;,&quot;otitle&quot;: &quot;&#1055;&#1088;&#1077;&#1089;&#1090;&#1091;&#1087;&#1083;&#233;&#1085;&#1080;&#1077; &#1080; &#1085;&#1072;&#1082;&#1072;&#1079;&#225;&#1085;&#1080;&#1077;&quot;,&quot;author&quot;: &quot;Fyodor Dostoevsky&quot;,&quot;year&quot;: 1886,&quot;characters&quot;: [&quot;Raskolnikov&quot;, &quot;Sofia Semyonovna Marmeladova&quot;],&quot;tags&quot;: [],&quot;copies&quot;: 0, &quot;available&quot; : true}
+    } ]
+  }
+}</pre>
+    <p>
+      As said earlier, query can be directed to a particular index and / or type and there're more possibilities: we can query several indices in parallel or query one index regardless of the type. There follows the sum of possible call types and addressing:
+    </p>
+    <ol>
+      <li>
+        Request to index and type:
 
-Querying for data means sending GET HTTP request to the _search REST end point of index / type we want to search (both can be omitted).
+        <pre>curl -XGET 'localhost:9200/library/book/_search' -d @query.json</pre>
+      </li>
+      <li>
+        Request to index and all types in it:
 
-So if we want </pre>
+        <pre>curl -XGET 'localhost:9200/library/_search' -d @query.json</pre>
+      </li>
+      <li>
+        Request to all indices:
+
+        <pre>curl -XGET 'localhost:9200/_search' -d @query.json</pre>
+      </li>
+      <li>
+        Request to few indices:
+
+        <pre>curl -XGET 'localhost:9200/library,bookstore/_search' -d @query.json</pre>
+      </li>
+      <li>
+        Request to multiple indices and mutliple types in them:
+
+        <pre>curl -XGET 'localhost:9200/library,bookstore/book,recipes/_search' -d @query.json</pre>
+      </li>
+    </ol>
   </body>
 </html></richcontent>
 </node>
-<node CREATED="1368651526071" ID="ID_1854474302" MODIFIED="1368651534084" TEXT="Paging and results size"/>
-<node CREATED="1368651537567" ID="ID_1800598811" MODIFIED="1368651543220" TEXT="Returning the version"/>
-<node CREATED="1368651546575" ID="ID_1521105849" MODIFIED="1368651554717" TEXT="Limiting the score"/>
+<node CREATED="1368651526071" ID="ID_1854474302" MODIFIED="1381572057332" TEXT="Paging and results size">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Elastic search provides standard paging facilities. There're 2 additional properties that can be set in the request body:
+    </p>
+    <ul>
+      <li>
+        <b>from</b>: specifies from which document we want to start the result, defaults to 0 and is equivalent to e.g. MySQL <b>offset</b>
+      </li>
+      <li>
+        <b>size</b>: specifies maximum number of documents we want to retrieve, defaults to 10 and is equivalent to MySQL <b>limit</b>
+      </li>
+    </ul>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1368651537567" ID="ID_1800598811" MODIFIED="1381572818088" TEXT="Returning the version">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In addition to all retrieved informations we can also want to return version of the document. To do that we need to set top level <b>version</b>&#160; property to true in the JSON object so it looks like this:
+    </p>
+    <pre>{
+  &quot;version&quot; : true,
+  &quot;query&quot; : {
+    &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+  }
+}</pre>
+    <p>
+      After running this we'll get:
+    </p>
+    <pre>{
+  &quot;took&quot; : 2,
+  &quot;timed_out&quot; : false,
+  &quot;_shards&quot; : {
+    &quot;total&quot; : 5,
+    &quot;successful&quot; : 5,
+    &quot;failed&quot; : 0
+  },
+  &quot;hits&quot; : {
+    &quot;total&quot; : 1,
+    &quot;max_score&quot; : 0.19178301,
+    &quot;hits&quot; : [ {
+      &quot;_index&quot; : &quot;library&quot;,
+      &quot;_type&quot; : &quot;book&quot;,
+      &quot;_id&quot; : &quot;4&quot;,
+      <b>&quot;_version&quot; : 1,</b>
+      &quot;_score&quot; : 0.19178301, &quot;_source&quot; : { &quot;title&quot;: &quot;Crime and Punishment&quot;,&quot;otitle&quot;: &quot;&#1055;&#1088;&#1077;&#1089;&#1090;&#1091;&#1087;&#1083;&#233;&#1085;&#1080;&#1077; &#1080; &#1085;&#1072;&#1082;&#1072;&#1079;&#225;&#1085;&#1080;&#1077;&quot;,&quot;author&quot;: &quot;Fyodor Dostoevsky&quot;,&quot;year&quot;: 1886,&quot;characters&quot;: [&quot;Raskolnikov&quot;, &quot;Sofia Semyonovna Marmeladova&quot;],&quot;tags&quot;: [],&quot;copies&quot;: 0, &quot;available&quot; : true}
+    } ]
+  }</pre>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1368651546575" ID="ID_1521105849" MODIFIED="1381574396419" TEXT="Limiting the score">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      For not-so-standard use cases we can limit the minimum score that the document must have to be considered a match. In order to use it we must provide the <b>min_score</b>&#160;property on the top level of the JSON object. So:
+    </p>
+    <pre>{
+ &quot;min_score&quot; : 0.75,
+ &quot;query&quot; : {
+  &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+ }
+}</pre>
+    Returns documents with minimum score 0.75 ...
+
+    <pre>{
+  &quot;took&quot; : 1,
+  &quot;timed_out&quot; : false,
+  &quot;_shards&quot; : {
+    &quot;total&quot; : 5,
+    &quot;successful&quot; : 5,
+    &quot;failed&quot; : 0
+  },
+  &quot;hits&quot; : {
+    &quot;total&quot; : 0,
+    &quot;max_score&quot; : null,
+    &quot;hits&quot; : [ ]
+  }
+}</pre>
+  </body>
+</html></richcontent>
+</node>
 <node CREATED="1368651558335" ID="ID_170337058" MODIFIED="1368651567004" TEXT="Choosing the fields we want to return">
 <node CREATED="1368651570423" ID="ID_1659794144" MODIFIED="1368651576375" TEXT="Partial fields"/>
 </node>
@@ -735,7 +886,7 @@ So if we want </pre>
 </node>
 <node CREATED="1373406395823" ID="ID_1968250886" MODIFIED="1373406398869" TEXT="Summary"/>
 </node>
-<node CREATED="1373316415031" ID="ID_1964674351" MODIFIED="1373316434377" POSITION="right" TEXT="3. Extending Structure and Search">
+<node CREATED="1373316415031" FOLDED="true" ID="ID_1964674351" MODIFIED="1381615048410" POSITION="right" TEXT="3. Extending Structure and Search">
 <node CREATED="1373316438686" ID="ID_461775154" MODIFIED="1377266594451" TEXT="Indexing data that is not flat">
 <node CREATED="1373316450806" ID="ID_287081288" LINK="#ID_726014355" MODIFIED="1377269449868" TEXT="Data">
 <richcontent TYPE="NOTE"><html>
@@ -779,8 +930,7 @@ So if we want </pre>
       we can create mappings handling such data (containing arrays, nested objects, ...)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1373316453630" ID="ID_726014355" LINK="#ID_287081288" MODIFIED="1377269888784" TEXT="Objects">
 <richcontent TYPE="NOTE"><html>
@@ -804,8 +954,7 @@ So if we want </pre>
       In addition there is array type&#160;<b>characters</b>&#160;field and <b>author</b>&#160; field which is object holding another object <b>name</b>&#160;with <b>lastName</b>&#160; and <b>firstName</b>&#160;properties.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1373316457982" ID="ID_251022203" MODIFIED="1377270051827" TEXT="Arrays">
 <richcontent TYPE="NOTE"><html>
@@ -823,8 +972,7 @@ So if we want </pre>
       To send such fields for indexing we use JSON array type: nested within opening and closing square brackets <b>[]</b>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1373316461694" ID="ID_676284944" LINK="#ID_287081288" MODIFIED="1377270719806" TEXT="Mappings">
 <richcontent TYPE="NOTE"><html>
@@ -892,8 +1040,7 @@ So if we want </pre>
       The rest of fields are simple core types ...
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1373316469246" ID="ID_1782184621" MODIFIED="1377270864395" TEXT="Final mappings">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -935,8 +1082,7 @@ So if we want </pre>
  }
 }</pre>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1373316632357" ID="ID_328796908" MODIFIED="1377271634269" TEXT="To be or not to be dynamic">
@@ -981,8 +1127,7 @@ So if we want </pre>
       &#160;configuration file.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1373316651454" ID="ID_316151135" MODIFIED="1377271924363" TEXT="Sending the mappings to ES">
 <richcontent TYPE="NOTE"><html>
@@ -1078,8 +1223,7 @@ So if we want </pre>
       ...
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1373316665846" ID="ID_36994603" MODIFIED="1377362701608" TEXT="Extending index structure with additional internal information">
@@ -1098,8 +1242,7 @@ So if we want </pre>
       Each of the described fields should be defined on appropriate type level.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1373316687486" ID="ID_1817898744" MODIFIED="1377363553914" TEXT="The identifier field">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -1177,8 +1320,7 @@ So if we want </pre>
       Last thing to remember: when disabling the <b>_id</b>&#160;field, all functionalities requiring documents unique identifier will still work thanks to the <b>_uid</b>&#160;field.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1373316697414" ID="ID_1429165487" MODIFIED="1377546502893" TEXT="The _type field">
 <richcontent TYPE="NOTE"><html>
@@ -1205,8 +1347,7 @@ So if we want </pre>
       We can also change it to not be indexed, but then some queries like term queries and filters won't work.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1373316712622" ID="ID_1065055349" MODIFIED="1377546990272" TEXT="The _all field">
 <richcontent TYPE="NOTE"><html>
@@ -1259,8 +1400,7 @@ So if we want </pre>
       For information about them refer to <u><i>Chapter 2, Searching Your Data</i></u>.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1373316720334" ID="ID_575691111" MODIFIED="1377548543555" TEXT="The _source field">
 <richcontent TYPE="NOTE"><html>
@@ -1287,8 +1427,7 @@ So if we want </pre>
       Due to the storage overhead caused by the <b>_source</b>&#160;field we can choose to compress its content by setting its <b>compress</b>&#160;parameter to <b>true </b>(what will on one side shrink the index size but on the other side it'll make operations made on the <b>_source</b>&#160;field a bit more CPU intensive). ES allows to decide when to compress the <b>_source</b>&#160;field using the <b>compress_threshold</b>&#160;property. Setting its size in bytes (e.g. <b>100b</b>, <b>10kb</b>) we tell ES how big the content of the <b>_source</b>&#160; field must be to compress it.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1373316730638" ID="ID_1306213275" MODIFIED="1373316738304" TEXT="The _boost field"/>
 <node CREATED="1373316739406" ID="ID_35024732" MODIFIED="1373316744799" TEXT="The _index field"/>
@@ -1397,7 +1536,92 @@ Look at the data and note there're different formats used for the coordinates (s
 <node CREATED="1375182789932" ID="ID_850853686" MODIFIED="1375182793171" TEXT="Sample queries"/>
 </node>
 </node>
-<node CREATED="1368629026515" ID="ID_1460307793" MODIFIED="1368629035647" POSITION="left" TEXT="1. Getting Started with ElasticSearch Cluster">
+<node CREATED="1381615061385" ID="ID_407592769" MODIFIED="1381615082729" POSITION="right" TEXT="4. Make your search better"/>
+<node CREATED="1381615086817" ID="ID_4681267" MODIFIED="1381615244481" POSITION="right" TEXT="5. Combining Indexing, Analysis, and Search">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      By the end of this chapter we should learn how to:
+    </p>
+    <ul>
+      <li>
+        index tree-like structures
+      </li>
+      <li>
+        modify indices with the update API
+      </li>
+      <li>
+        use nested objects
+      </li>
+      <li>
+        use parent - child relationship
+      </li>
+      <li>
+        fetch data from external systems
+      </li>
+      <li>
+        use batch processing to speed up indexing
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1381615244468" ID="ID_1132235866" MODIFIED="1381617624081" TEXT="Indexing tree-like structures">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Categories in the e-shop or e.g. book (or this mindmap) or directory structure are great examples of tree structures. ES has facilities to handle them.
+    </p>
+    <p>
+      Let's check how we can navigate such data using <b>path_anayzer</b>.
+    </p>
+    <p>
+      1st is simple mapping:
+    </p>
+    <pre>{
+  &quot;settings&quot; : {
+    &quot;index&quot; : {
+      &quot;analysis&quot; : {
+        &quot;analyzer&quot; : {
+          &quot;path_analyzer&quot; : {&quot;tokenizer&quot; : &quot;path_hierarchy&quot;}
+        }
+      }
+    }
+  },
+  &quot;mappings&quot; : {
+    &quot;category&quot; : {
+      &quot;properties&quot; : {
+        &quot;category&quot; : { 
+          &quot;type&quot; : &quot;multi_field&quot;,
+          &quot;fields&quot; : {
+            &quot;name&quot; : { &quot;type&quot; : &quot;string&quot;, &quot;index&quot; : &quot;not_analyzed&quot; },
+            &quot;path&quot; : { &quot;type&quot; : &quot;string&quot;, &quot;analyzer&quot; : &quot;path_analyzer&quot;, &quot;store&quot; : true }
+          }
+        }
+      }
+    }
+  }
+}</pre>
+    To use this mapping during index creation we use following command:
+
+    <pre>curl -XPOST 'localhost:9200/path/' --data-binary '...'</pre>
+    where above mapping is used as the request body (... -d '...').
+
+    <p>
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1368629026515" FOLDED="true" ID="ID_1460307793" MODIFIED="1381615050532" POSITION="left" TEXT="1. Getting Started with ElasticSearch Cluster">
 <node CREATED="1369859339864" ID="ID_1526956640" MODIFIED="1369859357938" TEXT="What is ElasticSearch?">
 <node CREATED="1369859393630" ID="ID_1218813554" MODIFIED="1369859523285" TEXT="Index">
 <richcontent TYPE="NOTE"><html>
@@ -1518,8 +1742,7 @@ Look at the data and note there're different formats used for the coordinates (s
       ES REST API can be used for various tasks (managing indexes, changing instance parameters, checking nodes and cluster status, indexing and searching for data, CRUD of index documents)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1377246816363" ID="ID_1601224040" MODIFIED="1377539157307" TEXT="What is REST">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -1559,8 +1782,7 @@ Look at the data and note there're different formats used for the coordinates (s
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1377246823251" ID="ID_430703062" MODIFIED="1377539393459" TEXT="Storing data in Elastic Search">
 <richcontent TYPE="NOTE"><html>
@@ -1572,8 +1794,7 @@ Look at the data and note there're different formats used for the coordinates (s
       In ES every piece of data has defined <u>index</u>&#160;(collection of documents or a table in a database) and <u>type</u>. In contrast to database records, documents added to an index do not have to have defined structure and field types (more precisely: single field has its type defined, but ES can do magic to guess it).
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1377246837579" ID="ID_64543788" MODIFIED="1377540687589" TEXT="Creating a new document">
 <richcontent TYPE="NOTE"><html>
@@ -1657,8 +1878,7 @@ Look at the data and note there're different formats used for the coordinates (s
       notice the bold line, where there's generated id shown.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1377246847723" ID="ID_1069216538" MODIFIED="1377544569051" TEXT="Retrieving documents">
 <richcontent TYPE="NOTE"><html>
@@ -1697,8 +1917,7 @@ Look at the data and note there're different formats used for the coordinates (s
     <br class="Apple-interchange-newline" />
     
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1377246857498" ID="ID_1686712857" MODIFIED="1377546176860" TEXT="Updating documents">
 <richcontent TYPE="NOTE"><html>
@@ -1771,8 +1990,7 @@ Look at the data and note there're different formats used for the coordinates (s
       If the document we're updating does not have any value in the <b>counter</b>&#160; field, then value <b>0 </b>is used.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1377246868074" ID="ID_1900511048" MODIFIED="1377246873601" TEXT="Deleting documents"/>
 </node>
@@ -2930,8 +3148,7 @@ curl -XGET 'localhost:9200/_aliases'</pre>
       This way those 3 indexes will be used when we index data and 12345 will be used for querying.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1369860436533" ID="ID_969917913" MODIFIED="1369860439332" TEXT="Summary"/>
