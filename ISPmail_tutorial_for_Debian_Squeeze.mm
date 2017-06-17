@@ -1,6 +1,6 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1378381446938" ID="ID_1623453645" MODIFIED="1378386285415" TEXT="ISPmail tutorial for Debian Squeeze">
+<node CREATED="1378381446938" ID="ID_1623453645" MODIFIED="1380144120236" TEXT="ISPmail tutorial for Debian Squeeze">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -10,8 +10,7 @@
       See https://workaround.org/ispmail/squeeze
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1378381491080" ID="ID_1811066609" MODIFIED="1378397103515" POSITION="right">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -22,8 +21,7 @@
       1. Big picture
     </h2>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -109,10 +107,9 @@
       <img src="bigpicture.png" />
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
-<node CREATED="1378381502262" ID="ID_1225374152" MODIFIED="1378397354005" POSITION="left">
+<node CREATED="1378381502262" ID="ID_1225374152" MODIFIED="1378452731302" POSITION="left">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -122,8 +119,7 @@
       2. Virtual domains
     </h2>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -136,8 +132,7 @@
       Postfix distinguishes between 3 kinds of domains. Very important concept to understand.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1378397208385" ID="ID_172071219" MODIFIED="1378397321473">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -148,8 +143,7 @@
       Local domains
     </h3>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -177,8 +171,7 @@
     </ul>
     You can't make johndoe's account just work in one domain. So this is not feasible for different users in different domains and neither will it work with many users as you had to create system accounts for each of them. It's still a a good idea to set up at least one local domain in case of configuration or operation problems with other types of domains. E.g. &quot;mydestination=localhost&quot; is a good choice if you don't feel creative :). Postfix automatically receives emails for these users and saves them under /var/mail/$USERNAME.
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1378397357664" ID="ID_1264873488" MODIFIED="1378398596906">
 <richcontent TYPE="NODE"><html>
@@ -190,8 +183,7 @@
       Virtual mailbox domains
     </h3>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -299,10 +291,9 @@ query = SELECT mailbox_path FROM virtual_users WHERE email_address='%s'</pre>
       Note: in this tutorial we won't let Postfix deliver the email directly but rather it will hand over the incoming email to Dovecot so in other words we won't be using the above virtual_mailbox_maps.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
-<node CREATED="1378398602305" ID="ID_1160949265" MODIFIED="1378398633752">
+<node CREATED="1378398602305" ID="ID_1160949265" MODIFIED="1378453996830">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -312,18 +303,7 @@ query = SELECT mailbox_path FROM virtual_users WHERE email_address='%s'</pre>
       Virtual alias domains
     </h3>
   </body>
-</html>
-</richcontent>
-</node>
-</node>
-<node CREATED="1378381543614" ID="ID_1840668740" MODIFIED="1378381619197" POSITION="right" TEXT="3. Installing packages"/>
-<node CREATED="1378381553142" ID="ID_1827397353" MODIFIED="1378381626800" POSITION="left" TEXT="4. Preparing database"/>
-<node CREATED="1378381634494" ID="ID_1366880534" MODIFIED="1378381646572" POSITION="right" TEXT="5. Postfix / database configuration"/>
-<node CREATED="1378381648046" ID="ID_19686282" MODIFIED="1378381655881" POSITION="left" TEXT="6. Setting up Dovecot"/>
-<node CREATED="1378381659662" ID="ID_977362080" MODIFIED="1378381675741" POSITION="right" TEXT="7. Make Postfix talk to Dovecot"/>
-<node CREATED="1378381681830" ID="ID_243990728" MODIFIED="1378381697021" POSITION="left" TEXT="8. Testing email delivery"/>
-<node CREATED="1378381702598" ID="ID_1475778877" MODIFIED="1378381713965" POSITION="right" TEXT="9. Authenticated SMTP"/>
-<node CREATED="1378381720726" ID="ID_52729128" MODIFIED="1378399831058" POSITION="left" TEXT="10. Proper SSL certificates for Postfix and Dovecot">
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -374,9 +354,201 @@ john@example.org   jeff@example.com</pre>
       Beware: Catch-all aliases catch spam. Lots of spam. The may look comfortable because they forward all email to one person without the need for creating aliases. But spammers often try to guess email addresses at a know domain. And with catch-all alias you will receive spam for any of those guessed email addresses. Try to avoid them and rather define the existing email addresses. Even it it seems to be more work.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
+</node>
+<node CREATED="1378381543614" ID="ID_1840668740" MODIFIED="1378400370208" POSITION="right" TEXT="3. Installing server and packages">
+<node CREATED="1378400375841" ID="ID_130553300" MODIFIED="1378763683963" TEXT="Dimensioning the server">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Count <b>5GB</b>&#160;of mailbox space per user.
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1378400480217" ID="ID_189366557" MODIFIED="1378400748649" TEXT="Basic installation and Partitioning">
+<richcontent TYPE="NOTE">&lt;html&gt;
+  &lt;head&gt;
+    
+    
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+      Recommended partitioning is following:
+    &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        / (10 GB, ext4)
+      &lt;/li&gt;
+      &lt;li&gt;
+        /boot (500 MB - don't forget to mark it as &amp;quot;bootable&amp;quot;, ext3)
+      &lt;/li&gt;
+      &lt;li&gt;
+        /var (5 GB, ext4)
+      &lt;/li&gt;
+      &lt;li&gt;
+        /var/vmail (the more the better, ext4)
+      &lt;/li&gt;
+      &lt;li&gt;
+        /tmp (1 GB, ext4, optional but recommended)
+      &lt;/li&gt;
+      &lt;li&gt;
+        swap (1 GB)
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;
+      IF possible use the logical volume manager (LVM) which gives great 
+      flexibility about growing or shirinking partitions, making consistent 
+      backups using the snaspshot feature. (there's lengthy intoduction on LVM &lt;a href=&quot;https://workaround.org/ispmail/lenny/basic-debian-installation&quot;&gt;here&lt;/href&gt;&amp;#160;
+      &lt;/a&gt;
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</richcontent>
+</node>
+<node CREATED="1378400892697" ID="ID_936177355" MODIFIED="1378402061784" TEXT="Installing necessary packages">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      
+    </p>
+    <pre>apt-get update
+apt-get upgrade
+apt-get install ssh
+apt-get install postfix postfix-mysql // when asked for the mail server configuration type choose &quot;Internet site&quot;. Enter mail server name (FQDN).
+apt-get --purge remove 'exim4*'
+apt-get install mysql-server
+apt-get install dovecot-pop3d dovecot-imapd // POP3 and IMAP services
+apt-get install roundcube // email web interface (with dependecies: eg. apache and php, ...)
+apt-get install mutt
+  </pre>
+  </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1378381553142" ID="ID_1827397353" MODIFIED="1378453571830" POSITION="left" TEXT="4. Preparing database">
+<node CREATED="1378452814243" ID="ID_1039885088" MODIFIED="1378452836792" TEXT="Create the db">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      mysqladmin -p create mailserver
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1378452839228" ID="ID_1626175181" MODIFIED="1378452882007" TEXT="Add less privileged MySQL user">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font face="Arimo" size="15px" color="rgb(61, 61, 61)"><i><span style="text-indent: 0px; font-variant: normal; word-spacing: 0px; white-space: normal; font-style: italic; line-height: 22px; text-transform: none; font-family: Arimo; text-align: -webkit-auto; font-size: 15px; background-color: rgb(255, 255, 255); letter-spacing: normal; font-weight: normal; color: rgb(61, 61, 61)" class="Apple-style-span">mysql -p mailserver </span></i></font>
+    </p>
+    <p>
+      
+    </p>
+    <blockquote style="padding-left: 0; padding-top: 0px; margin-bottom: 0; font-style: italic; padding-bottom: 0px; margin-right: 0px; padding-right: 0px; margin-top: 0px; margin-left: 0px">
+      <p style="padding-left: 0px; padding-top: 0px; margin-bottom: 0px; padding-bottom: 0px; margin-right: 0px; padding-right: 0px; margin-top: 0px; margin-left: 0px">
+        <font color="rgb(0, 0, 205)"><span style="color: rgb(0, 0, 205)">GRANT SELECT ON mailserver.* TO 'mailuser'@'127.0.0.1' IDENTIFIED BY 'mailuser2011';<br /></span></font>
+      </p>
+    </blockquote>
+    <br class="Apple-interchange-newline" />
+    
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1378452884284" ID="ID_1957539451" MODIFIED="1378453740692" TEXT="Create the db tables">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <blockquote style="padding-left: 0; padding-top: 0px; margin-bottom: 0; padding-bottom: 0px; font-style: italic; margin-right: 0px; padding-right: 0px; margin-top: 0px; margin-left: 0px">
+      <p style="padding-left: 0px; padding-top: 0px; margin-bottom: 0px; padding-bottom: 0px; margin-right: 0px; padding-right: 0px; margin-top: 0px; margin-left: 0px">
+        <font color="rgb(0, 0, 205)">-- virtual domains table </font>
+      </p>
+      <p style="padding-left: 0px; padding-top: 0px; margin-bottom: 0px; padding-bottom: 0px; margin-right: 0px; padding-right: 0px; margin-top: 0px; margin-left: 0px">
+        <font color="rgb(0, 0, 205)">CREATE TABLE `virtual_domains` (<br />&#160;&#160;`id` int(11) NOT NULL auto_increment,<br />&#160;&#160;`name` varchar(50) NOT NULL,<br />&#160;&#160;PRIMARY KEY (`id`)<br />) ENGINE=InnoDB DEFAULT CHARSET=utf8; </font>
+      </p>
+      <p style="padding-left: 0px; padding-top: 0px; margin-bottom: 0px; padding-bottom: 0px; margin-right: 0px; padding-right: 0px; margin-top: 0px; margin-left: 0px">
+        <font color="rgb(0, 0, 205)"><br />
+        </font>
+      </p>
+    </blockquote>
+    -- virtual users table<br class="Apple-interchange-newline" />
+
+    <blockquote style="padding-left: 0; padding-top: 0px; margin-bottom: 0; font-style: italic; padding-bottom: 0px; margin-right: 0px; padding-right: 0px; margin-top: 0px; margin-left: 0px">
+      <p style="padding-left: 0px; padding-top: 0px; margin-bottom: 0px; padding-bottom: 0px; margin-right: 0px; padding-right: 0px; margin-top: 0px; margin-left: 0px">
+        <font color="rgb(0, 0, 205)">CREATE TABLE `virtual_users` (<br />&#160;&#160;`id` int(11) NOT NULL auto_increment,<br />&#160;&#160;`domain_id` int(11) NOT NULL,<br />&#160; `password` varchar(32) NOT NULL, // md5 hash of the password<br />&#160;&#160;`email` varchar(100) NOT NULL, // unique email / user login<br />&#160;&#160;PRIMARY KEY (`id`),<br />&#160;&#160;UNIQUE KEY `email` (`email`),<br />&#160;&#160;FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE<br />) ENGINE=InnoDB DEFAULT CHARSET=utf8;</font>
+      </p>
+    </blockquote>
+    <br class="Apple-interchange-newline" />
+    
+
+    <p>
+      -- virtual aliases table
+    </p>
+    <p>
+      <font color="rgb(0, 0, 205)"><i>CREATE TABLE `virtual_aliases` (<br style="text-indent: 0px; font-variant: normal; word-spacing: 0px; white-space: normal; line-height: 22px; text-transform: none; background-color: rgb(255, 255, 255); letter-spacing: normal" align="-webkit-auto" />&#160;&#160;`id` int(11) NOT NULL auto_increment,<br style="text-indent: 0px; font-variant: normal; word-spacing: 0px; white-space: normal; line-height: 22px; text-transform: none; background-color: rgb(255, 255, 255); letter-spacing: normal" align="-webkit-auto" />&#160;&#160;`domain_id` int(11) NOT NULL,<br style="text-indent: 0px; font-variant: normal; word-spacing: 0px; white-space: normal; line-height: 22px; text-transform: none; background-color: rgb(255, 255, 255); letter-spacing: normal" align="-webkit-auto" />&#160;&#160;`source` varchar(100) NOT NULL, // email address of user who wants to forward their mail (for catch-all addresses it'd look like &quot;@some_domain&quot;)<br style="text-indent: 0px; font-variant: normal; word-spacing: 0px; white-space: normal; line-height: 22px; text-transform: none; background-color: rgb(255, 255, 255); letter-spacing: normal" align="-webkit-auto" />&#160;&#160;`destination` varchar(100) NOT NULL, // target email address<br style="text-indent: 0px; font-variant: normal; word-spacing: 0px; white-space: normal; line-height: 22px; text-transform: none; background-color: rgb(255, 255, 255); letter-spacing: normal" align="-webkit-auto" />&#160;&#160;PRIMARY KEY (`id`),<br style="text-indent: 0px; font-variant: normal; word-spacing: 0px; white-space: normal; line-height: 22px; text-transform: none; background-color: rgb(255, 255, 255); letter-spacing: normal" align="-webkit-auto" />&#160;&#160;FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE<br style="text-indent: 0px; font-variant: normal; word-spacing: 0px; white-space: normal; line-height: 22px; text-transform: none; background-color: rgb(255, 255, 255); letter-spacing: normal" align="-webkit-auto" />) ENGINE=InnoDB DEFAULT CHARSET=utf8;</i></font>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1378453498068" ID="ID_1122753772" MODIFIED="1378455314288" TEXT="Test data">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <pre>INSERT INTO `mailserver`.`virtual_domains` (`id`, `name`) VALUES ('1', 'example.org');
+INSERT INTO `mailserver`.`virtual_users` (`id` , `domain_id` , `password` , `email`) VALUES ('1', '1', MD5('summersun'), 'john@example.org');
+INSERT INTO `mailserver`.`virtual_aliases` (`id`, `domain_id`, `source`, `destination`) VALUES ('1', '1', 'jack@example.org', 'john@example.org');</pre>
+  </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1378381634494" ID="ID_1366880534" MODIFIED="1378455427872" POSITION="right" TEXT="5. Postfix / database configuration">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In the previous chapter we fed the MySQL database and now it's the time to use it. The entry point for all email onthe system is Postfix. So we need to tell it&#160;&#160;where to find the needed information.
+    </p>
+  </body>
+</html></richcontent>
+<node CREATED="1378455322268" ID="ID_1240577585" MODIFIED="1378455942430" TEXT="virtual_mailbox_domains">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      As described earlier - mapping is a table with left column (LHS) and a right column (RHS).
+    </p>
+    <p>
+      To make Postfix use MySQL to define a mapping we need a .cf configuration file so we start by creating it in the following location /etc/postfix/mysql-virtual-mailbox-domains.cf
+    </p>
+  </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1378381648046" ID="ID_19686282" MODIFIED="1378381655881" POSITION="left" TEXT="6. Setting up Dovecot"/>
+<node CREATED="1378381659662" ID="ID_977362080" MODIFIED="1378381675741" POSITION="right" TEXT="7. Make Postfix talk to Dovecot"/>
+<node CREATED="1378381681830" ID="ID_243990728" MODIFIED="1378381697021" POSITION="left" TEXT="8. Testing email delivery"/>
+<node CREATED="1378381702598" ID="ID_1475778877" MODIFIED="1378381713965" POSITION="right" TEXT="9. Authenticated SMTP"/>
+<node CREATED="1378381720726" ID="ID_52729128" MODIFIED="1378453985521" POSITION="left" TEXT="10. Proper SSL certificates for Postfix and Dovecot"/>
 <node CREATED="1378381747022" ID="ID_723110198" MODIFIED="1378381772434" POSITION="right" TEXT="11. DNS - to make mail servers find you"/>
 <node CREATED="1378381777798" ID="ID_385630795" MODIFIED="1378381800133" POSITION="left" TEXT="12. SMTPd restrictions, SPF, DKIM and greylisting"/>
 <node CREATED="1378381802078" ID="ID_1161093444" MODIFIED="1378381825827" POSITION="right" TEXT="13. Optional: Content scanning with AMaViS"/>
