@@ -1,7 +1,7 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1368622273645" ID="ID_1310544137" MODIFIED="1368622285052" TEXT="ElasticSearch Server">
-<node CREATED="1368622314755" FOLDED="true" ID="ID_1936492349" MODIFIED="1381615046427" POSITION="right" TEXT="2. Searching your data">
+<node CREATED="1368622314755" ID="ID_1936492349" MODIFIED="1384773280783" POSITION="right" TEXT="2. Searching your data">
 <node CREATED="1368651454967" ID="ID_794450864" MODIFIED="1368653371075" TEXT="Understanding the querying and indexing process">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -174,7 +174,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1368651482311" ID="ID_1250393072" MODIFIED="1368689205834" TEXT="Data">
+<node CREATED="1368651482311" ID="ID_1250393072" MODIFIED="1389212178293" TEXT="Data">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -183,15 +183,52 @@
     <p>
       These data will be used for the rest of the 2nd chapter:
     </p>
-    <p>
-      
-    </p>
-    <pre></pre>
+    <pre>{
+  &quot;book&quot; : {
+    &quot;_index&quot; : {
+      &quot;enabled&quot; : true
+    },
+    &quot;_id&quot; : {
+      &quot;index&quot;: &quot;not_analyzed&quot;,
+      &quot;store&quot; : &quot;yes&quot;
+    },
+    &quot;properties&quot; : {
+      &quot;author&quot; : {
+        &quot;type&quot; : &quot;string&quot;
+      },
+      &quot;characters&quot; : {
+        &quot;type&quot; : &quot;string&quot;
+      },
+      &quot;copies&quot; : {
+        &quot;type&quot; : &quot;long&quot;,
+        &quot;ignore_malformed&quot; : false
+      },
+      &quot;otitle&quot; : {
+        &quot;type&quot; : &quot;string&quot;
+      },
+      &quot;tags&quot; : {
+        &quot;type&quot; : &quot;string&quot;
+      },
+      &quot;title&quot; : {
+        &quot;type&quot; : &quot;string&quot;
+      },
+      &quot;year&quot; : {
+        &quot;type&quot; : &quot;long&quot;,
+        &quot;ignore_malformed&quot; : false,
+        &quot;index&quot; : &quot;analyzed&quot;
+      },
+      &quot;available&quot; : {
+        &quot;type&quot; : &quot;boolean&quot;,
+        &quot;index&quot; : &quot;analyzed&quot;
+      }
+    }
+  }
+}</pre>
   </body>
 </html></richcontent>
 </node>
 </node>
-<node COLOR="#006633" CREATED="1368651490663" ID="ID_923186511" MODIFIED="1381615017322" TEXT="Querying Elastic Search">
+<node COLOR="#006633" CREATED="1368651490663" FOLDED="true" ID="ID_923186511" MODIFIED="1393876748318" TEXT="Querying Elastic Search">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -427,11 +464,183 @@
   </body>
 </html></richcontent>
 </node>
-<node CREATED="1368651558335" ID="ID_170337058" MODIFIED="1368651567004" TEXT="Choosing the fields we want to return">
-<node CREATED="1368651570423" ID="ID_1659794144" MODIFIED="1368651576375" TEXT="Partial fields"/>
+<node CREATED="1368651558335" ID="ID_170337058" MODIFIED="1389213103994" TEXT="Choosing the fields we want to return">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      With use of the <b>fields</b>&#160;array in the request body, ES allows to define which fields should be included in the response (note that only fields marked as <b>stored</b>&#160;in the mappings (or when the <b>_source</b>&#160; field is used) can be returned). So if we want to return only the <b>title</b>&#160;and <b>year </b>fields (in all documents in the result) we'd use following query:
+    </p>
+    <pre>{
+ &quot;fields&quot; : [ &quot;title&quot;, &quot;year&quot; ],
+ &quot;query&quot; : {
+  &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+ }
+}</pre>
+    <p>
+      So we'd get following result:
+    </p>
+    <pre>{
+  &quot;took&quot; : 2,
+  &quot;timed_out&quot; : false,
+  &quot;_shards&quot; : {
+    &quot;total&quot; : 5,
+    &quot;successful&quot; : 5,
+    &quot;failed&quot; : 0
+  },
+  &quot;hits&quot; : {
+    &quot;total&quot; : 1,
+    &quot;max_score&quot; : 0.19178301,
+    &quot;hits&quot; : [ {
+      &quot;_index&quot; : &quot;library&quot;,
+      &quot;_type&quot; : &quot;book&quot;,
+      &quot;_id&quot; : &quot;4&quot;,
+      &quot;_score&quot; : 0.19178301,
+      &quot;fields&quot; : {
+        &quot;title&quot; : &quot;Crime and Punishment&quot;,
+        &quot;year&quot; : 1886
+      }
+    } ]
+  }
+}</pre>
+    <p>
+      There're three things to note:
+    </p>
+    <ul>
+      <li>
+        if we don't define the fields array, it'll use the default value and return the <b>_source</b>&#160;field if available.
+      </li>
+      <li>
+        if we use the <b>_source</b>&#160;field and request a field that is not stored, that field will be extracted from the <b>_source</b>&#160;field (it required additional processing)
+      </li>
+      <li>
+        when all fields should be returned, we use <b>*</b>&#160;as the field name
+      </li>
+    </ul>
+    <p>
+      <b>Note:</b>&#160;if the <b>_source</b>&#160;field is used, from performance point of view it's better to return the <b>_source</b>&#160;field instead of multiple stored fields.
+    </p>
+  </body>
+</html></richcontent>
+<node CREATED="1368651570423" ID="ID_1659794144" MODIFIED="1389213574333" TEXT="Partial fields">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Partial fields allow us to control how fields are loaded from the <b>_source</b>&#160; field. ES exposes <b>include</b>&#160;and <b>exclude</b>&#160;properties of the <b>partial_fields</b>&#160; object, so we can in-/ex- -clude fields depending on values of these properties. E.g. to include fields starting with &quot;<i>titl</i>&quot; and exclude those starting with &quot;<i>chara</i>&quot; we use following query:
+    </p>
+    <pre>{
+ &quot;partial_fields&quot; : {
+  &quot;partial1&quot; : {
+   &quot;include&quot; : [ &quot;titl*&quot; ],
+   &quot;exclude&quot; : [ &quot;chara*&quot; ]
+  }
+ },
+ &quot;query&quot; : {
+  &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+ }
+}</pre>
+  </body>
+</html></richcontent>
 </node>
-<node CREATED="1368651582463" ID="ID_1712230196" MODIFIED="1368651593557" TEXT="Using script fields">
-<node CREATED="1368651594159" ID="ID_659767064" MODIFIED="1368651609261" TEXT="Passing parameters to script fields"/>
+</node>
+<node CREATED="1368651582463" ID="ID_1712230196" MODIFIED="1389214835707" TEXT="Using script fields">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ES allows us to use script evaluated values to be returned with result documents. To use it we add <b>script_fields</b>&#160;section to the JSON query object and a named object(s) for each wanted result. E.g. to return a value <b>correctYear</b>&#160;(as value ot the <b>year</b>&#160;field minus 1800) we'd run:
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+ &quot;script_fields&quot; : {
+  &quot;correctYear&quot; : {
+   &quot;script&quot; : &quot;doc['year'].value &#8211; 1800&quot;
+  }
+ },
+ &quot;query&quot; : {
+  &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+ }
+}</pre>
+    <p>
+      When preceding query is tun against the testing data it will throw an exception as we don't store the <b>year</b>&#160;field. Only stored fields (or those available in the <b>_source</b>&#160;field. So after modifications it should look like following:
+    </p>
+    <pre>{
+ &quot;script_fields&quot; : {
+  &quot;correctYear&quot; : {
+   &quot;script&quot; : &quot;_source.year &#8211; 1800&quot;
+  }
+ },
+ &quot;query&quot; : {
+  &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+ }
+}      
+    </pre>
+    <p>
+      And it should return something like:
+    </p>
+    <pre>{
+  &quot;took&quot; : 1,
+  &quot;timed_out&quot; : false,
+  &quot;_shards&quot; : {
+    &quot;total&quot; : 5,
+    &quot;successful&quot; : 5,
+    &quot;failed&quot; : 0
+  },
+  &quot;hits&quot; : {
+    &quot;total&quot; : 1,
+    &quot;max_score&quot; : 0.19178301,
+    &quot;hits&quot; : [ {
+      &quot;_index&quot; : &quot;library&quot;,
+      &quot;_type&quot; : &quot;book&quot;,
+      &quot;_id&quot; : &quot;4&quot;,
+      &quot;_score&quot; : 0.19178301,
+      &quot;fields&quot; : {
+        &quot;correctYear&quot; : 86
+      }
+    } ]
+  }
+}</pre>
+  </body>
+</html></richcontent>
+<font NAME="SansSerif" SIZE="12"/>
+<node CREATED="1368651594159" ID="ID_659767064" LINK="#ID_263972596" MODIFIED="1389215244978" TEXT="Passing parameters to script fields">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      We can use a <u>variable name</u>&#160;and pass its value in the <u>parameters section</u>&#160;instead of using that hardcoded (<i>1800</i>) value in the equation.
+    </p>
+    <pre>      {
+ &quot;script_fields&quot; : {
+  &quot;correctYear&quot; : {
+   &quot;script&quot; : &quot;_source.year &#8211; paramYear&quot;,
+   &quot;params&quot; : { // &lt;=- Parameters section
+    &quot;paramYear&quot; : 1800 // &lt;=- <b>paramYear</b> variable
+   }
+  }
+ },
+ &quot;query&quot; : {
+  &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+ }
+}
+    </pre>
+    <p>
+      Look at the using scripts section.
+    </p>
+  </body>
+</html></richcontent>
+</node>
 </node>
 <node CREATED="1368651656247" ID="ID_1850581341" MODIFIED="1372922121649" TEXT="Choosing the right search type (advanced)">
 <richcontent TYPE="NOTE"><html>
@@ -482,9 +691,51 @@
   </body>
 </html></richcontent>
 </node>
-<node CREATED="1368651677063" ID="ID_1952524766" MODIFIED="1368651690988" TEXT="Search execution preference (advanced)"/>
+<node CREATED="1368651677063" ID="ID_1952524766" MODIFIED="1389301661227" TEXT="Search execution preference (advanced)">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      There's one additional way to control the search process: what types of shards will the search be executed on.
+    </p>
+    <p>
+      ES uses shards and replicas available on request target node and all other nodes in the cluster by default (and it's mostly proper behavior).
+    </p>
+    <p>
+      There might be situations where other settings would be preferred: to change these settings we use the <b>preference</b>&#160;request parameter to one of the following values:
+    </p>
+    <ul>
+      <li>
+        <b>_primary</b>: operation will be executed on primary shards only
+      </li>
+      <li>
+        <b>_primary_first</b>: operation will be executed on primary shards if they are available, if not it will be executed on other shards
+      </li>
+      <li>
+        <b>_local</b>: executes only on the request target node (if possible).
+      </li>
+      <li>
+        <b>_only_node:node_id</b>:executes on specified node
+      </li>
+      <li>
+        A custom value: custom value may be passed, requests with the same values will be executed on the same shards
+      </li>
+    </ul>
+    <p>
+      E.g. to execute a query on local shards only we use:
+    </p>
+    <pre>curl -XGET 'localhost:9200/library/_search?preference=_local' -d '{
+ &quot;query&quot; : {
+  &quot;term&quot; : { &quot;title&quot; : &quot;crime&quot; }
+ }
+}'</pre>
+  </body>
+</html></richcontent>
 </node>
-<node CREATED="1368651704695" ID="ID_1882653736" MODIFIED="1368651709636" TEXT="Basic queries">
+</node>
+<node CREATED="1368651704695" FOLDED="true" ID="ID_1882653736" MODIFIED="1393876752612" TEXT="Basic queries">
 <node CREATED="1368651712183" ID="ID_973026064" MODIFIED="1368689777686" TEXT="term">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -834,7 +1085,10 @@
 <node CREATED="1368651814519" ID="ID_1331544765" MODIFIED="1368651830084" TEXT="Explaining the query string"/>
 <node CREATED="1368651833599" ID="ID_1471970399" MODIFIED="1368651850252" TEXT="Running query string query against multiple fields"/>
 </node>
-<node CREATED="1368651852199" ID="ID_1963280716" MODIFIED="1368651853885" TEXT="field"/>
+<node CREATED="1368651852199" ID="ID_1963280716" MODIFIED="1389350053005" TEXT="field">
+<icon BUILTIN="yes"/>
+<icon BUILTIN="go"/>
+</node>
 <node CREATED="1368651864959" ID="ID_266427522" MODIFIED="1368651869613" TEXT="identifiers"/>
 <node CREATED="1373406028848" ID="ID_1961788870" MODIFIED="1373406033977" TEXT="prefix"/>
 <node CREATED="1368651876007" ID="ID_103056476" MODIFIED="1368651879959" TEXT="fuzzy like this"/>
@@ -847,7 +1101,7 @@
 <node CREATED="1368652003911" ID="ID_1827448991" MODIFIED="1368652007885" TEXT="range"/>
 <node CREATED="1368652012487" ID="ID_1304796971" MODIFIED="1368652017869" TEXT="Query rewrite"/>
 </node>
-<node CREATED="1373406121936" ID="ID_814654303" MODIFIED="1373406130212" TEXT="Filtering results">
+<node CREATED="1373406121936" FOLDED="true" ID="ID_814654303" MODIFIED="1389301072293" TEXT="Filtering results">
 <node CREATED="1373406132679" ID="ID_1616083384" MODIFIED="1373406136224" TEXT="Using filters"/>
 <node CREATED="1373406138463" ID="ID_1120309527" MODIFIED="1373406141483" TEXT="Range filters"/>
 <node CREATED="1373406146607" ID="ID_1526941228" MODIFIED="1373406150177" TEXT="Exists"/>
@@ -861,7 +1115,7 @@
 <node CREATED="1373406195831" ID="ID_611243419" MODIFIED="1373406201530" TEXT="Named filters"/>
 <node CREATED="1373406202671" ID="ID_1993154308" MODIFIED="1373406205730" TEXT="Cached filters"/>
 </node>
-<node CREATED="1373406209367" ID="ID_1522688224" MODIFIED="1373406217324" TEXT="Compound queries">
+<node CREATED="1373406209367" FOLDED="true" ID="ID_1522688224" MODIFIED="1389301074711" TEXT="Compound queries">
 <node CREATED="1373406218663" ID="ID_393934737" MODIFIED="1373406224596" TEXT="bool"/>
 <node CREATED="1373406227031" ID="ID_1230042571" MODIFIED="1373406229066" TEXT="boosting"/>
 <node CREATED="1373406230687" ID="ID_1323510189" MODIFIED="1373406235498" TEXT="constant score"/>
@@ -870,14 +1124,156 @@
 <node CREATED="1373406255183" ID="ID_1921229073" MODIFIED="1373406265754" TEXT="custom boost factor"/>
 <node CREATED="1373406268143" ID="ID_908988595" MODIFIED="1373406282442" TEXT="custom score"/>
 </node>
-<node CREATED="1373406286879" ID="ID_1864227612" MODIFIED="1373406290476" TEXT="Sorting data">
-<node CREATED="1373406291207" ID="ID_1628588075" MODIFIED="1373406295668" TEXT="Default sorting"/>
-<node CREATED="1373406296623" ID="ID_1015098909" MODIFIED="1373406305840" TEXT="Selecting fields used for sorting"/>
-<node CREATED="1373406307167" ID="ID_1068333591" MODIFIED="1373406325052" TEXT="Specifying behavior for missing fields"/>
-<node CREATED="1373406326087" ID="ID_453747883" MODIFIED="1373406329852" TEXT="Dynamic criteria"/>
+<node CREATED="1373406286879" ID="ID_1864227612" MODIFIED="1392846807734" TEXT="Sorting data">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Search by scoring means we get most appropriate documents.
+    </p>
+  </body>
+</html></richcontent>
+<node CREATED="1373406291207" ID="ID_1628588075" MODIFIED="1392847149507" TEXT="Default sorting">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Following query returns all books with at least 1 of the specified words:
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+ &quot;query&quot; : {
+    &quot;terms&quot; : {
+       &quot;title&quot; : [ &quot;crime&quot;, &quot;front&quot;, &quot;punishment&quot; ],
+       &quot;minimum_match&quot; : 1
+    }
+  }
+}</pre>
+    <p>
+      Under the hood ES sees this:
+    </p>
+    <p>
+      
+    </p>
+    <pre>{
+ &quot;query&quot; : {
+    &quot;terms&quot; : {
+       &quot;title&quot; : [ &quot;crime&quot;, &quot;front&quot;, &quot;punishment&quot; ],
+       &quot;minimum_match&quot; : 1
+    }
+  },
+  &quot;sort&quot; : [
+    { &quot;_score&quot; : &quot;desc&quot; }
+  ]
+}</pre>
+    <p>
+      Note the &quot;sort&quot; key and its value - it's the default sorting used by ES. We can reverse the ordering by simply changing &quot;desc&quot; to &quot;asc&quot; like this:
+    </p>
+    <pre> &quot;sort&quot; : [
+    { &quot;_score&quot; : &quot;asc&quot; }
+  ]</pre>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1373406296623" ID="ID_1015098909" MODIFIED="1393877042604" TEXT="Selecting fields used for sorting">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      One might think that something like
+    </p>
+    <pre>  &quot;sort&quot; : [
+    { &quot;title&quot; : &quot;asc&quot; }
+  ]</pre>
+    will work, but unfortunately it wont. ES most probably returns something like:
+
+    <pre>[Can't sort on string types with more than one value per doc, or more than one token per field]</pre>
+    <p>
+      OK, fields with multiple values can be added easily, but can not be as easily be used for sorting as ES does not know which values should be used to determine the order. Another reason may be that the field is analyzed and divided into multiple tokens.
+    </p>
+    <p>
+      To avoid this we can add an additional, <u>non-analyzed version</u>&#160;of the <b>title</b>&#160; field. To do that we must change the <b>title</b>&#160;to <b>multi_field</b>&#160; so the <b>title</b>&#160;definition would look like this:
+    </p>
+    <pre>&quot;title&quot; : {
+  &quot;type&quot;: &quot;multi_field&quot;,
+  &quot;fields&quot;: {
+    &quot;title&quot;: { &quot;type&quot; : &quot;string&quot; },
+    &quot;sort&quot;: { &quot;type&quot; : &quot;string&quot;, <u>&quot;index&quot;: &quot;not_analyzed&quot;</u> }
+  }
+}</pre>
+    <p>
+      After this change we can try to sort on the <b>title.sort</b>&#160;field:
+    </p>
+    <pre>{
+ &quot;query&quot; : {
+    &quot;match_all&quot; : { }
+  },
+  &quot;sort&quot; : [
+    {&quot;title.sort&quot; : &quot;asc&quot; }
+  ]
+}</pre>
+    <p>
+      Now it should properly sort and in the ES response every document should contain information about the value used for sorting, e.g.
+    </p>
+    <pre>      &quot;_index&quot; : &quot;library&quot;,
+      &quot;_type&quot; : &quot;book&quot;,
+      &quot;_id&quot; : &quot;1&quot;,
+      &quot;_score&quot; : null, &quot;_source&quot; : { &quot;title&quot;: &quot;All Quiet on the Western Front&quot;,&quot;otitle&quot;: &quot;Im Westen nichts Neues&quot;,&quot;author&quot;: &quot;Erich Maria Remarque&quot;,&quot;year&quot;: 1929,&quot;characters&quot;: [&quot;Paul B&#228;umer&quot;, &quot;Albert Kropp&quot;, &quot;Haie Westhus&quot;, &quot;Fredrich M&#252;ller&quot;, &quot;Stanislaus Katczinsky&quot;, &quot;Tjaden&quot;],&quot;tags&quot;: [&quot;novel&quot;],&quot;copies&quot;: 1, &quot;available&quot;: true, &quot;section&quot; : 3},
+      &quot;sort&quot; : [ &quot;All Quiet on the Western Front&quot; ]</pre>
+    <p>
+      Note that <b>sort</b>&#160;in request and response is given as an array (so we can use several different sort parameters).
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1373406307167" ID="ID_1068333591" MODIFIED="1394009842410" TEXT="Specifying behavior for missing fields">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In case some of the documents matched by query don't define the field we want to sort by, they're by default returned as first when sorting ASC resp. last when sorting DESC. But sometimes it's not we'd like to achieve. When sorting by numeric field the default behaviour can be changed easily:
+    </p>
+    <pre>{
+ &quot;query&quot; : {
+    &quot;match_all&quot; : { }
+  },
+  &quot;sort&quot; : [
+    { &quot;section&quot; : { &quot;order&quot; : &quot;asc&quot;, <b>&quot;missing&quot; : &quot;_last&quot;</b> } }
+  ]
+}</pre>
+    Note the extended form of the sorting field definition, which allows adding other parameters ('missing', ...). It's worth mentioning, that besides the _last and _first values, ES allows us to use any number in which case documents without a defined field will be treated as having this given value.
+  </body>
+</html>
+</richcontent>
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1373406326087" ID="ID_453747883" MODIFIED="1394150955290" TEXT="Dynamic criteria">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Used when we want to handle sorting on multiple value fields (which can't be sorted by default). In the example we want to sort on array by comparing its first element (or specified default value).
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 <node CREATED="1373406331287" ID="ID_1187469410" MODIFIED="1373406337595" TEXT="Collation and national characters"/>
 </node>
-<node CREATED="1373406360655" ID="ID_263972596" MODIFIED="1373406367259" TEXT="Using scripts">
+<node CREATED="1373406360655" FOLDED="true" ID="ID_263972596" MODIFIED="1392846740721" TEXT="Using scripts">
 <node CREATED="1373406368607" ID="ID_1675450707" MODIFIED="1373406372690" TEXT="Available objects"/>
 <node CREATED="1373406373967" ID="ID_72747720" MODIFIED="1373406375301" TEXT="MVEL"/>
 <node CREATED="1373406377207" ID="ID_1919489517" MODIFIED="1373406384026" TEXT="Other languages"/>
@@ -886,8 +1282,8 @@
 </node>
 <node CREATED="1373406395823" ID="ID_1968250886" MODIFIED="1373406398869" TEXT="Summary"/>
 </node>
-<node CREATED="1373316415031" FOLDED="true" ID="ID_1964674351" MODIFIED="1381615048410" POSITION="right" TEXT="3. Extending Structure and Search">
-<node CREATED="1373316438686" ID="ID_461775154" MODIFIED="1377266594451" TEXT="Indexing data that is not flat">
+<node CREATED="1373316415031" ID="ID_1964674351" MODIFIED="1389141194319" POSITION="right" TEXT="3. Extending Structure and Search">
+<node CREATED="1373316438686" FOLDED="true" ID="ID_461775154" MODIFIED="1389301079365" TEXT="Indexing data that is not flat">
 <node CREATED="1373316450806" ID="ID_287081288" LINK="#ID_726014355" MODIFIED="1377269449868" TEXT="Data">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -1226,7 +1622,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1373316665846" ID="ID_36994603" MODIFIED="1377362701608" TEXT="Extending index structure with additional internal information">
+<node CREATED="1373316665846" FOLDED="true" ID="ID_36994603" MODIFIED="1389301081317" TEXT="Extending index structure with additional internal information">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1435,7 +1831,7 @@
 <node CREATED="1373316754934" ID="ID_1595400489" MODIFIED="1373316760104" TEXT="The _timestamp field"/>
 <node CREATED="1373316761134" ID="ID_159548230" MODIFIED="1373316768048" TEXT="The _ttl field"/>
 </node>
-<node CREATED="1373316772166" ID="ID_1886414912" MODIFIED="1373316778385" TEXT="Highlighting">
+<node CREATED="1373316772166" FOLDED="true" ID="ID_1886414912" MODIFIED="1389301083645" TEXT="Highlighting">
 <node CREATED="1373406424599" ID="ID_328076057" MODIFIED="1373406429602" TEXT="Getting started"/>
 <node CREATED="1373406430999" ID="ID_9099486" MODIFIED="1373406434019" TEXT="Field configuration"/>
 <node CREATED="1373406435591" ID="ID_923548572" MODIFIED="1373406441043" TEXT="Under the hood"/>
@@ -1444,15 +1840,15 @@
 <node CREATED="1373406513687" ID="ID_1558912344" MODIFIED="1373406518421" TEXT="Global and local settings"/>
 <node CREATED="1373406520599" ID="ID_1160855466" MODIFIED="1373406525237" TEXT="Require matching"/>
 </node>
-<node CREATED="1373406537031" ID="ID_734883924" MODIFIED="1373406541934" TEXT="Autocomplete">
+<node CREATED="1373406537031" FOLDED="true" ID="ID_734883924" MODIFIED="1389301084445" TEXT="Autocomplete">
 <node CREATED="1373406546391" ID="ID_475230581" MODIFIED="1373406551036" TEXT="The prefix query"/>
 <node CREATED="1373406552423" ID="ID_750729022" MODIFIED="1373406555790" TEXT="Edge ngrams"/>
 <node CREATED="1373406558927" ID="ID_717322803" MODIFIED="1373406562790" TEXT="Faceting"/>
 </node>
-<node CREATED="1373406564031" ID="ID_1853132007" MODIFIED="1373406569902" TEXT="Handling files">
+<node CREATED="1373406564031" FOLDED="true" ID="ID_1853132007" MODIFIED="1389301085213" TEXT="Handling files">
 <node CREATED="1373406574663" ID="ID_1652740362" MODIFIED="1373406587140" TEXT="Additional file informations"/>
 </node>
-<node CREATED="1373406589295" ID="ID_1081777993" MODIFIED="1375193674029" TEXT="Geo">
+<node CREATED="1373406589295" FOLDED="true" ID="ID_1081777993" MODIFIED="1389349918783" TEXT="Geo">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1537,7 +1933,7 @@ Look at the data and note there're different formats used for the coordinates (s
 </node>
 </node>
 <node CREATED="1381615061385" ID="ID_407592769" MODIFIED="1381615082729" POSITION="right" TEXT="4. Make your search better"/>
-<node CREATED="1381615086817" ID="ID_4681267" MODIFIED="1381615244481" POSITION="right" TEXT="5. Combining Indexing, Analysis, and Search">
+<node CREATED="1381615086817" FOLDED="true" ID="ID_4681267" MODIFIED="1389301088877" POSITION="right" TEXT="5. Combining Indexing, Analysis, and Search">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1567,8 +1963,7 @@ Look at the data and note there're different formats used for the coordinates (s
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1381615244468" ID="ID_1132235866" MODIFIED="1381617624081" TEXT="Indexing tree-like structures">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -1617,8 +2012,7 @@ Look at the data and note there're different formats used for the coordinates (s
       
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1368629026515" FOLDED="true" ID="ID_1460307793" MODIFIED="1381615050532" POSITION="left" TEXT="1. Getting Started with ElasticSearch Cluster">
