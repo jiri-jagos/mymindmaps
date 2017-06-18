@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Learning D3</title>
+	<link rel="stylesheet" href="main.css">
+	<script  type="text/javascript" src="d3.min.js"></script>
+</head>
+<body>
+<!--Place all DOM elements here -->
+<script>
+//Write your code here
+var data = [132,71,337,93,78,43,20,16,30,8,17,21];
+//console.log(data[0])
+
+var donut = {key: "Glazed", value: 132};
+//console.log(donut.key, donut.value);
+
+var donuts = [
+	{key: "Glazed", 	value: 132},
+	{key: "Jelly", 		value: 71},
+	{key: "Holes", 		value: 337},
+	{key: "Sprinkles",	value: 93}
+];
+//console.log(donuts[1].key, donuts[1].value);
+
+for(var i = 0, len = donuts.length; i < len; i++){
+	console.log(donuts[i].key, donuts[i].value);
+}
+
+donuts.forEach(function(entry){
+	console.log(entry.key, entry.value);
+});
+</script>	
+</body>
+</html>

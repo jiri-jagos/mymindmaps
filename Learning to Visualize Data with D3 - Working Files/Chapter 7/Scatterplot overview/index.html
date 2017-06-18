@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Learning D3</title>
+	<link rel="stylesheet" href="main.css">
+	<script  type="text/javascript" src="d3.min.js"></script>
+</head>
+<body>
+<!--Place all DOM elements here -->
+<script type="text/javascript" src="survey_data.js"></script>
+<script>
+var w = 800;
+var h = 450;
+var margin = {
+	top: 60,
+	bottom: 80,
+	left: 100,
+	right: 80
+};
+var width = w - margin.left - margin.right;
+var height = h - margin.top - margin.bottom;
+var svg = d3.select("body").append("svg")
+			.attr("id", "chart")
+			.attr("width", w)
+			.attr("height", h);
+var chart = svg.append("g")
+			.classed("display", true)
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var tickValues = [18,25,32,39,46,53,60,67,74];
+var colorScale = d3.scale.category10();
+var x = d3.scale.linear()
+		.domain(d3.extent(data,function(d){
+			return d.age;
+		}))
+		.range([0, width]);
+var y = d3.scale.linear()
+		.domain([1,5])
+		.range([height,0]);
+var xAxis = d3.svg.axis()
+			.scale(x)
+			.tickValues(tickValues)
+			.orient("bottom");
+var yAxis = d3.svg.axis()
+			.scale(y)
+			.ticks(5)
+			.tickSize(20)
+			.tickFormat(function(d){
+				return d.toFixed(1);
+			})
+			.orient("left");
+var xGridlines = d3.svg.axis()
+					.scale(x)
+					.tickValues(tickValues)
+					.tickSize(height,height)
+					.tickFormat("")
+					.orient("bottom");
+var yGridlines = d3.svg.axis()
+					.scale(y)
+					.tickSize(-width,0,0)
+					.tickFormat("")
+					.orient("left");
+var responseScale = d3.scale.linear()
+		.domain(d3.extent(data, function(d){
+			return d.responses;
+		}))
+		.range([2,15]);
+var initialize = 1;
+function drawAxis(params){
+	if(initialize){
+		this.append("g")
+			.call(params.gridlines.x)
+			.classed("gridline x", true)
+			.attr("transform", "translate(" + 0 + "," + 0 + ")");
+		this.append("g")
+			.call(params.gridlines.y)
+			.classed("gridline y", true)
+			.attr("transform", "translate(" + 0 + "," + 0 + ")");
+		this.append("g")
+			.call(params.axis.x)
+			.classed("axis x", true)
+			.attr("transform", "translate(" + 0 + "," + height + ")");
+		this.append("g")
+			.call(params.axis.y)
+			.classed("axis y", true)
+			.attr("transform", "translate(" + 0 + "," + 0+ ")");
+		this.select(".y.axis")
+			.append("text")
+			.classed("y axis-label", true)
+			.attr("transform", "translate(" + -56 + "," + height/2+ ") rotate(-90)")
+			.text("Rating (1=Low, 5=High)");
+		this.select(".x.axis")
+			.append("text")
+			.classed("x axis-label", true)
+			.attr("transform", "translate(" + width/2 + "," + 48 + ")")
+			.text("Customer age");
+		this.append("g")
+			.append("text")
+			.classed("chart-header", true)
+			.text("")
+			.attr("transform", "translate(0," + -24 + ")")
+		initialize = 0;
+	}
+}
+
+function plot(params){
+	var self = this;
+	//Get each of the donut types
+	var donuts = d3.keys(params.data[0]).filter(function(d){
+		return d !== "age" && d !== "responses";
+	});
+	drawAxis.call(this,params);
+	//Create a group for each type of donut
+	this.selectAll(".donut")
+		.data(donuts)
+		.enter()
+			.append("g")
+			.attr("class", function(d){
+				return d;
+			})
+			.classed("donut", true);
+
+	this.selectAll(".donut")
+		.style("fill", function(d,i){ return colorScale(i); })
+		.on("mouseover", function(d,i){
+			d3.select(this)
+				//.classed("highlight", true)
+				.transition()
+				.style("opacity", 1);
+		})
+		.on("mouseout", function(d,i){
+			d3.select(this)
+				//.classed("highlight", false)
+				.transition()
+				.style("opacity", 0.1);
+		});
+
+	donuts.forEach(function(donut){
+		var g = self.selectAll("g."+donut);
+		var arr = params.data.map(function(d){
+				return {
+					key: donut,
+					value: d[donut],
+					age: d.age,
+					responses: d.responses
+				};
+			});
+		//Setup circles
+		g.selectAll(".response")
+			.data(arr)
+			.enter()
+				.append("circle")
+				.classed("response", true);
+		//Update circles
+		g.selectAll(".response")
+			.attr("r", function(d){ return responseScale(d.responses); })
+			.attr("cx", function(d){ return x(d.age); })
+			.attr("cy", function(d){ return y(d.value); })
+			.on("mouseover", function(d,i){
+				var str = d.key + " Donut: ";
+				str += "Age: " + d.age + ", ";
+				str += "Responses: " + d.responses + ", ";
+				str += "Average Rating: " + d.value;
+				str += ""
+				d3.select(".chart-header").text(str);
+			})
+			.on("mouseout", function(d,i){
+				d3.select(".chart-header").text("");
+			});
+		//Remove any unbound elements
+		g.selectAll(".response").data(arr).exit().remove();
+	});
+}
+plot.call(chart, {
+	data: data,
+	gridlines:{
+		x: xGridlines,
+		y: yGridlines
+	},
+	axis:{
+		x: xAxis,
+		y: yAxis
+	}
+});
+
+</script>
+</body>
+</html>
