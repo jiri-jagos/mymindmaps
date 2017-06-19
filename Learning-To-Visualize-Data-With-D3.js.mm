@@ -416,7 +416,7 @@ svg.selectAll(&quot;.bar-label&quot;)
 
 </richcontent>
 </node>
-<node TEXT="L. 16. Adding Flexibility With A Chart Function" ID="ID_1089781309" CREATED="1497823182147" MODIFIED="1497824835067" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%203/Adding%20flexibility%20with%20a%20chart%20function/"><richcontent TYPE="NOTE">
+<node TEXT="L. 16. Adding Flexibility With A Chart Function" ID="ID_1089781309" CREATED="1497823182147" MODIFIED="1497906469284" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%203/Adding%20flexibility%20with%20a%20chart%20function/"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -465,7 +465,7 @@ svg.selectAll(&quot;.bar-label&quot;)
 			});
 }
 plot.call(svg,  // here we set the `svg` element as `this` within the plot function, see its declaration above
-    { // here we pass value of the `params` argument (note the key has the same name as its value and the actual `data` variable value
+    { // here we pass value of the `params` argument (note the key has the same name as its value and the actual global `data` variable value
 	data: data
     }
 );
@@ -477,7 +477,89 @@ plot.call(svg,  // here we set the `svg` element as `this` within the plot funct
 
 </richcontent>
 </node>
-<node TEXT="L. 17. Using SVG Groups" ID="ID_683051886" CREATED="1497824219466" MODIFIED="1497824263701" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%203/Using%20SVG%20groups/"/>
+<node TEXT="L. 17. Using SVG Groups" ID="ID_683051886" CREATED="1497824219466" MODIFIED="1497907795160" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%203/Using%20SVG%20groups/"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      SVG Groups are like HTML divs (but not visible in d3). They are containers used to group other items / objects ...
+    </p>
+    <p>
+      
+    </p>
+    <pre><code class="javascript">var w = 800;
+var h = 450;
+var margin = {
+	top: 20,
+	bottom: 20,
+	left: 20,
+	right: 20
+};
+var width = w - margin.left - margin.right;
+var height = h - margin.top - margin.bottom;
+
+var data = [132,71,337,93,78,43,20,16,30,8,17,21];
+var x = d3.scale.linear()
+		.domain([0,d3.max(data)])
+		.range([0,width]);
+var y = d3.scale.linear()
+		.domain([0,data.length])
+		.range([0,height]);
+var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;id&quot;, &quot;chart&quot;)
+    .attr(&quot;width&quot;, w)
+    .attr(&quot;height&quot;, h);
+var chart = svg.append(&quot;g&quot;) // Here the SVG group is appended - see https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g
+    .classed(&quot;display&quot;, true)
+    .attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;); // This line performs the coordinates translation see https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
+
+function plot(params){
+	this.selectAll(&quot;.bar&quot;)
+		.data(params.data)
+		.enter()
+			.append(&quot;rect&quot;)
+			.classed(&quot;bar&quot;, true)
+			.attr(&quot;x&quot;, 0)
+			.attr(&quot;y&quot;, function(d,i){
+				return y(i);
+			})
+			.attr(&quot;width&quot;, function(d,i){
+				return x(d);
+			})
+			.attr(&quot;height&quot;, function(d,i){
+				return y(1)-1;
+			});
+	this.selectAll(&quot;.bar-label&quot;)
+		.data(params.data)
+		.enter()
+			.append(&quot;text&quot;)
+			.classed(&quot;bar-label&quot;, true)
+			.attr(&quot;x&quot;, function(d,i){
+				return x(d);
+			})
+			.attr(&quot;dx&quot;, -4)
+			.attr(&quot;y&quot;, function(d,i){
+				return y(i);
+			})
+			.attr(&quot;dy&quot;, function(d,i){
+				return y(1)/1.5+2;
+			})
+			.text(function(d,i){
+				return d;
+			});
+}
+plot.call(chart, { // Here the instance of `chart` is passed to the `plot` call
+	data: data
+});</code>
+</pre>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 </node>
 </map>
