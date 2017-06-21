@@ -81,8 +81,8 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="4" RULE="ON_BRANCH_CREATION"/>
-<node TEXT="S.1 Introduction" POSITION="left" ID="ID_517231581" CREATED="1497720019226" MODIFIED="1497728296987" HGAP_QUANTITY="70.99999830126767 pt" VSHIFT_QUANTITY="29.999999105930353 pt">
+<hook NAME="AutomaticEdgeColor" COUNTER="5" RULE="ON_BRANCH_CREATION"/>
+<node TEXT="S.1. Introduction" POSITION="left" ID="ID_517231581" CREATED="1497720019226" MODIFIED="1498080948326" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%201/" HGAP_QUANTITY="70.99999830126767 pt" VSHIFT_QUANTITY="29.999999105930353 pt">
 <edge COLOR="#0000ff"/>
 <node TEXT="L.1-3. Introduction, files download, pre-requisites and requirements" ID="ID_1987107933" CREATED="1497719952267" MODIFIED="1497817074281" HGAP_QUANTITY="46.24999903887513 pt" VSHIFT_QUANTITY="35.99999892711642 pt"><richcontent TYPE="NOTE">
 
@@ -147,7 +147,7 @@
 </node>
 <node TEXT="L.6. Documentation - https://github.com/d3" ID="ID_411892668" CREATED="1497727994338" MODIFIED="1497817169180" LINK="https://github.com/d3"/>
 </node>
-<node TEXT="S.2 JavaScript Essentials" POSITION="right" ID="ID_1011838643" CREATED="1497720293784" MODIFIED="1497728316650">
+<node TEXT="S.2. JavaScript Essentials" POSITION="right" ID="ID_1011838643" CREATED="1497720293784" MODIFIED="1498080970903" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%202/">
 <edge COLOR="#00ff00"/>
 <node TEXT="L.8. Reviewing Arrays and Objects" ID="ID_1076122758" CREATED="1497728369592" MODIFIED="1497816559101" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%202/Reviewing%20Arrays%20and%20Objects/"><richcontent TYPE="NOTE">
 
@@ -201,7 +201,7 @@
 </richcontent>
 </node>
 </node>
-<node TEXT="S.3. Creating A Simple Bar Chart" POSITION="right" ID="ID_1508630962" CREATED="1497818139765" MODIFIED="1497821696849">
+<node TEXT="S.3. Creating A Simple Bar Chart" POSITION="right" ID="ID_1508630962" CREATED="1497818139765" MODIFIED="1498080962889" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%203/">
 <edge COLOR="#ff00ff"/>
 <node TEXT="L.11. Creating The SVG Element Programatically" ID="ID_7729867" CREATED="1497818183373" MODIFIED="1497819241998" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%203/Creating%20the%20SVG%20element%20programmatically/"><richcontent TYPE="NOTE">
 
@@ -477,7 +477,7 @@ plot.call(svg,  // here we set the `svg` element as `this` within the plot funct
 
 </richcontent>
 </node>
-<node TEXT="L. 17. Using SVG Groups" ID="ID_683051886" CREATED="1497824219466" MODIFIED="1497907795160" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%203/Using%20SVG%20groups/"><richcontent TYPE="NOTE">
+<node TEXT="L. 17. Using SVG Groups" ID="ID_683051886" CREATED="1497824219466" MODIFIED="1498079425931" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%203/Using%20SVG%20groups/"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -514,7 +514,7 @@ var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
     .attr(&quot;height&quot;, h);
 var chart = svg.append(&quot;g&quot;) // Here the SVG group is appended - see https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g
     .classed(&quot;display&quot;, true)
-    .attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;); // This line performs the coordinates translation see https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
+    .attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;); // This line performs the coordinates translation see https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform	
 
 function plot(params){
 	this.selectAll(&quot;.bar&quot;)
@@ -560,6 +560,111 @@ plot.call(chart, { // Here the instance of `chart` is passed to the `plot` call
 
 </richcontent>
 </node>
+</node>
+<node TEXT="S.4. Creating A Complex Bar Chart" POSITION="left" ID="ID_1873146233" CREATED="1498079427830" MODIFIED="1498080938217" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%204/">
+<edge COLOR="#00ffff"/>
+<node TEXT="L.18. Working With Arrays Of Objects" ID="ID_207748480" CREATED="1498079439126" MODIFIED="1498080914873" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%204/Working%20with%20arrays%20of%20objects/"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In previous examples we visualized a one dimensional data set (e.g. plain array of integer values) which is quite rare in real conditions. Much often we have to deal with more complex structures like arrays of objects etc. .
+    </p>
+    <p>
+      The way we work with such structures is quite similar to working with simple data structures in terms of iterating over individual array elements, but we have to provide additional means for passing right values to corresponding d3 functions. These means are most often <b>accessor functions</b>&#160;which tell d3 how to access the right value in the individual data item.
+    </p>
+    <p>
+      
+    </p>
+    <pre><code class="javascript">var data = [ // Here we define bit more complex dataset as array of objects
+	{key: &quot;Glazed&quot;,		value: 132},
+	{key: &quot;Jelly&quot;,		value: 71},
+	{key: &quot;Holes&quot;,		value: 337},
+	{key: &quot;Sprinkles&quot;,	value: 93},
+	{key: &quot;Crumb&quot;,		value: 78},
+	{key: &quot;Chocolate&quot;,	value: 43},
+	{key: &quot;Coconut&quot;, 	value: 20},
+	{key: &quot;Cream&quot;,		value: 16},
+	{key: &quot;Cruller&quot;, 	value: 30},
+	{key: &quot;&#201;clair&quot;, 	value: 8},
+	{key: &quot;Fritter&quot;, 	value: 17},
+	{key: &quot;Bearclaw&quot;, 	value: 21}
+];
+
+var w = 800;
+var h = 450;
+var margin = {
+	top: 20,
+	bottom: 20,
+	left: 20,
+	right: 20
+};
+var width = w - margin.left - margin.right;
+var height = h - margin.top - margin.bottom;
+var x = d3.scale.linear()
+		.domain([0, d3.max(data, function(d){ // Here we must pass the accessor function as the 2nd parameter of the d3.max() function, which uses value of the `value` key of individual data item to determine the max value for the x scale
+			return d.value;
+		})])
+		.range([0, width]);
+var y = d3.scale.linear()
+		.domain([0, data.length])
+		.range([0, height]);
+var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+			.attr(&quot;id&quot;, &quot;chart&quot;)
+			.attr(&quot;width&quot;, w)
+			.attr(&quot;height&quot;, h);
+var chart = svg.append(&quot;g&quot;)
+			.classed(&quot;display&quot;, true)
+			.attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;);
+function plot(params){
+	this.selectAll(&quot;.bar&quot;)
+		.data(params.data)
+		.enter()
+			.append(&quot;rect&quot;)
+			.classed(&quot;bar&quot;, true)
+			.attr(&quot;x&quot;, 0)
+			.attr(&quot;y&quot;, function(d,i){
+				return y(i);
+			})
+			.attr(&quot;height&quot;, function(d,i){
+				return y(1)-1;
+			})
+			.attr(&quot;width&quot;, function(d){ // Here we return value of the data item `value` key
+				return x(d.value);
+			});
+	this.selectAll(&quot;.bar-label&quot;)
+		.data(params.data)
+		.enter()
+			.append(&quot;text&quot;)
+			.classed(&quot;bar-label&quot;, true)
+			.attr(&quot;x&quot;, function(d){ // Here we return value of the data item `value` key
+				return x(d.value);
+			})
+			.attr(&quot;dx&quot;, -4)
+			.attr(&quot;y&quot;, function(d,i){
+				return y(i);
+			})
+			.attr(&quot;dy&quot;, function(d,i){
+				return y(1)/1.5+2;
+			})
+			.text(function(d){
+				return d.value;
+			})
+}
+plot.call(chart, {data: data});
+
+
+</code>
+</pre>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="L.19. Creating An Ordinal Scale" ID="ID_1732630441" CREATED="1498080027093" MODIFIED="1498080930503" LINK="Learning%20to%20Visualize%20Data%20with%20D3%20-%20Working%20Files/Chapter%204/Creating%20an%20ordinal%20scale/"/>
 </node>
 </node>
 </map>
