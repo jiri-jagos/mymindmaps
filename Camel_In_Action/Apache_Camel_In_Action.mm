@@ -873,7 +873,7 @@ from(&quot;file:data/inbox&quot;)
 </html>
 
 </richcontent>
-<hook URI="JMS_destinations.png" SIZE="0.4385965" NAME="ExternalObject"/>
+<hook URI="JMS_destinations.png" SIZE="1.0" NAME="ExternalObject"/>
 </node>
 <node TEXT="How to configure Camel to use a JMS provider" ID="ID_295830731" CREATED="1513373241377" MODIFIED="1513374106616"><richcontent TYPE="NOTE">
 
@@ -941,9 +941,9 @@ from(&quot;file:data/inbox&quot;)
 </node>
 </node>
 </node>
-<node TEXT="2.3 Creating routes in Java" ID="ID_398725885" CREATED="1513374566698" MODIFIED="1513377692359">
+<node TEXT="2.3 Creating routes in Java" ID="ID_398725885" CREATED="1513374566698" MODIFIED="1513597431457">
 <hook URI="RouteBuilder.png" SIZE="0.47021943" NAME="ExternalObject"/>
-<node TEXT="2.3.1 Using the RouteBuilder" ID="ID_311932082" CREATED="1513377719550" MODIFIED="1513381490212" TEXT_SHORTENED="true"><richcontent TYPE="NOTE">
+<node TEXT="2.3.1 Using the RouteBuilder" ID="ID_311932082" CREATED="1513377719550" MODIFIED="1513597431457" TEXT_SHORTENED="true"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -1054,9 +1054,46 @@ public class FtpToJMSExample {
 </html>
 
 </richcontent>
-<hook URI="Message_Flow.png" SIZE="0.6430868" NAME="ExternalObject"/>
-<node TEXT="Adding a Processor" ID="ID_1438845777" CREATED="1513596685367" MODIFIED="1513596697259"/>
+<hook URI="Message_Flow.png" SIZE="1.0" NAME="ExternalObject"/>
+<node TEXT="Adding a Processor" ID="ID_1438845777" CREATED="1513596685367" MODIFIED="1513597617496"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <i><b>Processor</b></i>&#160;interface in Camel is an important building block of complex routes. It&#8217;s a simple interface, having a single method:
+    </p>
+    <pre>    public void process(Exchange exchange) throws Exception;</pre>
+    <p>
+      This gives you full access to the message exchange, letting you do whatever you want with the payload or headers.
+    </p>
+    <p>
+      All EIPs in Camel are implemented as processors.
+    </p>
+    <p>
+      You can add a simple processor to your route inline, like so:
+    </p>
+    <p>
+      
+    </p>
+    <pre>    from(&quot;ftp://rider.com/orders?username=rider&amp;password=secret&quot;)
+    .process(new Processor() {
+        public void process(Exchange exchange) throws Exception {
+            System.out.println(&quot;We just downloaded: &quot;
+                + exchange.getIn().getHeader(&quot;CamelFileName&quot;));
+            }
+        })
+    .to(&quot;jms:incomingOrders&quot;);</pre>
+  </body>
+</html>
+
+</richcontent>
+<hook URI="Route_With_Processor.png" SIZE="1.0" NAME="ExternalObject"/>
 </node>
+</node>
+<node TEXT="2.4 Creating routes with Spring" ID="ID_493603657" CREATED="1513597644516" MODIFIED="1513597657975"/>
 </node>
 </node>
 <node TEXT="7. Understanding components" POSITION="right" ID="ID_626701461" CREATED="1513381515569" MODIFIED="1513381543643">
