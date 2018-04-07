@@ -1365,8 +1365,53 @@ Exception getException(); // ... this returns Exception</code>
 </html>
 
 </richcontent>
-<node TEXT="6.2.1. Introducing the Mock component" ID="ID_511985920" CREATED="1522146109321" MODIFIED="1523091134929">
+<node TEXT="6.2.1. Introducing the Mock component" ID="ID_511985920" CREATED="1522146109321" MODIFIED="1523091882715">
 <hook URI="Mock_Component_Three_Steps_For_Testing.png" SIZE="0.51502144" NAME="ExternalObject"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Three basic (general) testing steps are:
+    </p>
+    <ol>
+      <li>
+        set expectations of what should happen
+      </li>
+      <li>
+        run the the test
+      </li>
+      <li>
+        verify outcome of the test against the expectations
+      </li>
+    </ol>
+    <p>
+      The Camel Mock component allows to set expectations on <b>mock endpoints</b>&#160;that are used to verify the test results.
+    </p>
+    <p>
+      Mock components can verify variety of expectations:
+    </p>
+    <ul>
+      <li>
+        that correct number of messages are received
+      </li>
+      <li>
+        that message arrive in correct order
+      </li>
+      <li>
+        that correct payloads are received
+      </li>
+      <li>
+        that the test ran within the expected time period
+      </li>
+    </ul>
+  </body>
+</html>
+
+</richcontent>
 </node>
 <node TEXT="6.2.2. Unit testing with the Mock component" ID="ID_1339418369" CREATED="1522146126057" MODIFIED="1522146139043"/>
 </node>
