@@ -1,10 +1,89 @@
-<map version="0.9.0">
-<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1485704468960" ID="ID_1397231744" MODIFIED="1485704581221" TEXT="Javascript - understanding weird parts">
-<node CREATED="1485704599352" ID="ID_86662540" MODIFIED="1485986528704" POSITION="right" TEXT="Section 2">
-<node CREATED="1485704615462" ID="ID_1626787628" MODIFIED="1485705137609" TEXT="Lecture 6">
-<node CREATED="1485704624214" ID="ID_804304138" MODIFIED="1487275355524" TEXT="Syntax Parser">
-<richcontent TYPE="NOTE"><html>
+<map version="freeplane 1.5.9">
+<!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
+<node TEXT="Javascript - understanding weird parts" FOLDED="false" ID="ID_1397231744" CREATED="1485704468960" MODIFIED="1485704581221"><hook NAME="MapStyle">
+    <properties fit_to_viewport="false;" show_note_icons="true"/>
+
+<map_styles>
+<stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
+<font SIZE="24"/>
+<stylenode LOCALIZED_TEXT="styles.predefined" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="default" COLOR="#000000" STYLE="fork">
+<font NAME="SansSerif" SIZE="10" BOLD="false" ITALIC="false"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.details"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.attributes">
+<font SIZE="9"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.note" COLOR="#000000" BACKGROUND_COLOR="#ffffff" TEXT_ALIGN="LEFT"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.floating">
+<edge STYLE="hide_edge"/>
+<cloud COLOR="#f0f0f0" SHAPE="ROUND_RECT"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.user-defined" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="styles.topic" COLOR="#18898b" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subtopic" COLOR="#cc3300" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subsubtopic" COLOR="#669900">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.important">
+<icon BUILTIN="yes"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.AutomaticLayout" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level.root" COLOR="#000000" STYLE="oval" SHAPE_HORIZONTAL_MARGIN="10.0 pt" SHAPE_VERTICAL_MARGIN="10.0 pt">
+<font SIZE="18"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,1" COLOR="#0033ff">
+<font SIZE="16"/>
+<edge COLOR="#ff0000"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,2" COLOR="#00b439">
+<font SIZE="14"/>
+<edge COLOR="#0000ff"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,3" COLOR="#990000">
+<font SIZE="12"/>
+<edge COLOR="#00ff00"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,4" COLOR="#111111">
+<font SIZE="10"/>
+<edge COLOR="#ff00ff"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,5">
+<edge COLOR="#00ffff"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,6">
+<edge COLOR="#7c0000"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,7">
+<edge COLOR="#00007c"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,8">
+<edge COLOR="#007c00"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,9">
+<edge COLOR="#7c007c"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,10">
+<edge COLOR="#007c7c"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,11">
+<edge COLOR="#7c7c00"/>
+</stylenode>
+</stylenode>
+</stylenode>
+</map_styles>
+</hook>
+<node TEXT="Section 2" POSITION="right" ID="ID_86662540" CREATED="1485704599352" MODIFIED="1485986528704">
+<node TEXT="Lecture 6" FOLDED="true" ID="ID_1626787628" CREATED="1485704615462" MODIFIED="1485705137609">
+<node TEXT="Syntax Parser" ID="ID_804304138" CREATED="1485704624214" MODIFIED="1487275355524"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -24,10 +103,12 @@
       </li>
     </ul>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
-<node CREATED="1485705139020" ID="ID_828520697" MODIFIED="1487275355568" TEXT="Lexical Environment">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lexical Environment" ID="ID_828520697" CREATED="1485705139020" MODIFIED="1487275355568"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -54,10 +135,12 @@
       'Where things are put (written) and what's around them.'
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
-<node CREATED="1485705250691" ID="ID_1225295564" MODIFIED="1487275355592" TEXT="Execution context">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Execution context" ID="ID_1225295564" CREATED="1485705250691" MODIFIED="1487275355592"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -72,12 +155,14 @@
       There are lots of lexical environments. Which one is currently running is managed via execution contexts which can contain things beyond what's written in your code.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485714134432" ID="ID_995644249" MODIFIED="1485714138649" TEXT="Lecture 7">
-<node CREATED="1485714143922" ID="ID_555011624" MODIFIED="1487275355652" TEXT="Name / value pairs">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 7" FOLDED="true" ID="ID_995644249" CREATED="1485714134432" MODIFIED="1485714138649">
+<node TEXT="Name / value pairs" ID="ID_555011624" CREATED="1485714143922" MODIFIED="1487275355652"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -101,10 +186,12 @@
       Address = 'Lost Street 1'
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
-<node CREATED="1485714297500" ID="ID_1974518194" MODIFIED="1487275355738" TEXT="Objects">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Objects" ID="ID_1974518194" CREATED="1485714297500" MODIFIED="1487275355738"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -149,12 +236,14 @@
       It's just that simple.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485715579536" ID="ID_1318020651" MODIFIED="1485715583789" TEXT="Lecture 9">
-<node CREATED="1485715591152" ID="ID_1955950362" MODIFIED="1487275355814" TEXT="Global environment and global object">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 9" FOLDED="true" ID="ID_1318020651" CREATED="1485715579536" MODIFIED="1485715583789">
+<node TEXT="Global environment and global object" ID="ID_1955950362" CREATED="1485715591152" MODIFIED="1487275355814"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -177,12 +266,14 @@
       &quot;Global&quot; in js means &quot;Not inside a function&quot;.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485734417690" ID="ID_1104461070" MODIFIED="1485734423556" TEXT="Lecture 10">
-<node CREATED="1485734426970" ID="ID_1457626505" MODIFIED="1487275355897" TEXT="The Execution Context creation and Hoisting">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 10" FOLDED="true" ID="ID_1104461070" CREATED="1485734417690" MODIFIED="1485734423556">
+<node TEXT="The Execution Context creation and Hoisting" ID="ID_1457626505" CREATED="1485734426970" MODIFIED="1487275355897"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -216,12 +307,14 @@
       TODO: explain CREATION Phase &amp; Hoisting: functions vs. variables ('undefined' - special value/ keyword - &quot;Variable has not been set (yet)(, but was declared).&quot;)
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485735597454" ID="ID_121877495" MODIFIED="1485735604649" TEXT="Lecture 11">
-<node CREATED="1485735605595" ID="ID_572417636" MODIFIED="1487275355960" TEXT="Conceptual Aside: Javascript and &apos;undefined&apos;">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 11" FOLDED="true" ID="ID_121877495" CREATED="1485735597454" MODIFIED="1485735604649">
+<node TEXT="Conceptual Aside: Javascript and &apos;undefined&apos;" ID="ID_572417636" CREATED="1485735605595" MODIFIED="1487275355960"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -263,12 +356,14 @@
       New Execution context is created even if the function is invoking itself.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485735563668" ID="ID_1625739205" MODIFIED="1485735569376" TEXT="Lecture 12">
-<node CREATED="1485735570637" ID="ID_910106411" MODIFIED="1487275356014" TEXT="The Execution Context: Code Execution">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 12" FOLDED="true" ID="ID_1625739205" CREATED="1485735563668" MODIFIED="1485735569376">
+<node TEXT="The Execution Context: Code Execution" ID="ID_910106411" CREATED="1485735570637" MODIFIED="1487275356014"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -280,12 +375,14 @@
       In this phase is our code executed line by line
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485735771308" ID="ID_136332985" MODIFIED="1485735778192" TEXT="Lecture 13">
-<node CREATED="1485735779275" ID="ID_1005997156" MODIFIED="1487275356080" TEXT="Single Threaded">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 13" FOLDED="true" ID="ID_136332985" CREATED="1485735771308" MODIFIED="1485735778192">
+<node TEXT="Single Threaded" ID="ID_1005997156" CREATED="1485735779275" MODIFIED="1487275356080"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -294,10 +391,12 @@
       &quot;One command at a time&quot; (The browser might not be Single Threaded under the hood, but the Javascript engine is.)
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
-<node CREATED="1485735828026" ID="ID_1114831193" MODIFIED="1487275356123" TEXT="Synchronous Execution">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Synchronous Execution" ID="ID_1114831193" CREATED="1485735828026" MODIFIED="1487275356123"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -306,12 +405,14 @@
       &quot;One (line of code is executed) at a time (in order it appears).&quot;
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485735963434" ID="ID_1901250452" MODIFIED="1485735967168" TEXT="Lecture 14">
-<node CREATED="1485735968466" ID="ID_725014107" MODIFIED="1487275356178" TEXT="Function Invocation and The Execution Stack">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 14" FOLDED="true" ID="ID_1901250452" CREATED="1485735963434" MODIFIED="1485735967168">
+<node TEXT="Function Invocation and The Execution Stack" ID="ID_725014107" CREATED="1485735968466" MODIFIED="1487275356178"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -326,12 +427,16 @@
       &quot;Anytime you execute or invoke a function in Javascript a new Execution Context is created&#160;(for that function)&#160;and put on the Execution Stack.&quot; Then it's executed line by line and aflter it finishes it's popped off the Execution Stack and execution continues in the current one.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485738816781" ID="ID_1241552172" MODIFIED="1485738820137" TEXT="Lecture 15">
-<node CREATED="1485738823420" ID="ID_1378009877" MODIFIED="1487275356261" TEXT="Functions, Context and Variable Environments TODO: START HERE">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 15" FOLDED="true" ID="ID_1241552172" CREATED="1485738816781" MODIFIED="1485738820137">
+<node TEXT="Functions, Context and Variable Environments TODO: START HERE" ID="ID_1378009877" CREATED="1485738823420" MODIFIED="1487275356261">
+<icon BUILTIN="yes"/>
+<richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -382,13 +487,16 @@
       11. a();&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;// On calling this, new a()'s Execution Context is created and initialized
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="Lecture 16" FOLDED="true" ID="ID_99403642" CREATED="1485820224670" MODIFIED="1485820232539">
+<node TEXT="The Scope Chain" ID="ID_308242189" CREATED="1485820236998" MODIFIED="1487275356354">
 <icon BUILTIN="yes"/>
-</node>
-</node>
-<node CREATED="1485820224670" ID="ID_99403642" MODIFIED="1485820232539" TEXT="Lecture 16">
-<node CREATED="1485820236998" ID="ID_308242189" MODIFIED="1487275356354" TEXT="The Scope Chain">
-<richcontent TYPE="NOTE"><html>
+<richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -517,13 +625,14 @@
       &gt;&gt;&gt; 2
     </p>
   </body>
-</html></richcontent>
-<icon BUILTIN="yes"/>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1485986530081" ID="ID_889875764" MODIFIED="1485986534284" TEXT="Lecture 17">
-<node CREATED="1485986535767" ID="ID_871871053" MODIFIED="1487275356396" TEXT="Scope, ES6 and &apos;let&apos;">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 17" FOLDED="true" ID="ID_889875764" CREATED="1485986530081" MODIFIED="1485986534284">
+<node TEXT="Scope, ES6 and &apos;let&apos;" ID="ID_871871053" CREATED="1485986535767" MODIFIED="1487275356396"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -550,12 +659,14 @@
       }
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1486420158562" ID="ID_1461508063" MODIFIED="1486420164581" TEXT="Lecture 18">
-<node CREATED="1486420165202" ID="ID_692339321" MODIFIED="1487275356446" TEXT="What about asynchronous callbacks?">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 18" FOLDED="true" ID="ID_1461508063" CREATED="1486420158562" MODIFIED="1486420164581">
+<node TEXT="What about asynchronous callbacks?" FOLDED="true" ID="ID_692339321" CREATED="1486420165202" MODIFIED="1487275356446"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -615,9 +726,11 @@
       console.log('finished execution);
     </p>
   </body>
-</html></richcontent>
-<node CREATED="1486420228470" ID="ID_1173781512" MODIFIED="1487275356476" TEXT="&quot;Asynchronous&quot;">
-<richcontent TYPE="NOTE"><html>
+</html>
+</richcontent>
+<node TEXT="&quot;Asynchronous&quot;" FOLDED="true" ID="ID_1173781512" CREATED="1486420228470" MODIFIED="1487275356476"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -644,9 +757,11 @@
       Javascript has 'hooks' to communicate with other (browser) components.
     </p>
   </body>
-</html></richcontent>
-<node CREATED="1486420403837" ID="ID_675029244" MODIFIED="1487275356507" TEXT="Event Queue">
-<richcontent TYPE="NOTE"><html>
+</html>
+</richcontent>
+<node TEXT="Event Queue" ID="ID_675029244" CREATED="1486420403837" MODIFIED="1487275356507"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -667,16 +782,18 @@
       The browser just adds events asynchronously to the queue.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
 </node>
 </node>
-<node CREATED="1486420944955" ID="ID_1152612797" MODIFIED="1486907384310" POSITION="left" TEXT="Section 3">
-<node CREATED="1486420950051" ID="ID_719215585" MODIFIED="1486420954328" TEXT="Lecture 19">
-<node CREATED="1486420955947" ID="ID_1917491084" MODIFIED="1487275356544" TEXT="Conceptual Aside: Javascript and types TODO:">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Section 3" POSITION="left" ID="ID_1152612797" CREATED="1486420944955" MODIFIED="1486907384310">
+<node TEXT="Lecture 19" ID="ID_719215585" CREATED="1486420950051" MODIFIED="1486420954328">
+<node TEXT="Conceptual Aside: Javascript and types TODO:" FOLDED="true" ID="ID_1917491084" CREATED="1486420955947" MODIFIED="1487275356544"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -685,9 +802,11 @@
       Types of Data:
     </p>
   </body>
-</html></richcontent>
-<node CREATED="1486424901737" ID="ID_86748822" MODIFIED="1487275356575" TEXT="Dynamic Typing">
-<richcontent TYPE="NOTE"><html>
+</html>
+</richcontent>
+<node TEXT="Dynamic Typing" ID="ID_86748822" CREATED="1486424901737" MODIFIED="1487275356575"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -711,10 +830,12 @@
       isNew = 1;
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
-<node CREATED="1486425055885" ID="ID_920194395" MODIFIED="1487275356619" TEXT="vs Static Typing">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="vs Static Typing" ID="ID_920194395" CREATED="1486425055885" MODIFIED="1487275356619"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -729,13 +850,15 @@
       bool isNew = 'hello'; // triggers error
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
-<node CREATED="1486907388199" ID="ID_1229480630" MODIFIED="1486907395484" TEXT="Lecture 20">
-<node CREATED="1486907412878" ID="ID_388826365" MODIFIED="1487275356690" TEXT="Primitive types">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 20" ID="ID_1229480630" CREATED="1486907388199" MODIFIED="1486907395484">
+<node TEXT="Primitive types" FOLDED="true" ID="ID_388826365" CREATED="1486907412878" MODIFIED="1487275356690"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -771,10 +894,12 @@
       ** <b>Symbol</b>: used in ES6
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 <font NAME="SansSerif" SIZE="12"/>
-<node CREATED="1486909018902" ID="ID_1093189106" MODIFIED="1487275356723" TEXT="undefined">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="undefined" ID="ID_1093189106" CREATED="1486909018902" MODIFIED="1487275356723"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -783,11 +908,13 @@
       represents lack of existence (<b><u>DON'T set any variable(s) to this value</u></b>)
     </p>
   </body>
-</html></richcontent>
-<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</html>
+</richcontent>
+<font NAME="SansSerif" SIZE="12" BOLD="true"/>
 </node>
-<node CREATED="1486909042126" ID="ID_841832413" MODIFIED="1487275356757" TEXT="null">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="null" ID="ID_841832413" CREATED="1486909042126" MODIFIED="1487275356757"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -796,11 +923,13 @@
       represents lack of existence (<b><u>DON'T set any variable(s) to this value</u></b>)
     </p>
   </body>
-</html></richcontent>
-<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</html>
+</richcontent>
+<font NAME="SansSerif" SIZE="12" BOLD="true"/>
 </node>
-<node CREATED="1486909048550" ID="ID_1983727762" MODIFIED="1487275356781" TEXT="Boolean">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Boolean" ID="ID_1983727762" CREATED="1486909048550" MODIFIED="1487275356781"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -809,11 +938,13 @@
       [false | true]
     </p>
   </body>
-</html></richcontent>
-<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</html>
+</richcontent>
+<font NAME="SansSerif" SIZE="12" BOLD="true"/>
 </node>
-<node CREATED="1486909065406" ID="ID_692782428" MODIFIED="1487275356807" TEXT="Number">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Number" ID="ID_692782428" CREATED="1486909065406" MODIFIED="1487275356807"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -822,11 +953,13 @@
       There is only floating point number type in Javascript (what can make math weird).
     </p>
   </body>
-</html></richcontent>
-<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</html>
+</richcontent>
+<font NAME="SansSerif" SIZE="12" BOLD="true"/>
 </node>
-<node CREATED="1486909077638" ID="ID_703440622" MODIFIED="1487275356836" TEXT="String">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="String" ID="ID_703440622" CREATED="1486909077638" MODIFIED="1487275356836"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -835,11 +968,13 @@
       Characters sequence enclosed in `'` or `&quot;`.
     </p>
   </body>
-</html></richcontent>
-<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</html>
+</richcontent>
+<font NAME="SansSerif" SIZE="12" BOLD="true"/>
 </node>
-<node CREATED="1486909082126" ID="ID_812482214" MODIFIED="1487275356859" TEXT="Symbol">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Symbol" ID="ID_812482214" CREATED="1486909082126" MODIFIED="1487275356859"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -848,14 +983,16 @@
       Used in the ES6, not covered here.
     </p>
   </body>
-</html></richcontent>
-<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</html>
+</richcontent>
+<font NAME="SansSerif" SIZE="12" BOLD="true"/>
 </node>
 </node>
 </node>
-<node CREATED="1486907914748" ID="ID_1746642218" MODIFIED="1486907919073" TEXT="Lecture 21">
-<node CREATED="1486907926812" ID="ID_674038183" MODIFIED="1487275356900" TEXT="Operators">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 21" ID="ID_1746642218" CREATED="1486907914748" MODIFIED="1486907919073">
+<node TEXT="Operators" ID="ID_674038183" CREATED="1486907926812" MODIFIED="1487275356900"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -888,12 +1025,14 @@
       &quot;Infix notation&quot;.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1486908700615" ID="ID_1283098894" MODIFIED="1486908706774" TEXT="Lecture 22">
-<node CREATED="1486908708375" ID="ID_157785443" MODIFIED="1487275356945" TEXT="Operators precedence and associativity">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 22" ID="ID_1283098894" CREATED="1486908700615" MODIFIED="1486908706774">
+<node TEXT="Operators precedence and associativity" FOLDED="true" ID="ID_157785443" CREATED="1486908708375" MODIFIED="1487275356945"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -902,9 +1041,11 @@
       See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence <a href="file://../doc/Javascript_Understanding_Weird_Parts/doc/mdn_operator_precedence_table.pdf">Operators precedence and associativity table</a>
     </p>
   </body>
-</html></richcontent>
-<node CREATED="1486908740184" ID="ID_357262878" MODIFIED="1487275356988" TEXT="Operator precedence">
-<richcontent TYPE="NOTE"><html>
+</html>
+</richcontent>
+<node TEXT="Operator precedence" ID="ID_357262878" CREATED="1486908740184" MODIFIED="1487275356988"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -940,10 +1081,12 @@
       &gt;&gt;&gt; 23
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
-<node CREATED="1486908745942" ID="ID_1548972472" MODIFIED="1487275357041" TEXT="Associativity">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Associativity" ID="ID_1548972472" CREATED="1486908745942" MODIFIED="1487275357041"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1006,13 +1149,15 @@
       
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
-<node CREATED="1486915389278" ID="ID_1915901031" MODIFIED="1486915395340" TEXT="Lecture 24">
-<node CREATED="1486915397678" ID="ID_1935223319" MODIFIED="1487275357093" TEXT="Conceptual aside: Coercion">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 24" ID="ID_1915901031" CREATED="1486915389278" MODIFIED="1486915395340">
+<node TEXT="Conceptual aside: Coercion" ID="ID_1935223319" CREATED="1486915397678" MODIFIED="1487275357093"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1048,12 +1193,14 @@
       &gt;&gt;&gt; 12
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1486915814524" ID="ID_1256691327" MODIFIED="1486915817362" TEXT="Lecture 25">
-<node CREATED="1486915818940" ID="ID_885257149" MODIFIED="1487275357200" TEXT="Comparison operators">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 25" ID="ID_1256691327" CREATED="1486915814524" MODIFIED="1486915817362">
+<node TEXT="Comparison operators" ID="ID_885257149" CREATED="1486915818940" MODIFIED="1487275357200"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1074,13 +1221,15 @@ console.log(3 &gt; 2 &gt; 1);
       See also https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness or <a href="file://./doc/mdn_equality_comparisons_and_sameness_table.pdf" target="_blank">Equality comparisons and sameness table PDF</a>
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 <font NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
-<node CREATED="1486931780743" ID="ID_901525626" MODIFIED="1486931786559" TEXT="Lecture 27">
-<node CREATED="1486931787466" ID="ID_1452901011" MODIFIED="1487275346437" TEXT="Existence and Booleans">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 27" ID="ID_901525626" CREATED="1486931780743" MODIFIED="1486931786559">
+<node TEXT="Existence and Booleans" ID="ID_1452901011" CREATED="1486931787466" MODIFIED="1487275346437"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1106,12 +1255,14 @@ if (a) { // a is coerced / converted to Boolean
 }
     </pre>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1486932241152" ID="ID_513852242" MODIFIED="1486932246549" TEXT="Lecture 28">
-<node CREATED="1486932247728" ID="ID_1609503054" MODIFIED="1487527677414" TEXT="Default values">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 28" ID="ID_513852242" CREATED="1486932241152" MODIFIED="1486932246549">
+<node TEXT="Default values" ID="ID_1609503054" CREATED="1486932247728" MODIFIED="1487527677414"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1138,12 +1289,14 @@ greetWithDefault();
 
 // &gt;&gt;&gt; Hello [your name here]</pre>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1486933093932" ID="ID_1713388018" MODIFIED="1486933103001" TEXT="Lecture 29">
-<node CREATED="1486933103515" ID="ID_974105330" MODIFIED="1487275357596" TEXT="Framework aside: TODO improve the explanations">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 29" ID="ID_1713388018" CREATED="1486933093932" MODIFIED="1486933103001">
+<node TEXT="Framework aside: TODO improve the explanations" FOLDED="true" ID="ID_974105330" CREATED="1486933103515" MODIFIED="1487275357596"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1152,9 +1305,11 @@ greetWithDefault();
       We're going to look how concepts we have learnt are used in widely used frameworks and libraries.
     </p>
   </body>
-</html></richcontent>
-<node CREATED="1486933253299" ID="ID_961552970" MODIFIED="1487275357644" TEXT="Default values">
-<richcontent TYPE="NOTE"><html>
+</html>
+</richcontent>
+<node TEXT="Default values" ID="ID_961552970" CREATED="1486933253299" MODIFIED="1487275357644"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1191,15 +1346,17 @@ greetWithDefault();
 var window.myLibrary = window.myLibrary || &quot;Lib 2&quot;;
 ...</pre>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
 </node>
-<node CREATED="1486937667059" ID="ID_149434527" MODIFIED="1486938658077" POSITION="right" TEXT="Section 4: Objects and Functions">
-<node CREATED="1486937634268" ID="ID_55810104" MODIFIED="1488493439942" TEXT="Lecture 30">
-<node CREATED="1486937639347" ID="ID_819842486" MODIFIED="1488492322286" TEXT="Objects and the dot">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Section 4: Objects and Functions" POSITION="right" ID="ID_149434527" CREATED="1486937667059" MODIFIED="1486938658077">
+<node TEXT="Lecture 30" FOLDED="true" ID="ID_55810104" CREATED="1486937634268" MODIFIED="1488493439942">
+<node TEXT="Objects and the dot" FOLDED="true" ID="ID_819842486" CREATED="1486937639347" MODIFIED="1488492322286"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1244,9 +1401,11 @@ console.log(person[&quot;address&quot;][&quot;city&quot;]); // Preferred way whe
 // &gt;&gt;&gt; 111 Main St.
 // &gt;&gt;&gt; New York</pre>
   </body>
-</html></richcontent>
-<node CREATED="1486938671475" ID="ID_904047027" MODIFIED="1487528134792" TEXT="Object">
-<richcontent TYPE="NOTE"><html>
+</html>
+</richcontent>
+<node TEXT="Object" FOLDED="true" ID="ID_904047027" CREATED="1486938671475" MODIFIED="1487528134792"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1258,9 +1417,11 @@ console.log(person[&quot;address&quot;][&quot;city&quot;]); // Preferred way whe
       Objects members / properties and methods also occupy their memory slots and the connection between the Object and its properties and methods points to them
     </p>
   </body>
-</html></richcontent>
-<node CREATED="1486938724061" ID="ID_814046992" MODIFIED="1487528144363" TEXT="Primitive &quot;property&quot;">
-<richcontent TYPE="NOTE"><html>
+</html>
+</richcontent>
+<node TEXT="Primitive &quot;property&quot;" ID="ID_814046992" CREATED="1486938724061" MODIFIED="1487528144363"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1269,10 +1430,12 @@ console.log(person[&quot;address&quot;][&quot;city&quot;]); // Preferred way whe
       It has some sort of address of the occupied computer's memory slot (e.g. 0x002).
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
-<node CREATED="1486938732338" ID="ID_877767920" MODIFIED="1487528150743" TEXT="Object &quot;property&quot;">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Object &quot;property&quot;" ID="ID_877767920" CREATED="1486938732338" MODIFIED="1487528150743"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1281,10 +1444,12 @@ console.log(person[&quot;address&quot;][&quot;city&quot;]); // Preferred way whe
       It has some sort of address of the occupied computer's memory slot (e.g. 0x003).
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
-<node CREATED="1486938740162" ID="ID_1821738657" MODIFIED="1487528157492" TEXT="Function &quot;method&quot;">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Function &quot;method&quot;" ID="ID_1821738657" CREATED="1486938740162" MODIFIED="1487528157492"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1293,14 +1458,16 @@ console.log(person[&quot;address&quot;][&quot;city&quot;]); // Preferred way whe
       It has some sort of address of the occupied computer's memory slot (e.g. 0x003).
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
 </node>
-<node CREATED="1488493460460" ID="ID_1146414129" MODIFIED="1488493463890" TEXT="Lecture 31">
-<node CREATED="1488493441394" ID="ID_1437679959" MODIFIED="1488494660950" TEXT="Objects and Object Literals">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 31" FOLDED="true" ID="ID_1146414129" CREATED="1488493460460" MODIFIED="1488493463890">
+<node TEXT="Objects and Object Literals" ID="ID_1437679959" CREATED="1488493441394" MODIFIED="1488494660950"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1346,13 +1513,15 @@ greet({ firstname: 'Mary', lastname: 'Doe'}) // Using this syntax we can define 
 
 </pre>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
-<node CREATED="1488494662334" ID="ID_1475606427" MODIFIED="1488494666812" TEXT="Lecture 32">
-<node CREATED="1488494668254" ID="ID_1901689106" MODIFIED="1488494677947" TEXT="Framework aside">
-<node CREATED="1488494680093" ID="ID_1321601619" MODIFIED="1488495427156" TEXT="Faking namespaces">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 32" FOLDED="true" ID="ID_1475606427" CREATED="1488494662334" MODIFIED="1488494666812">
+<node TEXT="Framework aside" FOLDED="true" ID="ID_1901689106" CREATED="1488494668254" MODIFIED="1488494677947">
+<node TEXT="Faking namespaces" FOLDED="true" ID="ID_1321601619" CREATED="1488494680093" MODIFIED="1488495427156"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1373,9 +1542,11 @@ console.log(english);
 
 // &gt;&gt;&gt; Object { greet: &quot;Hello!&quot; }</pre>
   </body>
-</html></richcontent>
-<node CREATED="1488494687445" ID="ID_568181095" MODIFIED="1488494778193" TEXT="Namespace">
-<richcontent TYPE="NOTE"><html>
+</html>
+</richcontent>
+<node TEXT="Namespace" ID="ID_568181095" CREATED="1488494687445" MODIFIED="1488494778193"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1387,14 +1558,16 @@ console.log(english);
       Used typically for keeping variables with same names separated.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
 </node>
-<node CREATED="1488495429570" ID="ID_1475225505" MODIFIED="1488495435145" TEXT="Lecture 33">
-<node CREATED="1488495440617" ID="ID_680641734" MODIFIED="1488833367616" TEXT="Json and Object Literals">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 33" FOLDED="true" ID="ID_1475225505" CREATED="1488495429570" MODIFIED="1488495435145">
+<node TEXT="Json and Object Literals" ID="ID_680641734" CREATED="1488495440617" MODIFIED="1488833367616"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1437,9 +1610,10 @@ console.log(JSON.parse('{&quot;firstname&quot;: &quot;Mary&quot;, &quot;isAProgr
 <font NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
-<node CREATED="1488833384897" ID="ID_407510161" MODIFIED="1488833389391" TEXT="Lecture 34">
-<node CREATED="1488833389960" ID="ID_149432891" MODIFIED="1488833771102" TEXT="Functions are objects">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Lecture 34" FOLDED="true" ID="ID_407510161" CREATED="1488833384897" MODIFIED="1488833389391">
+<node TEXT="Functions are objects" FOLDED="true" ID="ID_149432891" CREATED="1488833389960" MODIFIED="1488833771102"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1450,8 +1624,9 @@ console.log(JSON.parse('{&quot;firstname&quot;: &quot;Mary&quot;, &quot;isAProgr
   </body>
 </html>
 </richcontent>
-<node CREATED="1488833471264" ID="ID_1689688225" MODIFIED="1488833746978" TEXT="1st Class Functions">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="1st Class Functions" ID="ID_1689688225" CREATED="1488833471264" MODIFIED="1488833746978"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1463,8 +1638,9 @@ console.log(JSON.parse('{&quot;firstname&quot;: &quot;Mary&quot;, &quot;isAProgr
 </html>
 </richcontent>
 </node>
-<node CREATED="1488833774231" ID="ID_149362983" MODIFIED="1488834207606" TEXT="Function">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Function" FOLDED="true" ID="ID_149362983" CREATED="1488833774231" MODIFIED="1488834207606"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1475,8 +1651,9 @@ console.log(JSON.parse('{&quot;firstname&quot;: &quot;Mary&quot;, &quot;isAProgr
   </body>
 </html>
 </richcontent>
-<node CREATED="1488834110749" ID="ID_961539969" MODIFIED="1488834192101" TEXT="Common features">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Common features" ID="ID_961539969" CREATED="1488834110749" MODIFIED="1488834192101"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1503,8 +1680,11 @@ console.log(JSON.parse('{&quot;firstname&quot;: &quot;Mary&quot;, &quot;isAProgr
 </html>
 </richcontent>
 </node>
-<node CREATED="1488834137204" ID="ID_598656540" MODIFIED="1488835119853" TEXT="Special features">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Special features" FOLDED="true" ID="ID_598656540" CREATED="1488834137204" MODIFIED="1488835119853">
+<icon BUILTIN="yes"/>
+<richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1524,9 +1704,9 @@ console.log(greet.lang);
   </body>
 </html>
 </richcontent>
-<icon BUILTIN="yes"/>
-<node CREATED="1488834218660" ID="ID_1642070067" MODIFIED="1488834460823" TEXT="anonymous - Name is optional">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="anonymous - Name is optional" ID="ID_1642070067" CREATED="1488834218660" MODIFIED="1488834460823"><richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1538,8 +1718,11 @@ console.log(greet.lang);
 </html>
 </richcontent>
 </node>
-<node CREATED="1488834298833" ID="ID_853054267" MODIFIED="1488834763560" TEXT="Code">
-<richcontent TYPE="NOTE"><html>
+<node TEXT="Code" ID="ID_853054267" CREATED="1488834298833" MODIFIED="1488834763560">
+<icon BUILTIN="yes"/>
+<richcontent TYPE="NOTE">
+
+<html>
   <head>
     
   </head>
@@ -1553,7 +1736,6 @@ console.log(greet.lang);
   </body>
 </html>
 </richcontent>
-<icon BUILTIN="yes"/>
 </node>
 </node>
 </node>
