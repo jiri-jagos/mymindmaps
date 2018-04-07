@@ -1,9 +1,9 @@
 <map version="freeplane 1.6.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="Apache Camel" FOLDED="false" ID="ID_752265891" CREATED="1513339056219" MODIFIED="1513424617111" STYLE="oval">
+<node TEXT="Apache Camel" FOLDED="false" ID="ID_752265891" CREATED="1513339056219" MODIFIED="1522836229634" STYLE="oval">
 <font SIZE="18"/>
-<hook NAME="MapStyle" zoom="0.75">
-    <properties show_icon_for_attributes="true" fit_to_viewport="false" show_note_icons="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff"/>
+<hook NAME="MapStyle">
+    <properties fit_to_viewport="false" show_icon_for_attributes="true" show_note_icons="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
@@ -63,9 +63,9 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="5" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="8" RULE="ON_BRANCH_CREATION"/>
 <hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
-<node TEXT="1. Meeting Camel" POSITION="left" ID="ID_607132816" CREATED="1513358265277" MODIFIED="1513358273246">
+<node TEXT="1. Meeting Camel" FOLDED="true" POSITION="left" ID="ID_607132816" CREATED="1513358265277" MODIFIED="1513358273246">
 <edge COLOR="#00ff00"/>
 <node TEXT="1.3 Message Model" ID="ID_1618741804" CREATED="1513339114128" MODIFIED="1513358291336"><richcontent TYPE="NOTE">
 
@@ -654,7 +654,6 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 <hook URI="Endpoint.png" SIZE="0.6615215" NAME="ExternalObject"/>
 </node>
@@ -677,7 +676,6 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Consumer" ID="ID_361531788" CREATED="1513362448994" MODIFIED="1513365604146"><richcontent TYPE="NOTE">
@@ -698,7 +696,6 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="Event-driven consumer" ID="ID_168858464" CREATED="1513362456106" MODIFIED="1513370349600" HGAP_QUANTITY="12.500000044703484 pt" VSHIFT_QUANTITY="2.9999999105930355 pt">
 <hook URI="Event-driven_consumer.png" SIZE="0.8595989" NAME="ExternalObject"/>
@@ -720,7 +717,6 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Polling consumer" ID="ID_406342466" CREATED="1513362488635" MODIFIED="1513370712020">
@@ -740,14 +736,13 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
 </node>
 </node>
 </node>
-<node TEXT="2. Routing with Camel" POSITION="right" ID="ID_397243158" CREATED="1513371465230" MODIFIED="1513424617109" TEXT_SHORTENED="true">
+<node TEXT="2. Routing with Camel" POSITION="right" ID="ID_397243158" CREATED="1513371465230" MODIFIED="1522144597115" TEXT_SHORTENED="true">
 <edge COLOR="#ff00ff"/>
 <hook URI="Routing.png" SIZE="1.0" NAME="ExternalObject"/>
 <richcontent TYPE="NOTE">
@@ -786,7 +781,6 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="2.2 Understanding endpoints" ID="ID_678416314" CREATED="1513372178199" MODIFIED="1513372193667">
 <node TEXT="2.2.1 Working with files over FTP" ID="ID_297512615" CREATED="1513372408143" MODIFIED="1513372856134"><richcontent TYPE="NOTE">
@@ -829,7 +823,6 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="2.2.2 Sending to a JMS queue" ID="ID_317902613" CREATED="1513372857864" MODIFIED="1513372867315">
@@ -871,7 +864,6 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 <hook URI="JMS_destinations.png" SIZE="1.0" NAME="ExternalObject"/>
 </node>
@@ -912,7 +904,6 @@ from(&quot;file:data/inbox&quot;)
 ...</pre>
   </body>
 </html>
-
 </richcontent>
 <font BOLD="false"/>
 </node>
@@ -936,7 +927,6 @@ from(&quot;file:data/inbox&quot;)
     <pre>...to(&quot;jms:queue:incomingOrders&quot;)</pre>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -977,7 +967,6 @@ from(&quot;file:data/inbox&quot;)
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="2.3.2 The Java DSL" ID="ID_1810530508" CREATED="1513529137267" MODIFIED="1513596614670"><richcontent TYPE="NOTE">
@@ -1052,7 +1041,6 @@ public class FtpToJMSExample {
     </ul>
   </body>
 </html>
-
 </richcontent>
 <hook URI="Message_Flow.png" SIZE="1.0" NAME="ExternalObject"/>
 <node TEXT="Adding a Processor" ID="ID_1438845777" CREATED="1513596685367" MODIFIED="1513597617496"><richcontent TYPE="NOTE">
@@ -1088,7 +1076,6 @@ public class FtpToJMSExample {
     .to(&quot;jms:incomingOrders&quot;);</pre>
   </body>
 </html>
-
 </richcontent>
 <hook URI="Route_With_Processor.png" SIZE="1.0" NAME="ExternalObject"/>
 </node>
@@ -1096,7 +1083,7 @@ public class FtpToJMSExample {
 <node TEXT="2.4 Creating routes with Spring" ID="ID_493603657" CREATED="1513597644516" MODIFIED="1513597657975"/>
 </node>
 </node>
-<node TEXT="7. Understanding components" POSITION="right" ID="ID_626701461" CREATED="1513381515569" MODIFIED="1513381543643">
+<node TEXT="7. Understanding components" FOLDED="true" POSITION="right" ID="ID_626701461" CREATED="1513381515569" MODIFIED="1513381543643">
 <edge COLOR="#00ffff"/>
 <node TEXT="7.7 In-memory messaging (Direct, SEDA and VM components" ID="ID_395593588" CREATED="1513381545049" MODIFIED="1513381747062"><richcontent TYPE="NOTE">
 
@@ -1121,7 +1108,6 @@ public class FtpToJMSExample {
     </ul>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="7.7.1 Synchronous messaging with the Direct component" ID="ID_451508053" CREATED="1513381754298" MODIFIED="1513424408399"><richcontent TYPE="NOTE">
 
@@ -1161,10 +1147,228 @@ String reply = template.requestBody(&quot;direct:startOrder&quot;, params, Strin
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="7.7.2 Asynchronous messaging with SEDA and VM" ID="ID_1512460706" CREATED="1513424414987" MODIFIED="1513424437333"/>
+</node>
+</node>
+<node TEXT="8. Enterprise integration patterns" POSITION="right" ID="ID_465430374" CREATED="1522220795136" MODIFIED="1522220815201">
+<edge COLOR="#00007c"/>
+<node TEXT="8.1. Introducing EIPs" ID="ID_407638760" CREATED="1522220965541" MODIFIED="1522220980206">
+<node TEXT="8.1.1. The Aggregator and Splitter EIPs" ID="ID_1712790243" CREATED="1522221079101" MODIFIED="1522221626231">
+<hook URI="Aggregator_And_Splitter_EIPs.png" SIZE="0.55197793" NAME="ExternalObject"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      * <b>The Splitter</b>&#160;can split out a single message to multiple submessages
+    </p>
+    <p>
+      * <b>The Aggregator</b>&#160;can combine submessages back into a single message
+    </p>
+    <p>
+      They are opposite patterns.
+    </p>
+    <p>
+      The Aggregator is most sophisticated and advanced EIP implemented in Camel. It has many use cases such as: aggregating incoming bids for auctions, throttling stock quotes, ...
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="8.1.2. The Routing Slip and Dynamic Router EIPs" ID="ID_328919193" CREATED="1522221627446" MODIFIED="1522221644929"/>
+<node TEXT="8.1.3. The LoadBalancer EIP" ID="ID_1198133100" CREATED="1522221707581" MODIFIED="1522221720425"/>
+</node>
+<node TEXT="8.2. The Aggregator EIP" ID="ID_966292418" CREATED="1522221674734" MODIFIED="1522255228817"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      The Aggregator EIP is important and complex.
+    </p>
+    <p>
+      The Aggregator combines many related incoming messages into a single aggregated message. Once a completion condition occurs, the aggregated message is sent to the output channel for further processing.
+    </p>
+    <p>
+      When using the Aggregator, three configuration settings must be configured:
+    </p>
+    <p>
+      * <b>Correlation identifier</b>: <i>Expression</i>&#160;which determines which incoming messages belong together.
+    </p>
+    <p>
+      * <b>Completion condition</b>: <i>Predicate</i>&#160;or time based condition that determines when the result message should be sent aka. is complete
+    </p>
+    <p>
+      * <b>Aggregation strategy</b>: <i>AggregationStrategy</i>&#160;that specifies how to combine the messages into a single message
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+<hook URI="Aggregator_EIP.png" SIZE="0.62761503" NAME="ExternalObject"/>
+<node TEXT="8.2.1. Introducing the Aggregator EIP" ID="ID_364863955" CREATED="1522255246374" MODIFIED="1522260825805">
+<hook URI="Aggregator_EIP_In_Action.png" SIZE="0.44843048" NAME="ExternalObject"/>
+</node>
+</node>
+</node>
+<node TEXT="5. Error handling" POSITION="left" ID="ID_1692174477" CREATED="1522836191264" MODIFIED="1522836229632" HGAP_QUANTITY="8.00000017881393 pt" VSHIFT_QUANTITY="11.249999664723884 pt">
+<edge COLOR="#007c00"/>
+<node TEXT="5.1. Understanding error handling" ID="ID_46118301" CREATED="1522836259703" MODIFIED="1522836267915">
+<node TEXT="5.1.1. Recoverable and irrecoverable errors" ID="ID_1452424138" CREATED="1522836271663" MODIFIED="1523009259642"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        <i>irrecoverable error</i>&#160;- error that remains error even when the same action is performed again and again (e.g. trying to access database table which would case the SQLException thrown by the JDBC driver) - <b>in Camel this is represented as a message with a fault flag accessible on <i>org.apache.camel.Exchange</i></b>&#160;as following:
+
+        <pre><code class="java">Message msg = Exchange.getOut();
+msg.setFault(true); // This sets a fault flag
+msg.setBody(&quot;Unknown customer&quot;);</code>
+</pre>
+      </li>
+      <li>
+        <i>recoverable error</i>&#160;- temporary error that might not cause problem on the next attempt (e.g. temporary problem with network connection) - <b>in Camel this is represented as a plain <i>Throwable</i>&#160;or <i>Exception</i>&#160;that is accessible on <i>org.apache.camel.Exchange</i>&#160;using its accessors</b>:
+
+        <pre><code class="java">void setException(Throwable cause); // Note: this accepts Throwable type but ...
+Exception getException(); // ... this returns Exception</code>
+</pre>
+      </li>
+    </ul>
+    <p>
+      But this division is not encountered often in a daily life of a Java developer. Error handling generally uses one of the two following patterns:
+    </p>
+    <ul>
+      <li>
+        <b>common error handling idiom</b>, where <b>all exceptions are considered unrecoverable</b>&#160;and further <b>processing is given up immediately</b>:
+
+        <pre><code class="java">public void handleOrder(Order order) throws OrderFailedException {
+    try {
+        service.sendOrder(order);
+    } catch (Exception e) {
+        throw new OrderFailedException(e);
+    }
+}
+	</code>
+	</pre>
+      </li>
+      <li>
+        same as previous but with <b>some logic&#160;added in order to retry message delivery</b>:
+
+        <pre><code class="java">public void handleOrder(Order order) throws OrderFailedException {
+    boolean done = false;
+    int retries = 5; // Number of retry attempts
+    while (!done) {
+        try {
+            service.sendOrder(order);
+            done = true;
+        } catch (Exception e) {
+            if (--retries == 0) {
+                throw new OrderFailedException(e);
+            }
+        }
+    }
+}
+	</code>
+	</pre>
+      </li>
+    </ul>
+    <p>
+      There are two reasons for different representation of these two types of error:
+    </p>
+    <ul>
+      <li>
+        Camel API is designed around the <i>Java Business Integration</i>&#160;specification (JBI), which includes a fault message concept
+      </li>
+      <li>
+        Camel has error handling built into its core - <b>whenever an exception is thrown back to Camel, it catches it and sets the thrown exception on the Exchange as a recoverable error</b>&#160;like this:
+
+        <pre><code class="java">try {
+    processor.process(exchange);
+} catch (Throwable e) {
+    exchange.setException(e);
+}</code>
+</pre>
+      </li>
+    </ul>
+  </body>
+</html>
+
+</richcontent>
+<hook URI="Ir-recoverable_errors.png" SIZE="0.46189377" NAME="ExternalObject"/>
+</node>
+<node TEXT="5.1.2. Where Camel&apos;s errors handling applies" ID="ID_1493203651" CREATED="1522836299727" MODIFIED="1522836316880"/>
+</node>
+<node TEXT="5.2. Error handlers in Camel" ID="ID_132950966" CREATED="1522836332447" MODIFIED="1522836350777">
+<node TEXT="5.2.1. The default error handler" ID="ID_618415679" CREATED="1522836355007" MODIFIED="1522836362986"/>
+<node TEXT="5.2.2. The dead letter channel error handler" ID="ID_11437912" CREATED="1522836366567" MODIFIED="1522836381802"/>
+<node TEXT="5.2.3. The transaction error handler" ID="ID_1334183543" CREATED="1522836385624" MODIFIED="1522836399618"/>
+<node TEXT="5.2.4. The no error handler" ID="ID_1254683973" CREATED="1522836404127" MODIFIED="1522836412378"/>
+<node TEXT="5.2.5. The logging error handler" ID="ID_1937293690" CREATED="1522836414239" MODIFIED="1522836428418"/>
+<node TEXT="5.2.6. Features of the error handlers" ID="ID_1263103273" CREATED="1522836431319" MODIFIED="1522836447570"/>
+</node>
+</node>
+<node TEXT="6. Testing with Camel" POSITION="left" ID="ID_1796505626" CREATED="1522144617384" MODIFIED="1522144624866">
+<edge COLOR="#7c0000"/>
+<node TEXT="6.1. Introducing the Camel Test Kit" ID="ID_1245066576" CREATED="1522145052188" MODIFIED="1522145070527">
+<node TEXT="6.1.2. Using the Camel Test Kit" ID="ID_1556264972" CREATED="1522144932029" MODIFIED="1522144946761"/>
+<node TEXT="6.1.3. Unit testing with the CamelTestSupport class" ID="ID_964512243" CREATED="1522145534504" MODIFIED="1522145581522"/>
+<node TEXT="6.1.4. Unit testing an existing RouteBuilder  class" ID="ID_1955369174" CREATED="1522145586064" MODIFIED="1522145596218"/>
+<node TEXT="6.1.5. Unit testing with the SpringCamelTestSupport class" ID="ID_1504697758" CREATED="1522145639216" MODIFIED="1522145654258"/>
+</node>
+<node TEXT="6.2. Using the Mock component" ID="ID_1196473030" CREATED="1522145873007" MODIFIED="1523090632226"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Makes testing much easier.
+    </p>
+    <p>
+      Useful in these situations:
+    </p>
+    <ul>
+      <li>
+        when real component does not exist or is not reachable in development and test phases
+      </li>
+      <li>
+        when real component is slow or requires much effort to set up and initialize (such as a database)
+      </li>
+      <li>
+        when a special logic would have to be incorporated into the real component, which would be impractical or impossible
+      </li>
+      <li>
+        when the component returns nondeterministic results such as the current time
+      </li>
+      <li>
+        when simulating errors is needed
+      </li>
+    </ul>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="6.2.1. Introducing the Mock component" ID="ID_511985920" CREATED="1522146109321" MODIFIED="1523091134929">
+<hook URI="Mock_Component_Three_Steps_For_Testing.png" SIZE="0.51502144" NAME="ExternalObject"/>
+</node>
+<node TEXT="6.2.2. Unit testing with the Mock component" ID="ID_1339418369" CREATED="1522146126057" MODIFIED="1522146139043"/>
 </node>
 </node>
 </node>
